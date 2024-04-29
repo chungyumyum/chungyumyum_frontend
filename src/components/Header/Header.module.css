@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 1.7rem 1.9rem;
+  padding: 1.7rem;
 }
 
 .title {
@@ -13,7 +13,7 @@
 }
 
 .searchContainer {
-  width: 60%;
+  width: 68%;
   position: relative;
 }
 
