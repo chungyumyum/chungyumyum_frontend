@@ -3,4 +3,10 @@
 
 .contents {
   background-color: var(--gray-100);
+  height: 100vh;
+  overflow: scroll;
+}
+
+.contents::-webkit-scrollbar {
+  display: none;
 }

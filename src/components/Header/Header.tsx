@@ -7,7 +7,11 @@ export default function Header() {
     <header className={styles.container}>
       <h1 className={styles.title}>충냠냠</h1>
       <div className={styles.searchContainer}>
-        <input className={styles.search} type="text" />
+        <input
+          className={styles.search}
+          type="text"
+          placeholder="돈까스 맛집이 어디더라?"
+        />
         <img className={styles.searchIcon} src={searchIcon} alt="search_icon" />
       </div>
       <div>

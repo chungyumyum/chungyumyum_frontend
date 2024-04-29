@@ -5,7 +5,28 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Header />
-      <div className={styles.contents}>..</div>
+      <div className={styles.contents}>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+        <p>foajeofw</p>
+      </div>
     </div>
   );
 }
