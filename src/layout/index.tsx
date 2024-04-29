@@ -20,15 +20,15 @@ export default function Layout() {
         </Link>
         <Link to="/">
           <p>
-            <img src={homeIcon} alt="pencil_icon" />
+            <img src={homeIcon} alt="home_icon" />
           </p>
           <p>홈</p>
         </Link>
         <Link to="/profile">
           <p>
-            <img src={profileIcon} alt="pencil_icon" />
+            <img src={profileIcon} alt="profile_icon" />
           </p>
-          <p>My</p>
+          <p style={{ marginLeft: "0.2rem" }}>My</p>
         </Link>
       </div>
     </div>
