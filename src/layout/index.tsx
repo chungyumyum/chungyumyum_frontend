@@ -1,5 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styles from "./Layout.module.css";
+import pencilIcon from "../assets/icons/pencil.svg";
+import homeIcon from "../assets/icons/home.svg";
+import profileIcon from "../assets/icons/profile.svg";
 
 export default function Layout() {
   return (
@@ -9,9 +12,24 @@ export default function Layout() {
       </div>
 
       <div className={styles.navBar}>
-        <div>글쓰기</div>
-        <div>홈</div>
-        <div>My</div>
+        <Link to="/post">
+          <p>
+            <img src={pencilIcon} alt="pencil_icon" />
+          </p>
+          <p>글쓰기</p>
+        </Link>
+        <Link to="/">
+          <p>
+            <img src={homeIcon} alt="pencil_icon" />
+          </p>
+          <p>홈</p>
+        </Link>
+        <Link to="/profile">
+          <p>
+            <img src={profileIcon} alt="pencil_icon" />
+          </p>
+          <p>My</p>
+        </Link>
       </div>
     </div>
   );

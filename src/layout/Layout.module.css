@@ -7,7 +7,7 @@
 
 .navBar {
   border-top: 1.5px solid #c5c5c5;
-  padding: 3rem;
+  padding: 1.6rem 0;
   position: fixed;
   width: 41rem;
   box-sizing: border-box;
@@ -16,11 +16,16 @@
   background-color: #fff;
 }
 
-.navBar > div {
+.navBar > a {
+  text-decoration: none;
+  display: block;
   flex-basis: 0;
   flex-grow: 1;
   text-align: center;
   font-weight: 600;
   color: var(--gray-600);
   font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
