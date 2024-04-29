@@ -1,0 +1,26 @@
+.container {
+  max-width: 41rem;
+  background-color: #fff;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.navBar {
+  border-top: 1.5px solid #c5c5c5;
+  padding: 3rem;
+  position: fixed;
+  width: 41rem;
+  box-sizing: border-box;
+  bottom: 0;
+  display: flex;
+  background-color: #fff;
+}
+
+.navBar > div {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  color: var(--gray-600);
+  font-size: 1.5rem;
+}
