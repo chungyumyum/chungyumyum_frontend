@@ -1,10 +1,16 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 import pencilIcon from "../assets/icons/pencil.svg";
 import homeIcon from "../assets/icons/home.svg";
 import profileIcon from "../assets/icons/profile.svg";
+import activeProfileIcon from "../assets/icons/profile_active.svg";
+import activeHomeIcon from "../assets/icons/home_active.svg";
+import activePencilIcon from "../assets/icons/pencil_active.svg";
 
 export default function Layout() {
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <div className={styles.container}>
       <div className={styles.contents}>
@@ -13,22 +19,36 @@ export default function Layout() {
 
       <div className={styles.navBar}>
         <Link to="/post">
-          <p>
-            <img src={pencilIcon} alt="pencil_icon" />
-          </p>
-          <p>글쓰기</p>
+          <div>
+            <img
+              src={pathname === "/post" ? activePencilIcon : pencilIcon}
+              alt="home_icon"
+            />
+          </div>
+          <p className={pathname === "/post" ? styles.active : ""}>글쓰기</p>
         </Link>
         <Link to="/">
-          <p>
-            <img src={homeIcon} alt="home_icon" />
-          </p>
-          <p>홈</p>
+          <div>
+            <img
+              src={pathname === "/" ? activeHomeIcon : homeIcon}
+              alt="home_icon"
+            />
+          </div>
+          <p className={pathname === "/" ? styles.active : ""}>홈</p>
         </Link>
         <Link to="/profile">
-          <p>
-            <img src={profileIcon} alt="profile_icon" />
+          <div>
+            <img
+              src={pathname === "/profile" ? activeProfileIcon : profileIcon}
+              alt="home_icon"
+            />
+          </div>
+          <p
+            style={{ marginLeft: "0.2rem" }}
+            className={pathname === "/profile" ? styles.active : ""}
+          >
+            My
           </p>
-          <p style={{ marginLeft: "0.2rem" }}>My</p>
         </Link>
       </div>
     </div>
