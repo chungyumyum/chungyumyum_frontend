@@ -1,31 +1,3 @@
-.container {
-}
-
-.contents {
-  background-color: var(--gray-100);
-  min-height: 90vh;
-  padding-bottom: 9rem;
-}
-
-.contents::-webkit-scrollbar {
-  display: none;
-}
-
-.slider {
-  padding: 1.6rem;
-}
-
-.banner {
-  display: block;
-}
-
-.banner img {
-  border-radius: 1rem;
-  vertical-align: top;
-  width: 100%;
-}
-
-/* card */
 .card {
   background-color: #fff;
   box-shadow: 0 0.2rem 0.3rem 0.01rem rgba(0, 0, 0, 0.1);
