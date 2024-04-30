@@ -12,16 +12,17 @@ export default function Home() {
             <img src={bannerCover} alt="banner-cover" />
           </a>
         </div>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
-        <p>foajeofw</p>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
+        <div className={styles.card}>foajeofw</div>
       </div>
     </div>
   );
