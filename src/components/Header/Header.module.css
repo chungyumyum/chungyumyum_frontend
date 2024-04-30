@@ -45,6 +45,90 @@
   outline: none;
 }
 
+.controlBtn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
 .controlIcon {
+  cursor: pointer;
+}
+
+@keyframes stretch {
+  0% {
+    margin-right: -45%;
+  }
+
+  100% {
+    margin-right: 0;
+  }
+}
+
+@keyframes deemFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes deemFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    margin-right: 0;
+  }
+
+  100% {
+    margin-right: -45%;
+  }
+}
+
+/* sidebar */
+.sidebar {
+  background-color: var(--blue-400);
+  position: absolute;
+  right: 0;
+  animation: stretch 0.3s ease-out;
+  width: 45%;
+  top: 0;
+  bottom: 0;
+  z-index: 2000;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.sidebarDisappear {
+  animation: shrink 0.3s ease-out;
+}
+
+.deem {
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1500;
+  animation: deemFadeIn 0.3s ease-out;
+}
+
+.deemDisappear {
+  animation: deemFadeOut 0.3s ease-out;
+}
+
+.closeBtn {
+  background-color: inherit;
+  border: none;
   cursor: pointer;
 }
