@@ -1,0 +1,28 @@
+.badge {
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.one {
+  background-color: var(--gray-500);
+}
+
+.two {
+  background-color: var(--blue-100);
+}
+
+.three {
+  background-color: var(--green);
+}
+
+.four {
+  background-color: var(--orange);
+}
+
+.five {
+  background-color: var(--red);
+}

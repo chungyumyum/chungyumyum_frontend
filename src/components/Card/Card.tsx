@@ -1,6 +1,7 @@
 import styles from "./Card.module.css";
 import cardCover01 from "../../assets/covers/card_cover01.jpg";
 import { Link } from "react-router-dom";
+import Badge from "../Badge/Badge";
 
 export default function Card() {
   return (
@@ -23,7 +24,10 @@ export default function Card() {
         <Link to="/profile" className={styles.moreBtn}>
           더보기
         </Link>
-        <div className={styles.cardFooter}>홍길동</div>
+        <div className={styles.cardFooter}>
+          <Badge type="one" />
+          홍길동
+        </div>
       </div>
     </div>
   );
