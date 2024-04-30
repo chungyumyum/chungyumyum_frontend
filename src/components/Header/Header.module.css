@@ -2,18 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.4rem;
   padding: 1.7rem;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 900;
   flex-shrink: 0;
+  font-family: Pretendard-extraBold;
 }
 
 .searchContainer {
-  width: 68%;
+  width: 70%;
   position: relative;
 }
 
