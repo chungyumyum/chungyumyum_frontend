@@ -54,6 +54,53 @@
 }
 
 /* textarea */
+
+.textareaContainer {
+  position: relative;
+  background-color: #f3f3f3;
+  border: 1px solid #d8d8d8;
+  border-radius: 2rem;
+  overflow: hidden;
+  height: 17rem;
+}
+
 .textarea {
+  border: none;
   width: 100%;
+  background-color: #f3f3f3;
+  color: #9b9b9b;
+  font-size: 1.6rem;
+  font-family: "pretendard-regular";
+  resize: none;
+  padding: 2rem;
+  box-sizing: border-box;
+  height: 85%;
+}
+
+.textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.submitBtn {
+  display: block;
+  border-radius: 1.5rem;
+  background-color: #000;
+  color: #fff;
+  margin: 2.9rem auto 0;
+  padding: 1.1rem 0;
+  width: 58%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.wordCountTag {
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  color: #9b9b9b;
+  font-size: 1.4rem;
 }
