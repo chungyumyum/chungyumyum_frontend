@@ -10,6 +10,7 @@ import activePencilIcon from "../assets/icons/pencil_active.svg";
 export default function Layout() {
   const location = useLocation();
   const { pathname } = location;
+  console.log(pathname);
 
   return (
     <div className={styles.container}>
@@ -30,11 +31,23 @@ export default function Layout() {
         <Link to="/">
           <div>
             <img
-              src={pathname === "/" ? activeHomeIcon : homeIcon}
+              src={
+                pathname === "/" || pathname.includes("/reviewDetail")
+                  ? activeHomeIcon
+                  : homeIcon
+              }
               alt="home_icon"
             />
           </div>
-          <p className={pathname === "/" ? styles.active : ""}>홈</p>
+          <p
+            className={
+              pathname === "/" || pathname.includes("/reviewDetail")
+                ? styles.active
+                : ""
+            }
+          >
+            홈
+          </p>
         </Link>
         <Link to="/profile">
           <div>
