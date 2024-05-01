@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function Post() {
   const [des, setDes] = useState("");
+  const [rating, setRating] = useState(0);
 
   return (
     <div>
@@ -25,16 +26,19 @@ export default function Post() {
           <div className={styles.ratingInput}>
             <div>별점을 선택하세요.</div>
             <div className={styles.stars}>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
-              <span className={styles.ratingStar}></span>
+              {[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((value, i) => (
+                <span
+                  onClick={() => setRating(value)}
+                  key={value}
+                  className={`${styles.ratingStar} ${
+                    rating >= value
+                      ? (i + 1) % 2 !== 0
+                        ? styles.selected_left
+                        : styles.selected_right
+                      : ""
+                  }`}
+                ></span>
+              ))}
             </div>
             {/* <div className={styles.stars}>
               <img src={starIcon} alt="star_icon" />
