@@ -74,21 +74,23 @@ export default function Header() {
                 <h3 className={styles.sidebarTitle}>동네 설정</h3>
                 <ul className={styles.sidebarList}>
                   <li className={styles.sidebarListItem}>
-                    <button>궁동</button>
+                    <span>궁동</span>
                   </li>
                   <li className={styles.sidebarListItem}>
-                    <button>봉명동</button>
+                    <span>봉명동</span>
                   </li>
                   <li className={styles.sidebarListItem}>
-                    <button>어은동</button>
+                    <span>어은동</span>
                   </li>
                   <li className={styles.sidebarListItem}>
-                    <button>죽동</button>
+                    <span>죽동</span>
                   </li>
                   <li className={styles.sidebarListItem}>
-                    <button>장대동</button>
+                    <span>장대동</span>
                   </li>
                 </ul>
+
+                <button className={styles.sidebarBtn}>완료</button>
               </div>
             </div>
           </div>

@@ -149,12 +149,31 @@
   margin-top: 1.6rem;
 }
 
-.sidebarListItem button {
-  color: var(--blue-200);
+.sidebarListItem span {
+  text-align: center;
+  display: inline-block;
+  /* color: var(--blue-200); */
+  color: #868686;
   border: 0.1rem solid;
   background-color: #fff;
   border-radius: 3.6rem;
   width: 100%;
   font-size: 1.7rem;
+  padding: 1.4rem 0;
+}
+
+.sidebarListItem span.clicked {
+  color: var(--blue-200);
+}
+
+.sidebarBtn {
+  margin-top: 2.5rem;
+  width: 100%;
+  color: #fff;
+  background-color: var(--blue-300);
+  font-size: 1.8rem;
+  font-weight: bold;
+  border: none;
   padding: 1.2rem 0;
+  border-radius: 0.5rem;
 }
