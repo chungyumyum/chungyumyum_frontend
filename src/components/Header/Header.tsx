@@ -10,7 +10,11 @@ export default function Header() {
 
   return (
     <>
-      <header className={styles.container}>
+      <div style={!isSidebarOpened ? { paddingTop: "7.9rem" } : {}}></div>
+      <header
+        style={isSidebarOpened ? { position: "initial" } : {}}
+        className={styles.container}
+      >
         <h1 className={styles.title}>충냠냠</h1>
         <div className={styles.searchContainer}>
           <input
