@@ -1,5 +1,6 @@
 .contents {
-  padding: 3rem 3.6rem;
+  padding: 3rem 3.6rem 6rem;
+  background-color: #fff;
 }
 
 .searchShopBtn {
@@ -48,9 +49,24 @@
 .stars {
   margin-top: 1rem;
   display: flex;
-  gap: 1rem;
   cursor: pointer;
   justify-content: center;
+}
+
+.ratingStar {
+  content: "";
+  width: 2.5rem;
+  /* width: 5rem; */
+  height: 5rem;
+  display: block;
+  background-image: url("../../assets/icons/stars.svg");
+  background-position-x: 5rem;
+}
+
+.ratingStar:nth-child(even) {
+  /* background-position-x: 7.5rem; */
+  background-position-x: 2.5rem;
+  /* width: 5rem; */
 }
 
 /* textarea */
@@ -90,7 +106,7 @@
   border-radius: 1.5rem;
   background-color: #000;
   color: #fff;
-  margin: 2.9rem auto 0;
+  margin: 2.9rem auto 3rem;
   padding: 1.1rem 0;
   width: 58%;
   font-size: 1.5rem;

@@ -3,6 +3,7 @@ import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
 import starIcon from "../../assets/icons/star.svg";
+import starsIcon from "../../assets/icons/stars.svg";
 import { useState } from "react";
 
 export default function Post() {
@@ -24,12 +25,24 @@ export default function Post() {
           <div className={styles.ratingInput}>
             <div>별점을 선택하세요.</div>
             <div className={styles.stars}>
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
+              <span className={styles.ratingStar}></span>
             </div>
+            {/* <div className={styles.stars}>
+              <img src={starIcon} alt="star_icon" />
+              <img src={starIcon} alt="star_icon" />
+              <img src={starIcon} alt="star_icon" />
+              <img src={starIcon} alt="star_icon" />
+              <img src={starIcon} alt="star_icon" />
+            </div> */}
           </div>
           <div className={styles.textareaContainer}>
             <textarea
