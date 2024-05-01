@@ -70,6 +70,26 @@ export default function Header() {
               >
                 <img src={closeIcon} alt="close_icon" />
               </button>
+              <div className={styles.sidebarContents}>
+                <h3 className={styles.sidebarTitle}>동네 설정</h3>
+                <ul className={styles.sidebarList}>
+                  <li className={styles.sidebarListItem}>
+                    <button>궁동</button>
+                  </li>
+                  <li className={styles.sidebarListItem}>
+                    <button>봉명동</button>
+                  </li>
+                  <li className={styles.sidebarListItem}>
+                    <button>어은동</button>
+                  </li>
+                  <li className={styles.sidebarListItem}>
+                    <button>죽동</button>
+                  </li>
+                  <li className={styles.sidebarListItem}>
+                    <button>장대동</button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </>

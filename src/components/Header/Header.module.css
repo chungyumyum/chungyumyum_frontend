@@ -101,7 +101,7 @@
   position: absolute;
   right: 0;
   animation: stretch 0.3s ease-out;
-  width: 45%;
+  width: 48%;
   top: 0;
   bottom: 0;
   z-index: 2000;
@@ -131,4 +131,30 @@
   background-color: inherit;
   border: none;
   cursor: pointer;
+}
+
+.sidebarTitle {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sidebarContents {
+  margin-top: 9rem;
+  padding: 0 1.4rem;
+}
+
+.sidebarListItem + .sidebarListItem {
+  margin-top: 1.6rem;
+}
+
+.sidebarListItem button {
+  color: var(--blue-200);
+  border: 0.1rem solid;
+  background-color: #fff;
+  border-radius: 3.6rem;
+  width: 100%;
+  font-size: 1.7rem;
+  padding: 1.2rem 0;
 }
