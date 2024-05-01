@@ -21,9 +21,9 @@ export default function Card() {
           공짜라서 너무 좋아요!! 사장님도 친절하시고 쿠폰도 줘서 앞으로도 자주
           올 것 같아요ㅎㅎ 아직 안 가보신 분 있다면 꼭 가보세요!
         </p>
-        <Link to="/reviewDetail/1" className={styles.moreBtn}>
+        {/* <Link to="/reviewDetail/1" className={styles.moreBtn}>
           더보기
-        </Link>
+        </Link> */}
         <div className={styles.cardFooter}>
           <Badge type="one" />
           홍길동

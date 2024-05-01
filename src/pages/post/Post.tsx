@@ -20,7 +20,7 @@ export default function Post() {
           </div>
           <div className={styles.ratingInput}>
             <div>별점을 선택하세요.</div>
-            <div>
+            <div className={styles.stars}>
               <img src={starIcon} alt="star_icon" />
               <img src={starIcon} alt="star_icon" />
               <img src={starIcon} alt="star_icon" />
@@ -28,6 +28,7 @@ export default function Post() {
               <img src={starIcon} alt="star_icon" />
             </div>
           </div>
+          <textarea className={styles.textarea}></textarea>
         </form>
       </div>
     </div>

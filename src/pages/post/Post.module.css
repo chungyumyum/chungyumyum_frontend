@@ -37,7 +37,23 @@
   gap: 0.4rem;
 }
 
+/*rating  */
 .ratingInput {
   margin: 2rem 0;
   text-align: center;
+  color: #9b9b9b;
+  font-size: 1.6rem;
+}
+
+.stars {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+  justify-content: center;
+}
+
+/* textarea */
+.textarea {
+  width: 100%;
 }
