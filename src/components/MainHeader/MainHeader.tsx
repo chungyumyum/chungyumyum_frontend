@@ -1,10 +1,10 @@
 import controlIcon from "../../assets/icons/control.svg";
-import styles from "./Header.module.css";
+import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { useState } from "react";
 
-export default function Header() {
+export default function MainHeader() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isDeemClicked, setIsDeemClicked] = useState(false);
 

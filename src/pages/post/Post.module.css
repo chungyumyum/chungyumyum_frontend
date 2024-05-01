@@ -1,0 +1,43 @@
+.contents {
+  padding: 3rem 3.6rem;
+}
+
+.searchShopBtn {
+  background-color: #f3f3f3;
+  border: 1px solid #d8d8d8;
+  width: 100%;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  color: #9b9b9b;
+  margin-bottom: 2.4rem;
+  cursor: pointer;
+}
+
+.searchShopBtn span {
+  font-size: 1.6rem;
+  font-family: "pretendard-regular";
+}
+
+.pictureBtn {
+  background-color: #f3f3f3;
+  border: 1px solid #d8d8d8;
+  border-radius: 2rem;
+  color: #9b9b9b;
+  font-size: 1.6rem;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ratingInput {
+  margin: 2rem 0;
+  text-align: center;
+}

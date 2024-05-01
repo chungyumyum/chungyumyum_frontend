@@ -1,11 +1,11 @@
-import { Card, Header } from "../../components";
+import { Card, MainHeader } from "../../components";
 import styles from "./Home.module.css";
 import bannerCover from "../../assets/covers/banner.svg";
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Header />
+      <MainHeader />
       <div className={styles.contents}>
         <div className={styles.slider}>
           <a href="#" className={styles.banner}>

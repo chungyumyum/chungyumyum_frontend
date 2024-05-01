@@ -1,5 +1,5 @@
 import Card from "./Card/Card";
-import Header from "./Header/Header";
+import MainHeader from "./MainHeader/MainHeader";
 import Badge from "./Badge/Badge";
 
-export { Card, Header, Badge };
+export { Card, MainHeader, Badge };
