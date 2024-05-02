@@ -3,16 +3,18 @@ import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useState } from "react";
-import SearchShopPage from "../../components/SearchShopPage/SearchShopPage";
+import { SearchShopPage, UploadCoversPage } from "../../components";
 
 export default function Post() {
   const [des, setDes] = useState("");
   const [rating, setRating] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [pIsOpen, setIsPopen] = useState(false);
 
   return (
     <div>
       <SearchShopPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <UploadCoversPage isOpen={pIsOpen} onClose={() => setIsPopen(false)} />
       <SubHeader title="글쓰기" />
       <div className={styles.contents}>
         <div>
@@ -23,7 +25,7 @@ export default function Post() {
             <img src={gpsIcon} alt="gps_icon" />
             <span>가게를 검색하세요.</span>
           </button>
-          <div className={styles.pictureBtn}>
+          <div className={styles.pictureBtn} onClick={() => setIsPopen(true)}>
             <img src={cameraIcon} alt="camera_icon" />
             <div>사진을 업로드하세요.</div>
           </div>

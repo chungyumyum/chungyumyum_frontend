@@ -1,7 +1,7 @@
 .container {
   padding: 0 2rem;
   height: 7rem;
-  border: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
 }
 
 .prevButton {

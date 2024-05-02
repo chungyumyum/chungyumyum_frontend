@@ -14,10 +14,7 @@ export default function PageModal({ isOpen, children }: PageModalProps) {
 
   return (
     <ModalPortal>
-      <div className={styles.container}>
-        <h2>PageModal</h2>
-        {children}
-      </div>
+      <div className={styles.container}>{children}</div>
     </ModalPortal>
   );
 }
