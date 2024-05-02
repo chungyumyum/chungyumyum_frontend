@@ -2,20 +2,24 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
-import starIcon from "../../assets/icons/star.svg";
-import starsIcon from "../../assets/icons/stars.svg";
 import { useState } from "react";
+import SearchShopPage from "../../components/SearchShopPage/SearchShopPage";
 
 export default function Post() {
   const [des, setDes] = useState("");
   const [rating, setRating] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
+      <SearchShopPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <SubHeader title="글쓰기" />
       <div className={styles.contents}>
-        <form>
-          <button className={styles.searchShopBtn}>
+        <div>
+          <button
+            className={styles.searchShopBtn}
+            onClick={() => setIsOpen(true)}
+          >
             <img src={gpsIcon} alt="gps_icon" />
             <span>가게를 검색하세요.</span>
           </button>
@@ -40,25 +44,18 @@ export default function Post() {
                 ></span>
               ))}
             </div>
-            {/* <div className={styles.stars}>
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-              <img src={starIcon} alt="star_icon" />
-            </div> */}
           </div>
           <div className={styles.textareaContainer}>
             <textarea
               placeholder="설명을 입력하세요."
               className={styles.textarea}
               onChange={(e) => setDes(e.target.value)}
-              maxLength={299}
+              maxLength={300}
             ></textarea>
             <span className={styles.wordCountTag}>{des.length}/300</span>
           </div>
           <button className={styles.submitBtn}>등록</button>
-        </form>
+        </div>
       </div>
     </div>
   );

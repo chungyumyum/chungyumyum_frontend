@@ -1,6 +1,6 @@
 .container {
   padding: 0 2rem;
-  height: 7.8rem;
+  height: 7rem;
   border: 1px solid #c4c4c4;
 }
 
@@ -10,7 +10,7 @@
   cursor: pointer;
   position: relative;
   top: 50%;
-  transform: translateY(-55%);
+  transform: translateY(-40%);
 }
 
 .title {

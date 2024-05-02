@@ -1,0 +1,10 @@
+.container {
+  background-color: #fff;
+  width: 41rem;
+  height: 100vh;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+}

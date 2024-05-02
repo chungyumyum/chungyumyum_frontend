@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: 1.2rem 0;
+  padding: 1rem 0;
   color: #9b9b9b;
   margin-bottom: 2.4rem;
   cursor: pointer;
@@ -29,7 +29,7 @@
   border-radius: 2rem;
   color: #9b9b9b;
   font-size: 1.6rem;
-  height: 30rem;
+  height: 28rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +56,6 @@
 .ratingStar {
   content: "";
   width: 2.5rem;
-  /* width: 5rem; */
   height: 5rem;
   display: block;
   background-image: url("../../assets/icons/stars.svg");
@@ -64,9 +63,7 @@
 }
 
 .ratingStar:nth-child(even) {
-  /* background-position-x: 7.5rem; */
   background-position-x: 2.5rem;
-  /* width: 5rem; */
 }
 
 .ratingStar.selected_left {
@@ -123,8 +120,8 @@
 
 .wordCountTag {
   position: absolute;
-  bottom: 1rem;
-  right: 2rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
   color: #9b9b9b;
   font-size: 1.4rem;
 }
