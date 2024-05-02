@@ -20,7 +20,7 @@ export default function SearchShopPage({
         </div>
 
         <div className={styles.mapArea}>
-          this is map area
+          this is for map
           <div className={styles.selectedBox}>
             <h2 className={styles.selectedBoxTitle}>선택된 가게 없음</h2>
             <p className={styles.selectedBoxAddress}>가게를 선택해주세요.</p>

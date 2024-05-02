@@ -9,3 +9,9 @@
   transform: translate(-50%);
   overflow: hidden;
 }
+
+@media (max-width: 410px) {
+  .container {
+    width: 100%;
+  }
+}

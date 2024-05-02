@@ -1,0 +1,102 @@
+.container {
+  background-color: #f3f3f3;
+  height: 100vh;
+  position: fixed;
+  width: 41rem;
+}
+
+.header {
+  background-color: #fff;
+  /* height: 7rem; */
+  padding: 3rem 0;
+  position: relative;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.closeBtn {
+  border: none;
+  background-color: inherit;
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.pictureLabel {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 55%;
+  margin: 2.3rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  border-radius: 1.5rem;
+  padding: 1.5rem 0;
+  border: 1px solid #d8d8d8;
+  font-size: 1.4rem;
+}
+
+.pictureList {
+  background-color: #fff;
+  min-height: 45rem;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  color: #7b7b7b;
+}
+
+.pictureArea {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.picture {
+  position: relative;
+}
+
+.pictureCloseBtn {
+  position: absolute;
+  right: 0;
+  background-color: inherit;
+  border: none;
+  padding: 0.7rem;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  vertical-align: top;
+}
+
+.submitBtn {
+  display: block;
+  border-radius: 1.5rem;
+  background-color: #000;
+  color: #fff;
+  margin: 2.9rem auto 3rem;
+  padding: 1.1rem 0;
+  width: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 410px) {
+  .container {
+    width: 100%;
+  }
+}
