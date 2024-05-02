@@ -2,7 +2,7 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 
 export default function Post() {
@@ -11,6 +11,24 @@ export default function Post() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<string[]>([]);
+  const [currentImg, setCurrentImg] = useState(1);
+  const [moved, setMoved] = useState(false);
+  const ref = useRef(null);
+  const [minus, setMinus] = useState(0);
+
+  const handleDragStart = () => {
+    console.log(1);
+  };
+  const handleDragEnd = () => {
+    console.log(2);
+  };
+  const handleDrag = (e: any) => {
+    e.preventDefault();
+    document.body.style.cursor = "grabbing";
+    console.log(3);
+    setMinus(minus - 1);
+    console.log(minus);
+  };
 
   return (
     <div>
@@ -28,12 +46,46 @@ export default function Post() {
             className={styles.searchShopBtn}
             onClick={() => setIsOpen(true)}
           >
-            <img src={gpsIcon} alt="gps_icon" />
+            <img width={14} src={gpsIcon} alt="gps_icon" />
             <span>가게를 검색하세요.</span>
           </button>
-          <div className={styles.pictureBtn} onClick={() => setIsPopen(true)}>
+          <div
+            onMouseDown={handleDrag}
+            className={styles.pictureBtn}
+            onClick={() => setIsPopen(true)}
+          >
             {fileList.length > 0 ? (
-              <div>슬라이드 (이미지)</div>
+              <div className={styles.pictureSlider}>
+                <div
+                  ref={ref}
+                  onMouseDown={handleDragStart}
+                  onMouseEnter={handleDragEnd}
+                  onMouseMove={handleDrag}
+                  className={styles.pictureDeem}
+                />
+                {fileList.map((file, i) =>
+                  i == 0 ? (
+                    <img
+                      style={{ zIndex: 4 - i, left: `${minus}%` }}
+                      key={file}
+                      id="cover"
+                      src={file}
+                      alt="cover"
+                    />
+                  ) : (
+                    <img
+                      style={{ zIndex: 4 - i }}
+                      key={file}
+                      id="cover"
+                      src={file}
+                      alt="cover"
+                    />
+                  )
+                )}
+                <span className={styles.sliderTag}>
+                  {currentImg}/{fileList.length}
+                </span>
+              </div>
             ) : (
               <>
                 <img src={cameraIcon} alt="camera_icon" />
