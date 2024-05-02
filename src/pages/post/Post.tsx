@@ -10,11 +10,17 @@ export default function Post() {
   const [rating, setRating] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
+  const [fileList, setFileList] = useState<string[]>([]);
 
   return (
     <div>
       <SearchShopPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      <UploadCoversPage isOpen={pIsOpen} onClose={() => setIsPopen(false)} />
+      <UploadCoversPage
+        isOpen={pIsOpen}
+        onClose={() => setIsPopen(false)}
+        fileList={fileList}
+        onSetFileList={setFileList}
+      />
       <SubHeader title="글쓰기" />
       <div className={styles.contents}>
         <div>
@@ -26,8 +32,14 @@ export default function Post() {
             <span>가게를 검색하세요.</span>
           </button>
           <div className={styles.pictureBtn} onClick={() => setIsPopen(true)}>
-            <img src={cameraIcon} alt="camera_icon" />
-            <div>사진을 업로드하세요.</div>
+            {fileList.length > 0 ? (
+              <div>슬라이드 (이미지)</div>
+            ) : (
+              <>
+                <img src={cameraIcon} alt="camera_icon" />
+                <div>사진을 업로드하세요.</div>
+              </>
+            )}
           </div>
           <div className={styles.ratingInput}>
             <div>별점을 선택하세요.</div>

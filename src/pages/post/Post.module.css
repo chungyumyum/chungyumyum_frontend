@@ -1,5 +1,5 @@
 .contents {
-  padding: 3rem 3.6rem 6rem;
+  padding: 3rem 4.5rem 6rem;
   background-color: #fff;
 }
 
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 0;
+  padding: 0.7rem 0;
   color: #9b9b9b;
   margin-bottom: 2.4rem;
   cursor: pointer;
@@ -29,7 +29,7 @@
   border-radius: 2rem;
   color: #9b9b9b;
   font-size: 1.6rem;
-  height: 28rem;
+  height: 26rem;
   display: flex;
   justify-content: center;
   align-items: center;

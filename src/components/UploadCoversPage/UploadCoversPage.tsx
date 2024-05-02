@@ -7,19 +7,21 @@ import pictureCover02 from "../../assets/covers/picture02.svg";
 import pictureCover03 from "../../assets/covers/picture03.svg";
 import pictureCover04 from "../../assets/covers/picture04.svg";
 import closeWhiteIcon from "../../assets/icons/close-white.svg";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 type UploadCoversPageProps = {
   isOpen: boolean;
   onClose: () => void;
+  fileList: string[];
+  onSetFileList: Dispatch<SetStateAction<string[]>>;
 };
 
 export default function UploadCoversPage({
   isOpen,
   onClose,
+  fileList,
+  onSetFileList,
 }: UploadCoversPageProps) {
-  const [fileList, setFileList] = useState<string[]>([]);
-
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
       return;
@@ -28,9 +30,8 @@ export default function UploadCoversPage({
     if (e.target.files?.length + fileList.length > 4) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
-      console.log("files:", files);
       files.forEach((file) => {
-        setFileList((prevFileList) => [
+        onSetFileList((prevFileList) => [
           ...prevFileList,
           URL.createObjectURL(file),
         ]);
