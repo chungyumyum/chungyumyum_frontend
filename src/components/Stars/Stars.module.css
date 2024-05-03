@@ -1,0 +1,27 @@
+.stars {
+  margin-top: 1rem;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.ratingStar {
+  content: "";
+  width: 2.5rem;
+  height: 5rem;
+  display: inline-block;
+  background-image: url("../../assets/icons/stars.svg");
+  background-position-x: 5rem;
+}
+
+.ratingStar:nth-child(even) {
+  background-position-x: 2.5rem;
+}
+
+.ratingStar.selected_left {
+  background-position: 10rem;
+}
+
+.ratingStar.selected_right {
+  background-position-x: 7.5rem;
+}

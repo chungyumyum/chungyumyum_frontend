@@ -105,7 +105,7 @@
   content: "";
   width: 2.5rem;
   height: 5rem;
-  display: block;
+  display: inline-block;
   background-image: url("../../assets/icons/stars.svg");
   background-position-x: 5rem;
 }
