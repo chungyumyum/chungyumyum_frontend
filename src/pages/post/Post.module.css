@@ -47,6 +47,7 @@
   width: 100%;
   object-fit: cover;
   height: 100%;
+  transition: all 0.2s;
 }
 
 .pictureDeem {
@@ -58,6 +59,19 @@
   background-color: #000;
   opacity: 0.25;
   z-index: 5;
+}
+
+.pictureAddBtn {
+  position: absolute;
+  background-color: #fff;
+  border: none;
+  top: 1.5rem;
+  right: 1.5rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  z-index: 6;
+  cursor: pointer;
 }
 
 .sliderTag {

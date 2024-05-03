@@ -2,7 +2,7 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 
 export default function Post() {
@@ -11,28 +11,17 @@ export default function Post() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<string[]>([]);
-  const [currentImg, setCurrentImg] = useState(1);
-  const [moved, setMoved] = useState(false);
+  const [currentImg, setCurrentImg] = useState(0);
   const ref = useRef(null);
-  const [minus, setMinus] = useState(0);
-
-  const handleDragStart = () => {
-    console.log(1);
-  };
-  const handleDragEnd = () => {
-    console.log(2);
-  };
-  const handleDrag = (e: any) => {
-    e.preventDefault();
-    document.body.style.cursor = "grabbing";
-    console.log(3);
-    setMinus(minus - 1);
-    console.log(minus);
-  };
 
   return (
     <div>
-      <SearchShopPage isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <SearchShopPage
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      />
       <UploadCoversPage
         isOpen={pIsOpen}
         onClose={() => setIsPopen(false)}
@@ -46,44 +35,36 @@ export default function Post() {
             className={styles.searchShopBtn}
             onClick={() => setIsOpen(true)}
           >
-            <img width={14} src={gpsIcon} alt="gps_icon" />
+            <img width={17} src={gpsIcon} alt="gps_icon" />
             <span>가게를 검색하세요.</span>
           </button>
           <div
-            onMouseDown={handleDrag}
+            ref={ref}
             className={styles.pictureBtn}
-            onClick={() => setIsPopen(true)}
+            onClick={() => {
+              if (fileList.length > 0) return;
+              setIsPopen(true);
+            }}
           >
             {fileList.length > 0 ? (
               <div className={styles.pictureSlider}>
                 <div
-                  ref={ref}
-                  onMouseDown={handleDragStart}
-                  onMouseEnter={handleDragEnd}
-                  onMouseMove={handleDrag}
                   className={styles.pictureDeem}
+                  onClick={() =>
+                    setCurrentImg((prev) =>
+                      prev + 1 >= fileList.length ? 0 : prev + 1
+                    )
+                  }
                 />
-                {fileList.map((file, i) =>
-                  i == 0 ? (
-                    <img
-                      style={{ zIndex: 4 - i, left: `${minus}%` }}
-                      key={file}
-                      id="cover"
-                      src={file}
-                      alt="cover"
-                    />
-                  ) : (
-                    <img
-                      style={{ zIndex: 4 - i }}
-                      key={file}
-                      id="cover"
-                      src={file}
-                      alt="cover"
-                    />
-                  )
-                )}
+                <img id="cover" src={fileList[currentImg]} alt="cover" />
+                <button
+                  className={styles.pictureAddBtn}
+                  onClick={() => setIsPopen(true)}
+                >
+                  <img width={1} src={cameraIcon} alt="camera_icon" />
+                </button>
                 <span className={styles.sliderTag}>
-                  {currentImg}/{fileList.length}
+                  {currentImg + 1}/{fileList.length}
                 </span>
               </div>
             ) : (
