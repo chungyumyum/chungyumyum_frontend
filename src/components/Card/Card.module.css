@@ -18,6 +18,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .cardCover {
@@ -46,7 +47,7 @@
   margin-top: 0.8rem;
   font-size: 1.6rem;
   font-weight: bold;
-  width: 100%;
+  width: 86%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,10 +93,8 @@
 }
 
 .moreBtn {
-  margin: 1rem 0 1.6rem;
-  text-decoration: none;
-  display: block;
-  color: var(--black);
-  font-size: 1.2rem;
-  text-align: right;
+  position: absolute;
+  right: 0rem;
+  bottom: 0;
+  cursor: pointer;
 }

@@ -2,14 +2,18 @@ import styles from "./Card.module.css";
 import cardCover01 from "../../assets/covers/card_cover01.jpg";
 import { Link, useLocation } from "react-router-dom";
 import Badge from "../Badge/Badge";
-import starIcon from "../../assets/icons/star_fill.svg";
+import moreIcon from "../../assets/icons/more.svg";
+import { CSSProperties } from "react";
 
-export default function Card() {
+type CardProps = {
+  style?: CSSProperties;
+};
+
+export default function Card({ style }: CardProps) {
   const { pathname } = useLocation();
-  console.log("pathname in card:", pathname);
 
   return (
-    <Link to="/reviewDetail/1" className={styles.card}>
+    <Link to="/reviewDetail/1" className={styles.card} style={style}>
       <div className={styles.cardCover}>
         <img src={cardCover01} alt="card-cover" />
         {!pathname.includes("reviewList") && (
@@ -21,7 +25,19 @@ export default function Card() {
           {pathname.includes("reviewList") ? (
             <div className={styles.ratingTitle}>⭐ 4.5</div>
           ) : (
-            <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
+            <>
+              <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
+              {pathname.includes("profile") && (
+                <button
+                  className={styles.moreBtn}
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <img width={3} src={moreIcon} alt="more_icon" />
+                </button>
+              )}
+            </>
           )}
         </div>
         <p className={styles.cardDescription}>
