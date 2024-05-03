@@ -1,0 +1,21 @@
+.header {
+  padding: 2.1rem 1rem;
+  position: relative;
+}
+
+.headings {
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.settingBtn {
+  cursor: pointer;
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-40%);
+}

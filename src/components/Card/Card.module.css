@@ -85,6 +85,12 @@
   transform: translateX(-50%);
 }
 
+.ratingTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 0.8rem;
+}
+
 .moreBtn {
   margin: 1rem 0 1.6rem;
   text-decoration: none;

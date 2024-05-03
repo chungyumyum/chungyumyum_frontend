@@ -1,18 +1,28 @@
 import styles from "./Card.module.css";
 import cardCover01 from "../../assets/covers/card_cover01.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Badge from "../Badge/Badge";
+import starIcon from "../../assets/icons/star_fill.svg";
 
 export default function Card() {
+  const { pathname } = useLocation();
+  console.log("pathname in card:", pathname);
+
   return (
-    <div className={styles.card}>
+    <Link to="/reviewDetail/1" className={styles.card}>
       <div className={styles.cardCover}>
         <img src={cardCover01} alt="card-cover" />
-        <span className={styles.cardRating}>⭐ 4.5</span>
+        {!pathname.includes("reviewList") && (
+          <span className={styles.cardRating}>⭐ 4.5</span>
+        )}
       </div>
       <div className={styles.cardContents}>
         <div className={styles.cardHeader}>
-          <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
+          {pathname.includes("reviewList") ? (
+            <div className={styles.ratingTitle}>⭐ 4.5</div>
+          ) : (
+            <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
+          )}
         </div>
         <p className={styles.cardDescription}>
           체감상 지금 충대에서 가장 인기 많은 마라탕집이 이곳인 것 같아요! 다른
@@ -21,14 +31,11 @@ export default function Card() {
           공짜라서 너무 좋아요!! 사장님도 친절하시고 쿠폰도 줘서 앞으로도 자주
           올 것 같아요ㅎㅎ 아직 안 가보신 분 있다면 꼭 가보세요!
         </p>
-        {/* <Link to="/reviewDetail/1" className={styles.moreBtn}>
-          더보기
-        </Link> */}
         <div className={styles.cardFooter}>
           <Badge type="one" />
           홍길동
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
