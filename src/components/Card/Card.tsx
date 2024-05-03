@@ -3,6 +3,8 @@ import cardCover01 from "../../assets/covers/card_cover01.jpg";
 import { Link, useLocation } from "react-router-dom";
 import Badge from "../Badge/Badge";
 import moreIcon from "../../assets/icons/more.svg";
+import bookmarkIcon from "../../assets/icons/bookmark.svg";
+import bookmarkIconActived from "../../assets/icons/bookmark.svg";
 import { CSSProperties } from "react";
 
 type CardProps = {
@@ -27,7 +29,7 @@ export default function Card({ style }: CardProps) {
           ) : (
             <>
               <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
-              {pathname.includes("profile") && (
+              {pathname.includes("profile/posts") && (
                 <button
                   className={styles.moreBtn}
                   onClick={(e) => {
@@ -35,6 +37,16 @@ export default function Card({ style }: CardProps) {
                   }}
                 >
                   <img width={3} src={moreIcon} alt="more_icon" />
+                </button>
+              )}
+              {pathname.includes("profile/bookmark") && (
+                <button
+                  className={styles.bmkBtn}
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <img width={15} src={bookmarkIcon} alt="bookmark_icon" />
                 </button>
               )}
             </>

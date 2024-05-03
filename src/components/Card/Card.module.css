@@ -98,3 +98,10 @@
   bottom: 0;
   cursor: pointer;
 }
+
+.bmkBtn {
+  position: absolute;
+  right: 0rem;
+  top: 0.5rem;
+  cursor: pointer;
+}

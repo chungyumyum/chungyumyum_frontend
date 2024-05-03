@@ -1,7 +1,8 @@
 import styles from "./Profile.module.css";
 import settingIcon from "../../assets/icons/setting.svg";
 import { Badge, Card } from "../../components";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import levelIcon from "../../assets/icons/level.svg";
 
 export default function Profile() {
   return (
@@ -19,23 +20,29 @@ export default function Profile() {
         <div className={styles.profile}>
           <Badge size="big" type="four" />
           <div>
-            <button className={styles.level}>새내기</button>
+            <div className={styles.levelContainer}>
+              <button className={styles.level}>새내기</button>
+              <img width={13} src={levelIcon} alt="level_icon" />
+            </div>
             <p className={styles.name}>홍길동</p>
           </div>
         </div>
 
         <div className={styles.navHeader}>
-          <NavLink to="/">내가 쓴 글 (3)</NavLink>
-          <NavLink to="/">북마크 (5)</NavLink>
+          <NavLink
+            to="posts"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            내가 쓴 글 (3)
+          </NavLink>
+          <NavLink
+            to="bookmark"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            북마크 (5)
+          </NavLink>
         </div>
-
-        <div className={styles.cards}>
-          <Card style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }} />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <Outlet />
       </div>
     </>
   );

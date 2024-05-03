@@ -63,3 +63,13 @@
   padding: 2rem 0;
   font-size: 1.3rem;
 }
+
+.active {
+  text-decoration: underline;
+}
+
+.levelContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}

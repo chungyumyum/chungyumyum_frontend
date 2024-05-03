@@ -49,16 +49,18 @@ export default function Layout() {
             홈
           </p>
         </Link>
-        <Link to="/profile">
+        <Link to="/profile/posts">
           <div>
             <img
-              src={pathname === "/profile" ? activeProfileIcon : profileIcon}
+              src={
+                pathname.includes("/profile") ? activeProfileIcon : profileIcon
+              }
               alt="home_icon"
             />
           </div>
           <p
             style={{ marginLeft: "0.2rem" }}
-            className={pathname === "/profile" ? styles.active : ""}
+            className={pathname.includes("/profile") ? styles.active : ""}
           >
             My
           </p>
