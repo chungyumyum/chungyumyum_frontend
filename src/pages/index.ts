@@ -1,4 +1,4 @@
-import Home from "./Home/Home";
+import Home from "./home/Home";
 import Post from "./post/Post";
 import ReviewDetail from "./reviewDetail/ReviewDetail";
 import ReviewList from "./reviewList/ReviewList";

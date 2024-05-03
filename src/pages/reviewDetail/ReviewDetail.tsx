@@ -65,7 +65,7 @@ export default function ReviewDetail() {
         </p>
 
         <button className={styles.linkBtn}>
-          <Link to="/">이 식당의 다른 후기</Link>
+          <Link to="/reviewList/2">이 식당의 다른 후기</Link>
         </button>
       </div>
     </>

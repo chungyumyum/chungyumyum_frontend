@@ -1,0 +1,19 @@
+.reviewHeader {
+  padding: 1.5rem 0;
+  font-weight: bold;
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reviewHeader img {
+  margin-top: -0.3rem;
+}
+
+.contents {
+  background-color: #f3f3f3;
+  min-height: 90vh;
+  padding: 2rem 0 10rem;
+}
