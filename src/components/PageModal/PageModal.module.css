@@ -1,12 +1,13 @@
 .container {
   background-color: #fff;
   width: 41rem;
-  height: 100vh;
+  min-height: 100vh;
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 50%;
   transform: translate(-50%);
+  padding-bottom: 10rem;
 }
 
 @media (max-width: 410px) {

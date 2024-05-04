@@ -1,8 +1,8 @@
 .container {
   background-color: #f3f3f3;
-  height: 100vh;
-  position: fixed;
   width: 41rem;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .header {
@@ -48,7 +48,7 @@
 
 .pictureList {
   background-color: #fff;
-  min-height: 45rem;
+  min-height: 40rem;
   padding: 2rem 3rem;
   box-sizing: border-box;
   font-size: 1.4rem;
