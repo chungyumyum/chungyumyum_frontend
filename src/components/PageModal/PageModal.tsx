@@ -20,6 +20,6 @@ export default function PageModal({ isOpen, children }: PageModalProps) {
 }
 
 function ModalPortal({ children }: { children: ReactNode }) {
-  const el = document.getElementById("modal") as HTMLElement;
+  const el = document.getElementById("page") as HTMLElement;
   return ReactDOM.createPortal(children, el);
 }

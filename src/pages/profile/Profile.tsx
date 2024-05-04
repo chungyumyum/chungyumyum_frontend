@@ -3,10 +3,15 @@ import settingIcon from "../../assets/icons/setting.svg";
 import { Badge, Card } from "../../components";
 import { NavLink, Outlet } from "react-router-dom";
 import levelIcon from "../../assets/icons/level.svg";
+import { useState } from "react";
+import RatingModal from "../../components/RatingModal/RatingModal";
 
 export default function Profile() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
+      <RatingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <div className={styles.header}>
         <div className={styles.headings}>
           <div />
@@ -20,8 +25,11 @@ export default function Profile() {
         <div className={styles.profile}>
           <Badge size="big" type="four" />
           <div>
-            <div className={styles.levelContainer}>
-              <button className={styles.level}>새내기</button>
+            <div
+              className={styles.levelContainer}
+              onClick={() => setIsOpen(true)}
+            >
+              <button className={styles.level}>쩝쩝박사</button>
               <img width={13} src={levelIcon} alt="level_icon" />
             </div>
             <p className={styles.name}>홍길동</p>
