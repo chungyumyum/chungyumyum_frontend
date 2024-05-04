@@ -1,3 +1,8 @@
+.test {
+  height: 100vh;
+  overflow: scroll;
+}
+
 .container {
   padding: 2rem 0 0;
 }
@@ -27,8 +32,8 @@
 }
 
 .buttonsContainer {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
   width: 100%;
 }
 
