@@ -61,7 +61,7 @@ export default function Post() {
                   className={styles.pictureAddBtn}
                   onClick={() => setIsPopen(true)}
                 >
-                  <img width={1} src={cameraIcon} alt="camera_icon" />
+                  <img width={10} src={cameraIcon} alt="camera_icon" />
                 </button>
                 <span className={styles.sliderTag}>
                   {currentImg + 1}/{fileList.length}
