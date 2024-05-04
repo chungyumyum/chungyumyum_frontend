@@ -5,6 +5,10 @@
   overflow: scroll;
 }
 
+.container::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   background-color: #fff;
   /* height: 7rem; */

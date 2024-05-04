@@ -13,7 +13,7 @@ export default function SearchShopPage({
 }: SearchShopPageProps) {
   return (
     <PageModal isOpen={isOpen}>
-      <div className={styles.test}>
+      <div className={styles.containerForScroll}>
         <div className={styles.container}>
           <div className={styles.searchContainer}>
             <img width={18} src={searchIcon} alt="search_icon" />

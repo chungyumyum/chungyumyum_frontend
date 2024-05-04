@@ -1,6 +1,10 @@
-.test {
+.containerForScroll {
   height: 100vh;
   overflow: scroll;
+}
+
+.containerForScroll::-webkit-scrollbar {
+  display: none;
 }
 
 .container {
