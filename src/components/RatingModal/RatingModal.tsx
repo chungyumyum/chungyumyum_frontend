@@ -17,7 +17,7 @@ export default function RatingModal({
 
   return (
     <ModalPortal>
-      <div className={styles.deem}></div>
+      <div className={styles.deem} onClick={onClose}></div>
       <div className={styles.container}>
         <button className={styles.closeBtn} onClick={onClose}>
           <img src={closeIcon} alt="close_icon" />

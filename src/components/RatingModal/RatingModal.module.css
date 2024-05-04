@@ -12,7 +12,7 @@
 }
 
 .deem {
-  position: absolute;
+  position: fixed;
   background-color: #000;
   inset: 0;
   z-index: 9998;
