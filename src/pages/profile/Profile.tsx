@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
 import settingIcon from "../../assets/icons/setting.svg";
-import { Badge, Card } from "../../components";
-import { NavLink, Outlet } from "react-router-dom";
+import { Badge } from "../../components";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import levelIcon from "../../assets/icons/level.svg";
 import { useState } from "react";
 import RatingModal from "../../components/RatingModal/RatingModal";
@@ -17,7 +17,9 @@ export default function Profile() {
           <div />
           <h1 className={styles.title}>My</h1>
           <button className={styles.settingBtn}>
-            <img width={23} src={settingIcon} alt="setting_icon" />
+            <Link to="/setting">
+              <img width={23} src={settingIcon} alt="setting_icon" />
+            </Link>
           </button>
         </div>
       </div>

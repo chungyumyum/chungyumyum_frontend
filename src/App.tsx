@@ -1,5 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, Login, Post, Profile, ReviewDetail, ReviewList } from "./pages";
+import {
+  Home,
+  Login,
+  Post,
+  Profile,
+  ReviewDetail,
+  ReviewList,
+  Setting,
+} from "./pages";
 import "./App.css";
 import Layout from "./layout";
 import Posts from "./pages/profile/Posts";
@@ -21,6 +29,7 @@ function App() {
             <Route path="/reviewList/:id" element={<ReviewList />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/setting" element={<Setting />} />
         </Routes>
       </BrowserRouter>
     </div>

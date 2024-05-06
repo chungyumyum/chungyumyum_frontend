@@ -1,0 +1,13 @@
+.list {
+  padding-top: 1rem;
+}
+
+.item {
+  padding: 2.3rem 2rem;
+}
+
+.item * {
+  font-size: 1.7rem;
+  cursor: pointer;
+  font-weight: bold;
+}
