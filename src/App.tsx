@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, Post, Profile, ReviewDetail, ReviewList } from "./pages";
+import { Home, Login, Post, Profile, ReviewDetail, ReviewList } from "./pages";
 import "./App.css";
 import Layout from "./layout";
 import Posts from "./pages/profile/Posts";
@@ -20,6 +20,7 @@ function App() {
             <Route path="/reviewDetail/:id" element={<ReviewDetail />} />
             <Route path="/reviewList/:id" element={<ReviewList />} />
           </Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,0 +1,26 @@
+.container {
+  display: flow-root;
+}
+
+.title {
+  margin: 8rem 0 2rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.kakaoLoginBtn {
+  cursor: pointer;
+  padding: 0 2rem;
+}
+
+.kakaoLoginBtn img {
+  width: 100%;
+}
+
+.description {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.7rem;
+}
