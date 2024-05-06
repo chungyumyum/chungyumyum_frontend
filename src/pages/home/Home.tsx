@@ -8,7 +8,7 @@ export default function Home() {
       <MainHeader />
       <div className={styles.contents}>
         <div className={styles.slider}>
-          <a href="#" className={styles.banner}>
+          <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
             <img src={bannerCover} alt="banner-cover" />
           </a>
         </div>
