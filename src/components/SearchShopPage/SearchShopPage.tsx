@@ -21,7 +21,6 @@ export default function SearchShopPage({
   useEffect(() => {
     if (!isOpen) return;
     const container = document.getElementById("map");
-    console.log(container);
     const options = {
       center: new window.kakao.maps.LatLng(36.360118, 127.34753),
       level: 4,
