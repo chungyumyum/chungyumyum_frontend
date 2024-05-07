@@ -1,16 +1,35 @@
 import PageModal from "../PageModal/PageModal";
 import styles from "./SearchShopPage.module.css";
 import searchIcon from "../../assets/icons/search-xl.svg";
+import { useEffect } from "react";
 
 type SearchShopPageProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 export default function SearchShopPage({
   isOpen,
   onClose,
 }: SearchShopPageProps) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const container = document.getElementById("map");
+    console.log(container);
+    const options = {
+      center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3,
+    };
+
+    const map = new window.kakao.maps.Map(container, options);
+  }, [isOpen]);
+
   return (
     <PageModal isOpen={isOpen}>
       <div className={styles.containerForScroll}>
@@ -20,7 +39,7 @@ export default function SearchShopPage({
             <input className={styles.search} type="text" placeholder="검색" />
           </div>
 
-          <div className={styles.mapArea}>
+          <div id="map" className={styles.mapArea}>
             this is for map
             <div className={styles.selectedBox}>
               <h2 className={styles.selectedBoxTitle}>선택된 가게 없음</h2>
