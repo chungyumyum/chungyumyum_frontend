@@ -23,8 +23,8 @@ export default function SearchShopPage({
     const container = document.getElementById("map");
     console.log(container);
     const options = {
-      center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
+      center: new window.kakao.maps.LatLng(36.360118, 127.34753),
+      level: 4,
     };
 
     const map = new window.kakao.maps.Map(container, options);
