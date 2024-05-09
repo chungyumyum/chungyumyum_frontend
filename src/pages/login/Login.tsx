@@ -24,6 +24,7 @@ export default function Login() {
       );
       const data = response.data; // 응답 데이터
       alert("로그인 성공: " + data);
+      console.log(data);
       navigate("/");
     } catch (error) {
       console.log(error);
