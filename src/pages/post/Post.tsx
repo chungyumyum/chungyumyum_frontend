@@ -14,7 +14,10 @@ export default function Post() {
   const [fileList, setFileList] = useState<string[]>([]);
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
-  const [selectedShop, setSelectedShop] = useState("");
+  const [selectedShop, setSelectedShop] = useState({
+    name: "",
+    id: 0,
+  });
   const navigate = useNavigate();
   const ref = useRef(null);
 
@@ -31,7 +34,12 @@ export default function Post() {
         onClose={() => {
           setIsOpen(false);
         }}
-        onSelectedShop={(name: string) => setSelectedShop(name)}
+        onSelectedShop={(name: string, id: number) =>
+          setSelectedShop({
+            name,
+            id,
+          })
+        }
       />
       <UploadCoversPage
         isOpen={pIsOpen}
@@ -49,7 +57,7 @@ export default function Post() {
             onClick={() => setIsOpen(true)}
           >
             <img width={17} src={gpsIcon} alt="gps_icon" />
-            <span>{selectedShop || "가게를 검색하세요"}</span>
+            <span>{selectedShop.name || "가게를 검색하세요"}</span>
           </button>
           <div
             ref={ref}

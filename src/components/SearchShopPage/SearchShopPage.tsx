@@ -7,7 +7,7 @@ import { getShops } from "../../api/shop";
 type SearchShopPageProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSelectedShop: (name: string) => void;
+  onSelectedShop: (name: string, id: number) => void;
 };
 
 declare global {
@@ -24,6 +24,7 @@ export default function SearchShopPage({
   const [shop, setShop] = useState({
     title: "",
     address: "",
+    id: 0,
   });
 
   const [search, setSearch] = useState("");
@@ -56,11 +57,13 @@ export default function SearchShopPage({
         });
         marker.name = restaurant.name;
         marker.address = restaurant.jibunAddress;
+        marker.id = restaurant.id;
 
         window.kakao.maps.event.addListener(marker, "click", function () {
           setShop({
             ...shop,
             title: marker.name,
+            id: marker.id,
             address: marker.address,
           });
         });
@@ -102,7 +105,7 @@ export default function SearchShopPage({
             <button onClick={onClose}>취소</button>
             <button
               onClick={() => {
-                onSelectedShop(shop.title);
+                onSelectedShop(shop.title, shop.id);
                 onClose();
               }}
             >
