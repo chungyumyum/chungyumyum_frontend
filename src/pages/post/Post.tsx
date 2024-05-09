@@ -12,6 +12,7 @@ export default function Post() {
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
+  const [selectedShop, setSelectedShop] = useState("");
   const ref = useRef(null);
 
   return (
@@ -21,6 +22,7 @@ export default function Post() {
         onClose={() => {
           setIsOpen(false);
         }}
+        onSelectedShop={(name: string) => setSelectedShop(name)}
       />
       <UploadCoversPage
         isOpen={pIsOpen}
@@ -36,7 +38,7 @@ export default function Post() {
             onClick={() => setIsOpen(true)}
           >
             <img width={17} src={gpsIcon} alt="gps_icon" />
-            <span>가게를 검색하세요.</span>
+            <span>{selectedShop || "가게를 검색하세요"}</span>
           </button>
           <div
             ref={ref}
