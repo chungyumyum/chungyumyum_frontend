@@ -11,6 +11,7 @@ export default function Post() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<string[]>([]);
+  const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
   const [selectedShop, setSelectedShop] = useState("");
   const ref = useRef(null);
@@ -29,6 +30,8 @@ export default function Post() {
         onClose={() => setIsPopen(false)}
         fileList={fileList}
         onSetFileList={setFileList}
+        presignedFileList={presignedFileList}
+        onSetPresignedFileList={setPresignedFileList}
       />
       <SubHeader title="글쓰기" />
       <div className={styles.contents}>

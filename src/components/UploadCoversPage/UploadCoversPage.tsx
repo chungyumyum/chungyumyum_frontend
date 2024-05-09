@@ -5,12 +5,16 @@ import pictureIcon from "../../assets/icons/picture.svg";
 import closeWhiteIcon from "../../assets/icons/close-white.svg";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import CloseModal from "../CloseModal/CloseModal";
+import { getPresignedUrl } from "../../api/image";
+import axios from "axios";
 
 type UploadCoversPageProps = {
   isOpen: boolean;
   onClose: () => void;
   fileList: string[];
+  presignedFileList: string[];
   onSetFileList: Dispatch<SetStateAction<string[]>>;
+  onSetPresignedFileList: Dispatch<SetStateAction<string[]>>;
 };
 
 export default function UploadCoversPage({
@@ -18,25 +22,56 @@ export default function UploadCoversPage({
   onClose,
   fileList,
   onSetFileList,
+  presignedFileList,
+  onSetPresignedFileList,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState("");
+
+  const handleGetPresignedUrl = async (file: any) => {
+    const { presignedUrl } = await getPresignedUrl(file);
+    return presignedUrl;
+  };
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
       return;
     }
     const files = Array.from(e.target.files as FileList);
+
     if (e.target.files?.length + fileList.length > 4) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
-      files.forEach((file) => {
-        onSetFileList((prevFileList) => [
-          ...prevFileList,
-          URL.createObjectURL(file),
-        ]);
+      files.forEach(async (file) => {
+        // console.log("file:", file);
+        const presignedUrl = await handleGetPresignedUrl(file.name);
+        await fetch(presignedUrl, {
+          method: "PUT",
+        });
+
+        axios.put(presignedUrl, file, {
+          headers: {
+            "Content-Type": "image/png",
+          },
+        });
+        console.log(presignedUrl);
+        onSetFileList((prevFileList) => [...prevFileList, presignedUrl]);
       });
+
+      // files.forEach((file) => {
+      //   onSetFileList((prevFileList) => [
+      //     ...prevFileList,
+      //     URL.createObjectURL(file),
+      //   ]);
+      // });
     }
+  };
+
+  const handleRegisterPicture = () => {
+    fileList.forEach(async (file) => {
+      const presignedUrl = await handleGetPresignedUrl(file);
+      // onSetPresignedFileList([...presignedFileList, presignedUrl]);
+    });
   };
 
   return (
@@ -87,7 +122,9 @@ export default function UploadCoversPage({
             ))}
           </div>
         </div>
-        <button className={styles.submitBtn}>등록</button>
+        <button onClick={handleRegisterPicture} className={styles.submitBtn}>
+          등록
+        </button>
       </div>
     </PageModal>
   );
