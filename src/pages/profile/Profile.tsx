@@ -1,13 +1,20 @@
 import styles from "./Profile.module.css";
 import settingIcon from "../../assets/icons/setting.svg";
 import { Badge } from "../../components";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import levelIcon from "../../assets/icons/level.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RatingModal from "../../components/RatingModal/RatingModal";
 
 export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <>

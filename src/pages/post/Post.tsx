@@ -2,8 +2,9 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./Post.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 export default function Post() {
   const [des, setDes] = useState("");
@@ -14,7 +15,14 @@ export default function Post() {
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
   const [selectedShop, setSelectedShop] = useState("");
+  const navigate = useNavigate();
   const ref = useRef(null);
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div>

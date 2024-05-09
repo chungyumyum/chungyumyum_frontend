@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { SubHeader } from "../../components";
 import styles from "./Setting.module.css";
 
 export default function Setting() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  };
+
   return (
     <div>
       <SubHeader title="설정" />
@@ -12,7 +19,7 @@ export default function Setting() {
           </button>
         </li>
         <li className={styles.item}>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
         </li>
         <li className={styles.item}>
           <button>탈퇴하기</button>
