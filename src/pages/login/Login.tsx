@@ -3,6 +3,7 @@ import rabbitImg from "../../assets/covers/login_main.png";
 import kakaoLoginImg from "../../assets/covers/kakao_login.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 export default function Login() {
   const Rest_api_key = "1489f9d584bc92e45457d98b878c529c"; //REST API KEY
@@ -22,9 +23,8 @@ export default function Login() {
       const response = await axios.get(
         `https://server.cnuyum.com/members/oauth/login/KAKAO?code=${code}`
       );
-      const data = response.data; // 응답 데이터
-      alert("로그인 성공: " + data);
-      console.log(data);
+      const data = response.data;
+      localStorage.setItem("accessToken", data.accessToken);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -33,9 +33,14 @@ export default function Login() {
   };
 
   if (code) {
-    console.log("code:", code);
     handleOauthKakao();
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
