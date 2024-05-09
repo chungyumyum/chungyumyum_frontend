@@ -20,6 +20,7 @@ export default function UploadCoversPage({
   onSetFileList,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
@@ -40,7 +41,13 @@ export default function UploadCoversPage({
 
   return (
     <PageModal isOpen={isOpen}>
-      <CloseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <CloseModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSetFileList={onSetFileList}
+        selectedFile={selectedFile}
+        fileList={fileList}
+      />
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>사진 첨부</h2>
@@ -69,7 +76,10 @@ export default function UploadCoversPage({
                 <img src={file} alt="picture_cover" />
                 <button
                   className={styles.pictureCloseBtn}
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    setSelectedFile(file);
+                    setIsModalOpen(true);
+                  }}
                 >
                   <img src={closeWhiteIcon} alt="close_icon" />
                 </button>

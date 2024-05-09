@@ -1,17 +1,28 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import styles from "./CloseModal.module.css";
 import ReactDOM from "react-dom";
 
 export default function CloseModal({
   isOpen,
   onClose,
+  onSetFileList,
+  selectedFile,
+  fileList,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  onSetFileList: Dispatch<SetStateAction<string[]>>;
+  selectedFile: string;
+  fileList: string[];
 }) {
   if (!isOpen) {
     return <></>;
   }
+
+  const handleDeleteFile = () => {
+    onSetFileList(fileList.filter((file) => file !== selectedFile));
+    onClose();
+  };
 
   return (
     <ModalPortal>
@@ -24,7 +35,7 @@ export default function CloseModal({
         </p>
         <div className={styles.btnContainer}>
           <button onClick={onClose}>취소</button>
-          <button>확인</button>
+          <button onClick={handleDeleteFile}>확인</button>
         </div>
       </div>
     </ModalPortal>
