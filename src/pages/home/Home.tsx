@@ -11,6 +11,7 @@ export default function Home() {
           <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
             <img src={bannerCover} alt="banner-cover" />
           </a>
+          <span className={styles.sliderTag}>1/1</span>
         </div>
         <Card />
         <Card />
