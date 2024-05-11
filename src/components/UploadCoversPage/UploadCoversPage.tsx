@@ -29,8 +29,8 @@ export default function UploadCoversPage({
   const [selectedFile, setSelectedFile] = useState("");
 
   const handleGetPresignedUrl = async (file: string) => {
-    const { presignedUrl } = await getPresignedUrl(file);
-    return presignedUrl;
+    const data = await getPresignedUrl(file);
+    return data;
   };
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -43,22 +43,14 @@ export default function UploadCoversPage({
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
       files.forEach(async (file) => {
-        const presignedUrl = await handleGetPresignedUrl(file.name);
-        console.log(presignedUrl);
+        const data = await handleGetPresignedUrl(file.name);
+        console.log(data);
         try {
-          const res = await axios.put(presignedUrl, file, {
+          const res = await axios.put(data.presignedUrl, file, {
             headers: {
               "Content-Type": "image/*",
             },
           });
-
-          console.log(res);
-        } catch (err: any) {
-          console.log(err);
-        }
-
-        try {
-          const res = await axios.get(presignedUrl.split("?")[0]);
 
           console.log(res);
         } catch (err: any) {

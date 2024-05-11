@@ -2,18 +2,33 @@ import controlIcon from "../../assets/icons/control.svg";
 import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const RECOMMENDED_PARAGRAPH = [
   "돈까스 맛집이 어디더라?",
   "돼지고기 맛집이 어디더라?",
   "국수 맛집이 어디더라?",
   "마라탕 맛집이 어디더라?",
+  "아무데나 가세요",
+  "그냥 롯데리아 가세요",
 ];
 
 export default function MainHeader() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isDeemClicked, setIsDeemClicked] = useState(false);
+  const [paragraphPosition, setParagraphPosition] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setParagraphPosition(
+        (prev) => (prev + 2) % (RECOMMENDED_PARAGRAPH.length * 2)
+      );
+    }, 2000);
+
+    () => {
+      return clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
@@ -31,8 +46,11 @@ export default function MainHeader() {
             alt="search_icon"
           />
           <div className={styles.recommendedParagraphContainer}>
-            <div className={styles.test}>
-              {RECOMMENDED_PARAGRAPH.map((data, i) => (
+            <div
+              style={{ top: `-${paragraphPosition}rem` }}
+              className={styles.test}
+            >
+              {RECOMMENDED_PARAGRAPH.map((data) => (
                 <p className={styles.recommendedParagraph} key={data}>
                   {data}
                 </p>

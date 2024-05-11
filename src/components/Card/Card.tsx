@@ -17,7 +17,11 @@ export default function Card({ style }: CardProps) {
   return (
     <Link to="/reviewDetail/1" className={styles.card} style={style}>
       <div className={styles.cardCover}>
-        <img src={cardCover01} alt="card-cover" />
+        {/* <img src={cardCover01} alt="card-cover" /> */}
+        <img
+          src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
+          alt="card-cover"
+        />
         {!pathname.includes("reviewList") && (
           <span className={styles.cardRating}>⭐ 4.5</span>
         )}
