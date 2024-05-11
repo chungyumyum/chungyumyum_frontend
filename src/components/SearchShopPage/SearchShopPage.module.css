@@ -81,3 +81,29 @@
 .selectedBoxAddress {
   font-size: 1.3rem;
 }
+
+.submitBtn {
+  display: block;
+  border-radius: 1.5rem;
+  background-color: #000;
+  color: #fff;
+  margin: 2.9rem auto 3rem;
+  padding: 1.1rem 0;
+  width: 58%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.submitBtn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.notFound {
+  text-align: center;
+}
+
+.notFoundDescription {
+  font-size: 1.6rem;
+}

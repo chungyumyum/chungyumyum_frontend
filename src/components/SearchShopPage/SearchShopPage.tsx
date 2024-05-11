@@ -3,6 +3,8 @@ import styles from "./SearchShopPage.module.css";
 import searchIcon from "../../assets/icons/search-xl.svg";
 import { FormEvent, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
+import bunnyImage from "../../assets/covers/sad_bunny.svg";
+import { Link } from "react-router-dom";
 
 type SearchShopPageProps = {
   isOpen: boolean;
@@ -90,29 +92,45 @@ export default function SearchShopPage({
             </form>
           </div>
 
-          <div id="map" className={styles.mapArea}>
-            this is for map
-            <div className={styles.selectedBox}>
-              <h2 className={styles.selectedBoxTitle}>
-                {shop.title || "가게 선택 안됨"}
-              </h2>
-              <p className={styles.selectedBoxAddress}>
-                {shop.address || "가게를 선택해주세요"}
+          {!isEmpty ? (
+            <>
+              <div id="map" className={styles.mapArea}>
+                this is for map
+                <div className={styles.selectedBox}>
+                  <h2 className={styles.selectedBoxTitle}>
+                    {shop.title || "가게 선택 안됨"}
+                  </h2>
+                  <p className={styles.selectedBoxAddress}>
+                    {shop.address || "가게를 선택해주세요"}
+                  </p>
+                </div>
+              </div>
+              <div className={styles.buttonsContainer}>
+                <button onClick={onClose}>취소</button>
+                <button
+                  onClick={() => {
+                    onSelectedShop(shop.title, shop.id);
+                    onClose();
+                  }}
+                >
+                  완료
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className={styles.notFound}>
+              {/* 이미지 */}
+              <img src={bunnyImage} alt="sad_character" />
+              <p className={styles.notFoundDescription}>
+                검색하신 식당이 등록되지 않았어요. <br />
+                정보를 알려주시면 빠른 시일 내에 <br />
+                추가할게요!
               </p>
+              <button className={styles.submitBtn}>
+                <a href="https://open.kakao.com/o/sYAt0epg">제보하러 가기</a>
+              </button>
             </div>
-          </div>
-
-          <div className={styles.buttonsContainer}>
-            <button onClick={onClose}>취소</button>
-            <button
-              onClick={() => {
-                onSelectedShop(shop.title, shop.id);
-                onClose();
-              }}
-            >
-              완료
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </PageModal>
