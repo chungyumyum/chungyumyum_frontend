@@ -28,7 +28,7 @@ export default function UploadCoversPage({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState("");
 
-  const handleGetPresignedUrl = async (file: any) => {
+  const handleGetPresignedUrl = async (file: string) => {
     const { presignedUrl } = await getPresignedUrl(file);
     return presignedUrl;
   };
@@ -44,14 +44,29 @@ export default function UploadCoversPage({
     } else {
       files.forEach(async (file) => {
         const presignedUrl = await handleGetPresignedUrl(file.name);
-
-        axios.put(presignedUrl, file, {
-          headers: {
-            "Content-Type": file.type,
-          },
-        });
         console.log(presignedUrl);
-        onSetFileList((prevFileList) => [...prevFileList, presignedUrl]);
+        try {
+          const res = await axios.put(presignedUrl, file, {
+            headers: {
+              "Content-Type": "image/*",
+            },
+          });
+
+          console.log(res);
+        } catch (err: any) {
+          console.log(err);
+        }
+
+        try {
+          const res = await axios.get(presignedUrl.split("?")[0]);
+
+          console.log(res);
+        } catch (err: any) {
+          console.log(err);
+        }
+
+        // console.log(presignedUrl);
+        // onSetFileList((prevFileList) => [...prevFileList, presignedUrl]);
       });
 
       // files.forEach((file) => {
@@ -64,10 +79,7 @@ export default function UploadCoversPage({
   };
 
   const handleRegisterPicture = () => {
-    fileList.forEach(async (file) => {
-      const presignedUrl = await handleGetPresignedUrl(file);
-      // onSetPresignedFileList([...presignedFileList, presignedUrl]);
-    });
+    onClose();
   };
 
   return (
