@@ -29,6 +29,7 @@ export default function SearchShopPage({
 
   const [search, setSearch] = useState("");
   const [triggerUpdate, setTriggerUpdate] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -47,7 +48,7 @@ export default function SearchShopPage({
 
     (async function () {
       const restaurants = await getShops({ name: search });
-
+      setIsEmpty(restaurants.length === 0);
       restaurants.map((restaurant) => {
         const marker = new window.kakao.maps.Marker({
           position: new window.kakao.maps.LatLng(

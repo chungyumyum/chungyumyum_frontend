@@ -43,15 +43,11 @@ export default function UploadCoversPage({
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
       files.forEach(async (file) => {
-        // console.log("file:", file);
         const presignedUrl = await handleGetPresignedUrl(file.name);
-        await fetch(presignedUrl, {
-          method: "PUT",
-        });
 
         axios.put(presignedUrl, file, {
           headers: {
-            "Content-Type": "image/png",
+            "Content-Type": file.type,
           },
         });
         console.log(presignedUrl);
