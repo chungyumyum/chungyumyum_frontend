@@ -186,6 +186,24 @@
   border-radius: 0.5rem;
 }
 
+.recommendedParagraphContainer {
+  position: absolute;
+  top: 0;
+  background-color: dodgerblue;
+  height: 2rem;
+  overflow: hidden;
+}
+
+.test {
+  position: relative;
+  top: -3.4rem;
+  background-color: red;
+}
+
+.recommendedParagraph {
+  line-height: 2rem;
+}
+
 /* 
   41rem이 410px로 안되는 이유?
   우선, px로 하고 나중에 고치기

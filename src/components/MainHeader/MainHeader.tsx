@@ -4,6 +4,13 @@ import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { useState } from "react";
 
+const RECOMMENDED_PARAGRAPH = [
+  "돈까스 맛집이 어디더라?",
+  "돼지고기 맛집이 어디더라?",
+  "국수 맛집이 어디더라?",
+  "마라탕 맛집이 어디더라?",
+];
+
 export default function MainHeader() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isDeemClicked, setIsDeemClicked] = useState(false);
@@ -17,16 +24,21 @@ export default function MainHeader() {
       >
         <h1 className={styles.title}>충냠냠</h1>
         <div className={styles.searchContainer}>
-          <input
-            className={styles.search}
-            type="text"
-            placeholder="돈까스 맛집이 어디더라?"
-          />
+          <input className={styles.search} type="text" />
           <img
             className={styles.searchIcon}
             src={searchIcon}
             alt="search_icon"
           />
+          <div className={styles.recommendedParagraphContainer}>
+            <div className={styles.test}>
+              {RECOMMENDED_PARAGRAPH.map((data, i) => (
+                <p className={styles.recommendedParagraph} key={data}>
+                  {data}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
         <div>
           <button
