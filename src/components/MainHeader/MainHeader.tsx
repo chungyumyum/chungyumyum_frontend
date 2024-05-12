@@ -6,11 +6,8 @@ import { useEffect, useRef, useState } from "react";
 
 const RECOMMENDED_PARAGRAPH = [
   "돈까스 맛집이 어디더라?",
-  "돼지고기 맛집이 어디더라?",
-  "국수 맛집이 어디더라?",
-  "마라탕 맛집이 어디더라?",
-  "아무데나 가세요",
-  "그냥 롯데리아 가세요",
+  "맵찔이 친구와 갈 만한 곳은?",
+  "회식 장소로는 어디가 좋을까?",
 ];
 
 export default function MainHeader() {
@@ -25,7 +22,7 @@ export default function MainHeader() {
       setParagraphPosition(
         (prev) => (prev + 2) % (RECOMMENDED_PARAGRAPH.length * 2)
       );
-    }, 2000);
+    }, 3000);
 
     () => {
       return clearInterval(interval);
