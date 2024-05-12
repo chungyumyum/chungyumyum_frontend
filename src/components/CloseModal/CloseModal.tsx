@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import styles from "./CloseModal.module.css";
 import ReactDOM from "react-dom";
+import { FileListItem } from "../../pages/post/Post";
 
 export default function CloseModal({
   isOpen,
@@ -11,16 +12,16 @@ export default function CloseModal({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSetFileList: Dispatch<SetStateAction<string[]>>;
-  selectedFile: string;
-  fileList: string[];
+  onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
+  selectedFile: FileListItem;
+  fileList: FileListItem[];
 }) {
   if (!isOpen) {
     return <></>;
   }
 
   const handleDeleteFile = () => {
-    onSetFileList(fileList.filter((file) => file !== selectedFile));
+    onSetFileList(fileList.filter((file) => file.name !== selectedFile.name));
     onClose();
   };
 

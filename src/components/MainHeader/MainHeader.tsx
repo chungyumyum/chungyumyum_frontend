@@ -2,7 +2,7 @@ import controlIcon from "../../assets/icons/control.svg";
 import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const RECOMMENDED_PARAGRAPH = [
   "돈까스 맛집이 어디더라?",
@@ -17,6 +17,8 @@ export default function MainHeader() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isDeemClicked, setIsDeemClicked] = useState(false);
   const [paragraphPosition, setParagraphPosition] = useState(0);
+  const [showParagraph, setShowParagraph] = useState(true);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,24 +41,34 @@ export default function MainHeader() {
       >
         <h1 className={styles.title}>충냠냠</h1>
         <div className={styles.searchContainer}>
-          <input className={styles.search} type="text" />
+          <input ref={searchRef} className={styles.search} type="text" />
           <img
             className={styles.searchIcon}
             src={searchIcon}
             alt="search_icon"
           />
-          <div className={styles.recommendedParagraphContainer}>
+          {showParagraph && (
             <div
-              style={{ top: `-${paragraphPosition}rem` }}
-              className={styles.test}
+              className={styles.recommendedParagraphContainer}
+              onClick={() => {
+                setShowParagraph(false);
+                if (searchRef.current) {
+                  searchRef.current.focus();
+                }
+              }}
             >
-              {RECOMMENDED_PARAGRAPH.map((data) => (
-                <p className={styles.recommendedParagraph} key={data}>
-                  {data}
-                </p>
-              ))}
+              <div
+                style={{ top: `-${paragraphPosition}rem` }}
+                className={styles.test}
+              >
+                {RECOMMENDED_PARAGRAPH.map((data) => (
+                  <p className={styles.recommendedParagraph} key={data}>
+                    {data}
+                  </p>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div>
           <button

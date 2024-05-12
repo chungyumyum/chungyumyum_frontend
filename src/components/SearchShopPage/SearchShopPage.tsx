@@ -95,7 +95,6 @@ export default function SearchShopPage({
           {!isEmpty ? (
             <>
               <div id="map" className={styles.mapArea}>
-                this is for map
                 <div className={styles.selectedBox}>
                   <h2 className={styles.selectedBoxTitle}>
                     {shop.title || "가게 선택 안됨"}

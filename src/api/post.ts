@@ -17,7 +17,24 @@ export async function getPosts(name: string): Promise<Post[]> {
   return (await axios.get(`/posts?name=${name}`)).data;
 }
 
-// export async function createPost(){}
+export async function createPost({
+  restaurantId,
+  rating,
+  description,
+  postImageUrls,
+}: {
+  restaurantId: number;
+  rating: string;
+  description: string;
+  postImageUrls: string[];
+}) {
+  return await axios.post(`/posts`, {
+    restaurantId,
+    rating,
+    description,
+    postImageUrls,
+  });
+}
 
 export async function getMyPosts(): Promise<Post[]> {
   return (await axios.get("/posts/my")).data;

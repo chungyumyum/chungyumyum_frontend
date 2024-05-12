@@ -1,10 +1,8 @@
 import styles from "./Card.module.css";
-import cardCover01 from "../../assets/covers/card_cover01.jpg";
 import { Link, useLocation } from "react-router-dom";
 import Badge from "../Badge/Badge";
 import moreIcon from "../../assets/icons/more.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
-import bookmarkIconActived from "../../assets/icons/bookmark.svg";
 import { CSSProperties } from "react";
 
 type CardProps = {
