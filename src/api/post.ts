@@ -52,5 +52,15 @@ export async function createPost({
 }
 
 export async function getMyPosts(): Promise<Post[]> {
-  return (await instance.get("/posts/my")).data;
+  return (
+    await instance.get(
+      "/posts/my",
+
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+  ).data;
 }

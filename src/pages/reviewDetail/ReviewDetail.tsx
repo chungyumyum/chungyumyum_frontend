@@ -10,11 +10,7 @@ import { PostDetail } from "../../types/post";
 import { getPost } from "../../api/post";
 
 export default function ReviewDetail() {
-  const [fileList, setFileList] = useState<string[]>([
-    "/test_cover01.jpg",
-    "/test_cover02.jpg",
-    "/test_cover03.jpg",
-  ]);
+  const [fileList, setFileList] = useState<string[]>([]);
 
   const { id } = useParams();
   const [currentImg, setCurrentImg] = useState(0);
@@ -23,6 +19,7 @@ export default function ReviewDetail() {
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
     setPost(post);
+    setFileList([post.imageUrl]);
   };
 
   useEffect(() => {

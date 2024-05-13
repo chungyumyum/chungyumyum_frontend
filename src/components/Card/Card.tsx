@@ -33,10 +33,10 @@ export default function Card({
       <div className={styles.cardCover}>
         {/* <img src={cardCover01} alt="card-cover" /> */}
         <img
-          // src={imageUrl}
+          src={imageUrl}
           // src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
           // src="https://image.cnuyum.com/images/b960e365-1828-4d49-82ae-aa8173f5436f.jpg"
-          src="https://image.cnuyum.com/images/4de0db72-bc72-4ca7-83a2-a2161d46394c.jpg"
+          // src="https://image.cnuyum.com/images/4de0db72-bc72-4ca7-83a2-a2161d46394c.jpg"
           // src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
           alt="card-cover"
         />

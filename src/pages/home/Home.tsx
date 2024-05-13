@@ -4,7 +4,6 @@ import bannerCover from "../../assets/covers/banner.svg";
 import { useEffect, useState } from "react";
 import { Post } from "../../types/post";
 import { getPosts } from "../../api/post";
-import Posts from "../profile/Posts";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -16,7 +15,7 @@ export default function Home() {
       });
       setPosts(posts);
     } catch (err) {
-      console.log("network error");
+      console.log("error");
     }
   };
 
