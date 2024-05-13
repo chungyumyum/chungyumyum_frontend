@@ -5,7 +5,6 @@ import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 import { useNavigate } from "react-router-dom";
-import { getPresignedUrl } from "../../api/image";
 
 export type FileListItem = {
   name: string;
@@ -25,33 +24,14 @@ export default function Post() {
   });
   const navigate = useNavigate();
   const ref = useRef(null);
-
-  const handleGetPresignedUrl = async (file: string) => {
-    const data = await getPresignedUrl(file);
-    return data;
-  };
+  const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
 
   const handleRegister = () => {
     console.log(rating);
     console.log(fileList);
     console.log(selectedShop);
     console.log(des);
-
-    // files.forEach(async (file) => {
-    //   const data = await handleGetPresignedUrl(file.name);
-    //   console.log(data);
-    //   try {
-    //     await axios.put(data.presignedUrl, file, {
-    //       headers: {
-    //         "Content-Type": "image/*",
-    //       },
-    //     });
-
-    //     onSetFileList((prevList) => [...prevList, data.fileName]);
-    //   } catch (err: any) {
-    //     console.log(err);
-    //   }
-    // });
+    console.log(presignedFileList);
   };
 
   useEffect(() => {
@@ -79,6 +59,8 @@ export default function Post() {
         onClose={() => setIsPopen(false)}
         parentFileList={fileList}
         onSetFileList={setFileList}
+        presignedFileList={presignedFileList}
+        onSetPresignedFileList={setPresignedFileList}
       />
       <SubHeader title="글쓰기" />
       <div className={styles.contents}>

@@ -6,12 +6,21 @@ import closeWhiteIcon from "../../assets/icons/close-white.svg";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import CloseModal from "../CloseModal/CloseModal";
 import { FileListItem } from "../../pages/post/Post";
+import { getPresignedUrl } from "../../api/image";
+import axios from "axios";
 
 type UploadCoversPageProps = {
   isOpen: boolean;
   onClose: () => void;
   onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
   parentFileList: FileListItem[];
+  presignedFileList: string[];
+  onSetPresignedFileList: Dispatch<SetStateAction<string[]>>;
+};
+
+const handleGetPresignedUrl = async (file: string) => {
+  const data = await getPresignedUrl(file);
+  return data;
 };
 
 export default function UploadCoversPage({
@@ -19,6 +28,8 @@ export default function UploadCoversPage({
   onClose,
   parentFileList,
   onSetFileList,
+  presignedFileList,
+  onSetPresignedFileList,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<FileListItem>(
@@ -35,22 +46,6 @@ export default function UploadCoversPage({
     if (e.target.files?.length + fileList.length > 4) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
-      // files.forEach(async (file) => {
-      //   const data = await handleGetPresignedUrl(file.name);
-      //   console.log(data);
-      //   try {
-      //     await axios.put(data.presignedUrl, file, {
-      //       headers: {
-      //         "Content-Type": "image/*",
-      //       },
-      //     });
-
-      //     onSetFileList((prevList) => [...prevList, data.fileName]);
-      //   } catch (err: any) {
-      //     console.log(err);
-      //   }
-      // });
-
       files.forEach((file) => {
         setFileList((prevFileList) => [
           ...prevFileList,
@@ -70,6 +65,21 @@ export default function UploadCoversPage({
 
   const handleRegistePicture = () => {
     onSetFileList([...fileList]);
+    onSetPresignedFileList([]);
+    fileList.forEach(async (file) => {
+      const data = await handleGetPresignedUrl(file.name);
+      onSetPresignedFileList((prevList) => [...prevList, data.presignedUrl]);
+      try {
+        await axios.put(data.presignedUrl, file, {
+          headers: {
+            "Content-Type": "image/*",
+          },
+        });
+      } catch (err: any) {
+        console.log(err);
+      }
+    });
+
     onClose();
   };
 

@@ -28,12 +28,20 @@ export async function createPost({
   description: string;
   postImageUrls: string[];
 }) {
-  return await axios.post(`/posts`, {
-    restaurantId,
-    rating,
-    description,
-    postImageUrls,
-  });
+  return await axios.post(
+    `/posts`,
+    {
+      restaurantId,
+      rating,
+      description,
+      postImageUrls,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }
+  );
 }
 
 export async function getMyPosts(): Promise<Post[]> {
