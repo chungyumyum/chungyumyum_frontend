@@ -5,10 +5,24 @@ import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { createPost } from "../../api/post";
 
 export type FileListItem = {
   name: string;
   url: string;
+};
+
+const RATING: { [key: string]: string } = {
+  "0.5": "HALF",
+  "1": "ONE",
+  "1.5": "ONE_HALF",
+  "2": "TWO",
+  "2.5": "TWO_HALF",
+  "3": "THREE",
+  "3.5": "THREE_HALF",
+  "4": "FOUR",
+  "4.5": "FOUR_HALF",
+  "5": "FIVE",
 };
 
 export default function Post() {
@@ -26,12 +40,22 @@ export default function Post() {
   const ref = useRef(null);
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     console.log(rating);
     console.log(fileList);
     console.log(selectedShop);
     console.log(des);
     console.log(presignedFileList);
+    try {
+      await createPost({
+        restaurantId: selectedShop.id,
+        rating: RATING[rating],
+        description: des,
+        postImageUrls: presignedFileList,
+      });
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -59,7 +83,6 @@ export default function Post() {
         onClose={() => setIsPopen(false)}
         parentFileList={fileList}
         onSetFileList={setFileList}
-        presignedFileList={presignedFileList}
         onSetPresignedFileList={setPresignedFileList}
       />
       <SubHeader title="글쓰기" />

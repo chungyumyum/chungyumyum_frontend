@@ -1,8 +1,29 @@
 import { Card, MainHeader } from "../../components";
 import styles from "./Home.module.css";
 import bannerCover from "../../assets/covers/banner.svg";
+import { useEffect, useState } from "react";
+import { Post } from "../../types/post";
+import { getPosts } from "../../api/post";
+import Posts from "../profile/Posts";
 
 export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  const handleLoadPosts = async () => {
+    try {
+      const posts = await getPosts({
+        town: "",
+      });
+      setPosts(posts);
+    } catch (err) {
+      console.log("network error");
+    }
+  };
+
+  useEffect(() => {
+    handleLoadPosts();
+  }, []);
+
   return (
     <div className={styles.container}>
       <MainHeader />
@@ -13,10 +34,19 @@ export default function Home() {
           </a>
           <span className={styles.sliderTag}>1/1</span>
         </div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+
+        {posts.map((post) => (
+          <Card
+            key={post.id}
+            writerName={post.writerName}
+            writerRank={post.writerRank}
+            restaurantName={post.restaurantName}
+            rating={post.rating}
+            imageUrl={post.imageUrl}
+            description={post.description}
+            id={post.id}
+          />
+        ))}
       </div>
     </div>
   );

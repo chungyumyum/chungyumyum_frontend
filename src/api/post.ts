@@ -1,8 +1,9 @@
 import axios from "axios";
-import { Post } from "../types/post";
+import { Post, PostDetail } from "../types/post";
+import { instance } from "./base";
 
-export async function getPost(id: string): Promise<Post> {
-  return (await axios.get(`/posts/${id}`)).data;
+export async function getPost(id: string): Promise<PostDetail> {
+  return (await instance.get(`/posts/${id}`)).data;
 }
 
 // export async function putPost(id:string){
@@ -10,11 +11,17 @@ export async function getPost(id: string): Promise<Post> {
 // }
 
 export async function deletePost(id: string) {
-  await axios.delete(`/posts/${id}`);
+  await instance.delete(`/posts/${id}`);
 }
 
-export async function getPosts(name: string): Promise<Post[]> {
-  return (await axios.get(`/posts?name=${name}`)).data;
+export async function getPosts({
+  town = "",
+  name = "",
+}: {
+  town?: string;
+  name?: string;
+}): Promise<Post[]> {
+  return (await instance.get(`/posts?town=${town}&name=${name}`)).data;
 }
 
 export async function createPost({
@@ -28,7 +35,7 @@ export async function createPost({
   description: string;
   postImageUrls: string[];
 }) {
-  return await axios.post(
+  return await instance.post(
     `/posts`,
     {
       restaurantId,
@@ -45,5 +52,5 @@ export async function createPost({
 }
 
 export async function getMyPosts(): Promise<Post[]> {
-  return (await axios.get("/posts/my")).data;
+  return (await instance.get("/posts/my")).data;
 }

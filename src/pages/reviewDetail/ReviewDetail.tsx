@@ -4,8 +4,10 @@ import styles from "./ReviewDetail.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
 import Stars from "../../components/Stars/Stars";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { PostDetail } from "../../types/post";
+import { getPost } from "../../api/post";
 
 export default function ReviewDetail() {
   const [fileList, setFileList] = useState<string[]>([
@@ -14,17 +16,28 @@ export default function ReviewDetail() {
     "/test_cover03.jpg",
   ]);
 
+  const { id } = useParams();
   const [currentImg, setCurrentImg] = useState(0);
+  const [post, setPost] = useState<PostDetail>({} as PostDetail);
+
+  const handleLoadPost = async () => {
+    const post = await getPost(id as string);
+    setPost(post);
+  };
+
+  useEffect(() => {
+    handleLoadPost();
+  }, []);
 
   return (
     <>
-      <SubHeader title="행보케" />
+      <SubHeader title={post.restaurantName} />
       <div className={styles.contents}>
         <div className={styles.header}>
           <div className={styles.profile}>
             <Badge type="three" size="big" />
             <div>
-              <p className={styles.profileTitle}>김태진</p>
+              <p className={styles.profileTitle}>{post.writerName}</p>
               <p className={styles.profileRole}>쩝쩝석사</p>
             </div>
           </div>
@@ -57,12 +70,7 @@ export default function ReviewDetail() {
           <Stars rating={4} />
         </div>
 
-        <p className={styles.review}>
-          마라탕 1단계로 먹는 맵찔이인데 별로 안 맵고 마라가 강하지 않아서
-          누구나 맛있게 먹을 수 있어요! 마라마요새우는 바삭하고 맛있는데
-          생각보다 버섯이 엄청 많아요...ㅎㅎ 그리고 여긴 유린기가 진짜입니다
-          다들 강추하는 이유가 있었어요 꼭 드셔보세요!
-        </p>
+        <p className={styles.review}>{post.description}</p>
 
         <button className={styles.linkBtn}>
           <Link to="/reviewList/2">이 식당의 다른 후기</Link>

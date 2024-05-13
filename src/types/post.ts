@@ -6,5 +6,8 @@ export type Post = {
   rating: string;
   writerName: string;
   writerRank: string;
+};
+
+export type PostDetail = Post & {
   alereadyBookmarked: boolean;
 };

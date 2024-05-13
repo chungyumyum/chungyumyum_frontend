@@ -7,30 +7,50 @@ import { CSSProperties } from "react";
 
 type CardProps = {
   style?: CSSProperties;
+  writerName?: string;
+  writerRank?: string;
+  imageUrl?: string;
+  description?: string;
+  restaurantName?: string;
+  rating?: string;
+  id?: number;
 };
 
-export default function Card({ style }: CardProps) {
+export default function Card({
+  style,
+  writerName,
+  writerRank,
+  imageUrl,
+  description,
+  restaurantName,
+  rating,
+  id,
+}: CardProps) {
   const { pathname } = useLocation();
-
+  console.log(imageUrl);
   return (
-    <Link to="/reviewDetail/1" className={styles.card} style={style}>
+    <Link to={`/reviewDetail/${id}`} className={styles.card} style={style}>
       <div className={styles.cardCover}>
         {/* <img src={cardCover01} alt="card-cover" /> */}
         <img
-          src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
+          // src={imageUrl}
+          // src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
+          // src="https://image.cnuyum.com/images/b960e365-1828-4d49-82ae-aa8173f5436f.jpg"
+          src="https://image.cnuyum.com/images/4de0db72-bc72-4ca7-83a2-a2161d46394c.jpg"
+          // src="https://image.cnuyum.com/images/856f4290-6ca7-40e6-9338-5d8a06d50055.jpg"
           alt="card-cover"
         />
         {!pathname.includes("reviewList") && (
-          <span className={styles.cardRating}>⭐ 4.5</span>
+          <span className={styles.cardRating}>⭐ {rating}</span>
         )}
       </div>
       <div className={styles.cardContents}>
         <div className={styles.cardHeader}>
           {pathname.includes("reviewList") ? (
-            <div className={styles.ratingTitle}>⭐ 4.5</div>
+            <div className={styles.ratingTitle}>⭐ {rating}</div>
           ) : (
             <>
-              <h2 className={styles.cardTitle}>이런이궈 마라탕 충남대점</h2>
+              <h2 className={styles.cardTitle}>{restaurantName}</h2>
               {pathname.includes("profile/posts") && (
                 <button
                   className={styles.moreBtn}
@@ -54,16 +74,10 @@ export default function Card({ style }: CardProps) {
             </>
           )}
         </div>
-        <p className={styles.cardDescription}>
-          체감상 지금 충대에서 가장 인기 많은 마라탕집이 이곳인 것 같아요! 다른
-          곳에선 볼 수 없던 재료도 많고, 고기도 원하는 만큼 담을 수 있고, 소스도
-          원하는대로 제조해서 먹을 수 있고, 무엇보다 밥이랑 아이스크림이
-          공짜라서 너무 좋아요!! 사장님도 친절하시고 쿠폰도 줘서 앞으로도 자주
-          올 것 같아요ㅎㅎ 아직 안 가보신 분 있다면 꼭 가보세요!
-        </p>
+        <p className={styles.cardDescription}>{description}</p>
         <div className={styles.cardFooter}>
           <Badge type="one" />
-          홍길동
+          {writerName}
         </div>
       </div>
     </Link>

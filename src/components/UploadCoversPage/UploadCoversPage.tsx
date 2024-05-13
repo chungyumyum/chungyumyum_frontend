@@ -14,7 +14,6 @@ type UploadCoversPageProps = {
   onClose: () => void;
   onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
   parentFileList: FileListItem[];
-  presignedFileList: string[];
   onSetPresignedFileList: Dispatch<SetStateAction<string[]>>;
 };
 
@@ -28,7 +27,6 @@ export default function UploadCoversPage({
   onClose,
   parentFileList,
   onSetFileList,
-  presignedFileList,
   onSetPresignedFileList,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,7 +66,10 @@ export default function UploadCoversPage({
     onSetPresignedFileList([]);
     fileList.forEach(async (file) => {
       const data = await handleGetPresignedUrl(file.name);
-      onSetPresignedFileList((prevList) => [...prevList, data.presignedUrl]);
+      onSetPresignedFileList((prevList) => [
+        ...prevList,
+        `https://image.cnuyum.com/images/${data.fileName}`,
+      ]);
       try {
         await axios.put(data.presignedUrl, file, {
           headers: {
@@ -108,7 +109,7 @@ export default function UploadCoversPage({
           style={{ display: "none" }}
           type="file"
           id="file"
-          accept="image/png, image/jpeg"
+          accept="image/*"
           multiple
           onChange={handleFileSelected}
         />
