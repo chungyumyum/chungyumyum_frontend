@@ -8,6 +8,15 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PostDetail } from "../../types/post";
 import { getPost } from "../../api/post";
+import { BadgeType } from "../../types/badge";
+
+const getRatingAsKorean = {
+  FRESHMAN: "새내기",
+  BACHELOR: "쩝쩝학사",
+  MASTER: "쩝쩝석사",
+  DOCTOR: "쩝쩝박사",
+  PROFESSOR: "먹교수",
+};
 
 export default function ReviewDetail() {
   const [fileList, setFileList] = useState<string[]>([]);
@@ -32,10 +41,12 @@ export default function ReviewDetail() {
       <div className={styles.contents}>
         <div className={styles.header}>
           <div className={styles.profile}>
-            <Badge type="three" size="big" />
+            <Badge type={post.writerRank as BadgeType} size="big" />
             <div>
               <p className={styles.profileTitle}>{post.writerName}</p>
-              <p className={styles.profileRole}>쩝쩝석사</p>
+              <p className={styles.profileRole}>
+                {getRatingAsKorean[post.writerRank]}
+              </p>
             </div>
           </div>
           <div>
@@ -70,7 +81,9 @@ export default function ReviewDetail() {
         <p className={styles.review}>{post.description}</p>
 
         <button className={styles.linkBtn}>
-          <Link to="/reviewList/2">이 식당의 다른 후기</Link>
+          <Link to={`/reviewList/${post.restaurantName}`}>
+            이 식당의 다른 후기
+          </Link>
         </button>
       </div>
     </>

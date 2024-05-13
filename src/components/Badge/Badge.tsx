@@ -1,8 +1,9 @@
 import styles from "./Badge.module.css";
 import riceIcon from "../../assets/icons/rice.svg";
+import { BadgeType } from "../../types/badge";
 
 type BadgeProps = {
-  type: "one" | "two" | "three" | "four" | "five";
+  type: BadgeType;
   size?: "small" | "big";
 };
 

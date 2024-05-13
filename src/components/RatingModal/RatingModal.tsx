@@ -25,26 +25,26 @@ export default function RatingModal({
         <p className={styles.title}>충냠냠 등급 안내</p>
         <ul>
           <li className={styles.item}>
-            <Badge type="one" size="big" />
+            <Badge type="FRESHMAN" size="big" />
             <div>새내기: 작성글 0개 이상</div>
           </li>
           <li className={styles.item}>
-            <Badge type="two" size="big" />
+            <Badge type="BACHELOR" size="big" />
 
             <div>쩝쩝학사: 작성글 5개 이상</div>
           </li>
           <li className={styles.item}>
-            <Badge type="three" size="big" />
+            <Badge type="MASTER" size="big" />
 
             <div>쩝쩝석사: 작성글 15개 이상</div>
           </li>
           <li className={styles.item}>
-            <Badge type="four" size="big" />
+            <Badge type="DOCTOR" size="big" />
 
             <div>쩝쩝박사: 작성글 25개 이상</div>
           </li>
           <li className={styles.item}>
-            <Badge type="five" size="big" />
+            <Badge type="PROFESSOR" size="big" />
 
             <div>먹교수: 작성글 40개 이상</div>
           </li>

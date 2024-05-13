@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "../../components";
 import { Post } from "../../types/post";
 import { getMyPosts } from "../../api/post";
+import styles from "./Profile.module.css";
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -20,22 +21,32 @@ export default function Posts() {
   }, []);
 
   return (
-    <div>
-      {posts.map((post, index) => (
-        <Card
-          style={
-            index == 0
-              ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
-              : {}
-          }
-          key={post.id}
-          writerName={post.writerName}
-          imageUrl={post.imageUrl}
-          description={post.description}
-          rating={post.rating}
-          restaurantName={post.restaurantName}
-        />
-      ))}
+    <div
+      className={`${styles.posts} ${
+        posts.length === 0 ? styles.isEmpty : styles.isNotEmpty
+      }`}
+    >
+      {posts.length === 0 ? (
+        <>작성한 글이 없습니다.</>
+      ) : (
+        posts.map((post, index) => (
+          <Card
+            style={
+              index == 0
+                ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
+                : {}
+            }
+            id={post.id}
+            key={post.id}
+            writerName={post.writerName}
+            imageUrl={post.imageUrl}
+            description={post.description}
+            rating={post.rating}
+            restaurantName={post.restaurantName}
+            writerRank={post.writerRank}
+          />
+        ))
+      )}
     </div>
   );
 }

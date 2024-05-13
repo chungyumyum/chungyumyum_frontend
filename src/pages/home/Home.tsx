@@ -12,6 +12,7 @@ export default function Home() {
     try {
       const posts = await getPosts({
         town: "",
+        name: "",
       });
       setPosts(posts);
     } catch (err) {

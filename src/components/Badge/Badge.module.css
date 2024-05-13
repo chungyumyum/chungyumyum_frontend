@@ -13,22 +13,22 @@
   height: 2.1rem;
 }
 
-.one {
+.FRESHMAN {
   background-color: var(--gray-500);
 }
 
-.two {
+.BACHELOR {
   background-color: var(--blue-100);
 }
 
-.three {
+.MASTER {
   background-color: var(--green);
 }
 
-.four {
+.DOCTOR {
   background-color: var(--orange);
 }
 
-.five {
+.PROFESSOR {
   background-color: var(--red);
 }

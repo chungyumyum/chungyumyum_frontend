@@ -1,3 +1,5 @@
+import { BadgeType } from "./badge";
+
 export type Post = {
   id: number;
   restaurantName: string;
@@ -5,7 +7,7 @@ export type Post = {
   description: string;
   rating: string;
   writerName: string;
-  writerRank: string;
+  writerRank: BadgeType;
 };
 
 export type PostDetail = Post & {
