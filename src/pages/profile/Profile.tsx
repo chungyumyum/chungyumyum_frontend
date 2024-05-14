@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import RatingModal from "../../components/RatingModal/RatingModal";
 import { ProfileType } from "../../types/profile";
 import { getProflie } from "../../api/profile";
+import { getMyPosts } from "../../api/post";
+import { getBookmarkedPosts } from "../../api/bookmarks";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -20,6 +22,32 @@ export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [profile, setProfile] = useState<ProfileType>({} as ProfileType);
+
+  const [myPostsCount, setMyPostsCount] = useState(0);
+  const [bookmarkedCount, setBookmarkedCount] = useState(0);
+
+  const handleLoadPosts = async () => {
+    try {
+      const posts = await getMyPosts();
+      setMyPostsCount(posts.length);
+    } catch (err) {
+      console.log("error");
+    }
+  };
+
+  const handleLoadBookmarked = async () => {
+    try {
+      const posts = await getBookmarkedPosts();
+      setBookmarkedCount(posts.length);
+    } catch (err) {
+      console.log("error");
+    }
+  };
+
+  useEffect(() => {
+    handleLoadPosts();
+    handleLoadBookmarked();
+  }, []);
 
   const handleLoadProflie = async () => {
     const profile = await getProflie();
@@ -70,13 +98,13 @@ export default function Profile() {
             to="posts"
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
-            내가 쓴 글 (3)
+            내가 쓴 글 ({myPostsCount})
           </NavLink>
           <NavLink
             to="bookmark"
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
-            북마크 (5)
+            북마크 ({bookmarkedCount})
           </NavLink>
         </div>
         <Outlet />
