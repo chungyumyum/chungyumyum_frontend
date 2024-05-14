@@ -5,7 +5,7 @@ import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { getPost } from "../../api/post";
+import { getPost, updatePost } from "../../api/post";
 import { PostDetail } from "../../types/post";
 
 export type FileListItem = {
@@ -47,9 +47,7 @@ export default function Edit() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<FileListItem[]>([]);
-  const [alreadyExistingFileList, setAlreadyExistingFileList] = useState<
-    string[]
-  >([]);
+  const [combinedFileList, setCombinedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
   const [selectedShop, setSelectedShop] = useState({
     name: post?.restaurantName,
@@ -62,18 +60,19 @@ export default function Edit() {
   const postId = searchParams.get("postId")!;
 
   const handleRegister = async () => {
-    // try {
-    //   await createPost({
-    //     restaurantId: selectedShop.id,
-    //     rating: RATING[rating],
-    //     description: des,
-    //     postImageUrls: presignedFileList,
-    //   });
-    //   navigate(`/`);
-    // } catch (err: any) {
-    //   console.error(err);
-    //   alert("리뷰 작성을 실패하였습니다");
-    // }
+    try {
+      await updatePost({
+        postId: post?.id as number,
+        restaurantId: selectedShop.id as number,
+        rating: RATING[rating],
+        description: des,
+        postImageUrls: combinedFileList,
+      });
+      navigate(`/`);
+    } catch (err: any) {
+      console.error(err);
+      alert("리뷰 작성을 실패하였습니다");
+    }
   };
 
   const handleLoadPost = async () => {
@@ -85,7 +84,8 @@ export default function Edit() {
     });
     setDes(post.description);
     setRating(RATING_NUMBER[post?.rating as string]);
-    setAlreadyExistingFileList([post.imageUrl]);
+    // setAlreadyExistingFileList([post.imageUrl]);
+    setCombinedFileList([post.imageUrl]);
     console.log(post.imageUrl);
   };
 
@@ -96,6 +96,10 @@ export default function Edit() {
 
     handleLoadPost();
   }, []);
+
+  useEffect(() => {
+    setCombinedFileList([...combinedFileList, ...presignedFileList]);
+  }, [presignedFileList]);
 
   return (
     <div>
@@ -117,6 +121,8 @@ export default function Edit() {
         parentFileList={fileList}
         onSetFileList={setFileList}
         onSetPresignedFileList={setPresignedFileList}
+        existingFileList={combinedFileList}
+        setExistingFileList={setCombinedFileList}
       />
       <SubHeader title="글 수정하기" />
       <div className={styles.contents}>
@@ -136,19 +142,19 @@ export default function Edit() {
               setIsPopen(true);
             }}
           >
-            {alreadyExistingFileList.length > 0 ? (
+            {combinedFileList.length > 0 ? (
               <div className={styles.pictureSlider}>
                 <div
                   className={styles.pictureDeem}
                   onClick={() =>
                     setCurrentImg((prev) =>
-                      prev + 1 >= fileList.length ? 0 : prev + 1
+                      prev + 1 >= combinedFileList.length ? 0 : prev + 1
                     )
                   }
                 />
                 <img
                   id="cover"
-                  src={alreadyExistingFileList[currentImg]}
+                  src={combinedFileList[currentImg]}
                   alt="cover"
                 />
                 <button
@@ -158,7 +164,7 @@ export default function Edit() {
                   <img width={10} src={cameraIcon} alt="camera_icon" />
                 </button>
                 <span className={styles.sliderTag}>
-                  {currentImg + 1}/{alreadyExistingFileList.length}
+                  {currentImg + 1}/{combinedFileList.length}
                 </span>
               </div>
             ) : (
@@ -196,18 +202,19 @@ export default function Edit() {
             ></textarea>
             <span className={styles.wordCountTag}>{des.length}/300</span>
           </div>
+
           <button
+            onClick={handleRegister}
             disabled={
               selectedShop.id === 0 ||
               rating === 0 ||
-              fileList.length === 0 ||
+              combinedFileList.length === 0 ||
               des.length === 0
             }
-            onClick={handleRegister}
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
-                fileList.length === 0 ||
+                combinedFileList.length === 0 ||
                 des.length === 0) &&
               styles.disabled
             } `}

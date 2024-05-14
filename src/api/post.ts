@@ -55,6 +55,35 @@ export async function createPost({
   );
 }
 
+export async function updatePost({
+  postId,
+  restaurantId,
+  rating,
+  description,
+  postImageUrls,
+}: {
+  postId: number;
+  restaurantId: number;
+  rating: string;
+  description: string;
+  postImageUrls: string[];
+}) {
+  return await instance.put(
+    `/posts/${postId}`,
+    {
+      restaurantId,
+      rating,
+      description,
+      postImageUrls,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }
+  );
+}
+
 export async function getMyPosts(): Promise<Post[]> {
   return (
     await instance.get("/posts/my", {

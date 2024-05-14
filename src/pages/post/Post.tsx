@@ -157,13 +157,13 @@ export default function Post() {
             <span className={styles.wordCountTag}>{des.length}/300</span>
           </div>
           <button
+            onClick={handleRegister}
             disabled={
               selectedShop.id === 0 ||
               rating === 0 ||
               fileList.length === 0 ||
               des.length === 0
             }
-            onClick={handleRegister}
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||

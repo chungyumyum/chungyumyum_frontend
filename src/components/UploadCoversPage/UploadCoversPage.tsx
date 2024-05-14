@@ -8,6 +8,7 @@ import CloseModal from "../CloseModal/CloseModal";
 import { FileListItem } from "../../pages/post/Post";
 import { getPresignedUrl } from "../../api/image";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 type UploadCoversPageProps = {
   isOpen: boolean;
@@ -15,6 +16,8 @@ type UploadCoversPageProps = {
   onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
   parentFileList: FileListItem[];
   onSetPresignedFileList: Dispatch<SetStateAction<string[]>>;
+  existingFileList?: string[];
+  setExistingFileList?: Dispatch<SetStateAction<string[]>>;
 };
 
 const handleGetPresignedUrl = async (file: string) => {
@@ -28,12 +31,12 @@ export default function UploadCoversPage({
   parentFileList,
   onSetFileList,
   onSetPresignedFileList,
+  existingFileList = [],
+  setExistingFileList,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<FileListItem>(
-    {} as FileListItem
-  );
   const [fileList, setFileList] = useState<FileListItem[]>([]);
+  const { pathname } = useLocation();
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
@@ -41,7 +44,10 @@ export default function UploadCoversPage({
     }
     const files = Array.from(e.target.files as FileList);
 
-    if (e.target.files?.length + fileList.length > 4) {
+    if (
+      existingFileList.length + e.target.files?.length + fileList.length >
+      4
+    ) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
       files.forEach((file) => {
@@ -82,6 +88,10 @@ export default function UploadCoversPage({
       }
     });
 
+    if (pathname === "/edit") {
+      setFileList([]);
+    }
+
     onClose();
   };
 
@@ -90,14 +100,15 @@ export default function UploadCoversPage({
       <CloseModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSetFileList={setFileList}
-        selectedFile={selectedFile}
-        fileList={fileList}
+        onClick={handleCloseClick}
       />
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>사진 첨부</h2>
-          <button className={styles.closeBtn} onClick={handleCloseClick}>
+          <button
+            className={styles.closeBtn}
+            onClick={() => setIsModalOpen(true)}
+          >
             <img width={14} src={closeIcon} alt="close_icon" />
           </button>
         </div>
@@ -117,14 +128,35 @@ export default function UploadCoversPage({
         <div className={styles.pictureList}>
           <p>사진 첨부는 최대 4장까지 가능합니다.</p>
           <div className={styles.pictureArea}>
+            {existingFileList.map((file) => (
+              <div key={file} className={styles.picture}>
+                <img src={file} alt="picture_cover" />
+                <button
+                  className={styles.pictureCloseBtn}
+                  onClick={() => {
+                    // setSelectedFile(file);
+                    setExistingFileList &&
+                      setExistingFileList(
+                        existingFileList.filter((target) => target !== file)
+                      );
+                  }}
+                >
+                  <img src={closeWhiteIcon} alt="close_icon" />
+                </button>
+              </div>
+            ))}
             {fileList.map((file) => (
               <div key={file.name} className={styles.picture}>
                 <img src={file.url} alt="picture_cover" />
                 <button
                   className={styles.pictureCloseBtn}
                   onClick={() => {
-                    setSelectedFile(file);
-                    setIsModalOpen(true);
+                    // setSelectedFile(file);
+                    setFileList(
+                      fileList.filter(
+                        (selectedFile) => file.name !== selectedFile.name
+                      )
+                    );
                   }}
                 >
                   <img src={closeWhiteIcon} alt="close_icon" />

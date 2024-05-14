@@ -6,22 +6,25 @@ import { FileListItem } from "../../pages/post/Post";
 export default function CloseModal({
   isOpen,
   onClose,
-  onSetFileList,
-  selectedFile,
-  fileList,
-}: {
+  onClick,
+}: // onSetFileList,
+// selectedFile,
+// fileList,
+{
   isOpen: boolean;
   onClose: () => void;
-  onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
-  selectedFile: FileListItem;
-  fileList: FileListItem[];
+  onClick: () => void;
+  // onSetFileList: Dispatch<SetStateAction<FileListItem[]>>;
+  // selectedFile: FileListItem;
+  // fileList: FileListItem[];
 }) {
   if (!isOpen) {
     return <></>;
   }
 
   const handleDeleteFile = () => {
-    onSetFileList(fileList.filter((file) => file.name !== selectedFile.name));
+    // onSetFileList(fileList.filter((file) => file.name !== selectedFile.name));
+    onClick();
     onClose();
   };
 
