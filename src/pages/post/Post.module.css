@@ -63,7 +63,6 @@
 
 .pictureAddBtn {
   position: absolute;
-  background-color: #fff;
   border: none;
   top: 1.5rem;
   right: 1.5rem;
@@ -167,7 +166,7 @@
 }
 
 .submitBtn.disabled {
-  background-color: #3c3c3c;
+  background-color: #5d5d5d;
   cursor: initial;
 }
 

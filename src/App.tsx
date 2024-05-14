@@ -12,6 +12,7 @@ import "./App.css";
 import Layout from "./layout";
 import Posts from "./pages/profile/Posts";
 import Bookmark from "./pages/profile/Bookmark";
+import Edit from "./pages/edit/Edit";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/post" element={<Post />} />
+            <Route path="/edit" element={<Edit />} />
 
             <Route path="/profile" element={<Profile />}>
               <Route path="posts" element={<Posts />} />

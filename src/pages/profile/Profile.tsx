@@ -41,6 +41,7 @@ export default function Profile() {
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
       navigate("/login");
+      return;
     }
 
     handleLoadProflie();

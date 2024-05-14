@@ -12,7 +12,7 @@ export default function SubHeader({ title, id }: SubHeaderProps) {
   console.log(id);
   return (
     <div className={styles.container}>
-      {pathname !== "/post" && (
+      {pathname !== "/post" && pathname !== "/edit" && (
         <Link
           to={pathname.includes("reviewList") ? `/reviewDetail/${id}` : "/"}
           className={styles.prevButton}

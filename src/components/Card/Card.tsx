@@ -1,5 +1,5 @@
 import styles from "./Card.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Badge from "../Badge/Badge";
 import moreIcon from "../../assets/icons/more.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
@@ -7,6 +7,8 @@ import { CSSProperties, useContext, useState } from "react";
 import { BadgeType } from "../../types/badge";
 import { deletePost } from "../../api/post";
 import { TriggerUpdateCtx } from "../../pages/profile/TriggerUpdateProvider";
+import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
+import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 
 type CardProps = {
   style?: CSSProperties;
@@ -44,10 +46,28 @@ export default function Card({
 }: CardProps) {
   const { pathname } = useLocation();
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const ctx = useContext(TriggerUpdateCtx);
+  const navigate = useNavigate();
 
   const handleDeletePost = async () => {
     await deletePost(String(id));
+  };
+
+  const handleBookmarkClick = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      alert("로그인이 필요한 기능입니다.");
+      return;
+    }
+
+    if (isBookmarked) {
+      await deleteBookmarkedPost(id as number);
+      setIsBookmarked(false);
+    } else {
+      await storeBookmarkedPost(id as number);
+      setIsBookmarked(true);
+    }
   };
 
   return (
@@ -81,12 +101,15 @@ export default function Card({
               )}
               {pathname.includes("profile/bookmark") && (
                 <button
-                  className={styles.bmkBtn}
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
+                  className={styles.bookmarkBtn}
+                  onClick={handleBookmarkClick}
                 >
-                  <img width={15} src={bookmarkIcon} alt="bookmark_icon" />
+                  {!isBookmarked && (
+                    <img width={22} src={bookmarkIcon} alt="bk_icon" />
+                  )}
+                  {isBookmarked && (
+                    <img width={22} src={bookmarkActiveIcon} alt="bk_icon" />
+                  )}
                 </button>
               )}
             </>
@@ -104,6 +127,7 @@ export default function Card({
           <button
             onClick={(e) => {
               e.preventDefault();
+              navigate(`/edit?postId=${id}`);
             }}
             className={styles.popOverBtn}
           >

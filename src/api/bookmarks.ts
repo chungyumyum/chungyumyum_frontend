@@ -10,3 +10,19 @@ export async function getBookmarkedPosts(): Promise<Post[]> {
     })
   ).data;
 }
+
+export async function storeBookmarkedPost(postId: number) {
+  await instance.post(`/bookmarks?postId=${postId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+}
+
+export async function deleteBookmarkedPost(postId: number) {
+  await instance.delete(`/bookmarks?postId=${postId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+}

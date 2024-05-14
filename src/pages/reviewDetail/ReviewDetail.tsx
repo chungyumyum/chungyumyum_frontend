@@ -3,12 +3,14 @@ import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./ReviewDetail.module.css";
 import gpsIcon from "../../assets/icons/gps.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
+import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 import Stars from "../../components/Stars/Stars";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PostDetail } from "../../types/post";
 import { getPost } from "../../api/post";
 import { BadgeType } from "../../types/badge";
+import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -24,11 +26,27 @@ export default function ReviewDetail() {
   const { id } = useParams();
   const [currentImg, setCurrentImg] = useState(0);
   const [post, setPost] = useState<PostDetail>({} as PostDetail);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
     setPost(post);
     setFileList([post.imageUrl]);
+  };
+
+  const handleBookmarkClick = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      alert("로그인이 필요한 기능입니다.");
+      return;
+    }
+
+    if (isBookmarked) {
+      await deleteBookmarkedPost(post.id);
+      setIsBookmarked(false);
+    } else {
+      await storeBookmarkedPost(post.id);
+      setIsBookmarked(true);
+    }
   };
 
   useEffect(() => {
@@ -53,8 +71,16 @@ export default function ReviewDetail() {
             <button className={styles.gpsBtn}>
               <img width={25} src={gpsIcon} alt="gps_icon" />
             </button>
-            <button className={styles.bookmarkBtn}>
-              <img width={22} src={bookmarkIcon} alt="gps_icon" />
+            <button
+              className={styles.bookmarkBtn}
+              onClick={handleBookmarkClick}
+            >
+              {!isBookmarked && (
+                <img width={22} src={bookmarkIcon} alt="bk_icon" />
+              )}
+              {isBookmarked && (
+                <img width={22} src={bookmarkActiveIcon} alt="bk_icon" />
+              )}
             </button>
           </div>
         </div>
