@@ -21,7 +21,11 @@ export default function Bookmark() {
   }, []);
 
   return (
-    <div className={`${styles.posts} ${posts.length === 0 && styles.isEmpty}`}>
+    <div
+      className={`${styles.posts} ${
+        posts.length < 1 ? styles.isEmpty : styles.isNotEmpty
+      }`}
+    >
       {posts.length === 0 ? (
         <>북마크 된 포스트가 없습니다.</>
       ) : (

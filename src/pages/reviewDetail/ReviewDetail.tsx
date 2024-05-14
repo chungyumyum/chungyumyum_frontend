@@ -11,6 +11,8 @@ import { PostDetail } from "../../types/post";
 import { getPost } from "../../api/post";
 import { BadgeType } from "../../types/badge";
 import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
+import MapModal from "../../components/MapModal/MapModal";
+import { getShops } from "../../api/shop";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -27,11 +29,14 @@ export default function ReviewDetail() {
   const [currentImg, setCurrentImg] = useState(0);
   const [post, setPost] = useState<PostDetail>({} as PostDetail);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [location, setLocation] = useState({ lat: "", lng: "" });
 
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
     setPost(post);
     setFileList([post.imageUrl]);
+    setIsBookmarked(post.alereadyBookmarked);
   };
 
   const handleBookmarkClick = async () => {
@@ -49,12 +54,31 @@ export default function ReviewDetail() {
     }
   };
 
+  const handleLoadRestaurant = async () => {
+    if (!post.restaurantName) {
+      return;
+    }
+    const data = await getShops({ name: post.restaurantName });
+    console.log("data:", data);
+    setLocation({
+      lat: data[0].latitude,
+      lng: data[0].longitude,
+    });
+  };
+
   useEffect(() => {
     handleLoadPost();
   }, []);
 
+  useEffect(() => {
+    handleLoadRestaurant();
+  }, [post]);
+
   return (
     <>
+      {isOpen && (
+        <MapModal location={location} onClose={() => setIsOpen(false)} />
+      )}
       <SubHeader title={post.restaurantName} />
       <div className={styles.contents}>
         <div className={styles.header}>
@@ -68,7 +92,7 @@ export default function ReviewDetail() {
             </div>
           </div>
           <div>
-            <button className={styles.gpsBtn}>
+            <button className={styles.gpsBtn} onClick={() => setIsOpen(true)}>
               <img width={25} src={gpsIcon} alt="gps_icon" />
             </button>
             <button

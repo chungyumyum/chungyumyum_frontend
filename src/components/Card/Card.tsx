@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Badge from "../Badge/Badge";
 import moreIcon from "../../assets/icons/more.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
-import { CSSProperties, useContext, useState } from "react";
+import { CSSProperties, MouseEvent, useContext, useState } from "react";
 import { BadgeType } from "../../types/badge";
 import { deletePost } from "../../api/post";
 import { TriggerUpdateCtx } from "../../pages/profile/TriggerUpdateProvider";
@@ -46,7 +46,7 @@ export default function Card({
 }: CardProps) {
   const { pathname } = useLocation();
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(true);
 
   const ctx = useContext(TriggerUpdateCtx);
   const navigate = useNavigate();
@@ -55,7 +55,8 @@ export default function Card({
     await deletePost(String(id));
   };
 
-  const handleBookmarkClick = async () => {
+  const handleBookmarkClick = async (e: MouseEvent) => {
+    e.preventDefault();
     if (!localStorage.getItem("accessToken")) {
       alert("로그인이 필요한 기능입니다.");
       return;
@@ -68,6 +69,8 @@ export default function Card({
       await storeBookmarkedPost(id as number);
       setIsBookmarked(true);
     }
+
+    ctx.triggerUpdate();
   };
 
   return (
