@@ -42,11 +42,6 @@ export default function Post() {
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
 
   const handleRegister = async () => {
-    console.log(rating);
-    console.log(fileList);
-    console.log(selectedShop);
-    console.log(des);
-    console.log(presignedFileList);
     try {
       await createPost({
         restaurantId: selectedShop.id,
@@ -161,7 +156,22 @@ export default function Post() {
             ></textarea>
             <span className={styles.wordCountTag}>{des.length}/300</span>
           </div>
-          <button onClick={handleRegister} className={styles.submitBtn}>
+          <button
+            disabled={
+              selectedShop.id === 0 ||
+              rating === 0 ||
+              fileList.length === 0 ||
+              des.length === 0
+            }
+            onClick={handleRegister}
+            className={`${styles.submitBtn} ${
+              (selectedShop.id === 0 ||
+                rating === 0 ||
+                fileList.length === 0 ||
+                des.length === 0) &&
+              styles.disabled
+            } `}
+          >
             등록
           </button>
         </div>

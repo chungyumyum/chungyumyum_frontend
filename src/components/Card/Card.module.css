@@ -6,6 +6,7 @@
   display: flex;
   gap: 2rem;
   height: 14rem;
+  position: relative;
 }
 
 .card + .card {
@@ -22,7 +23,7 @@
 }
 
 .cardCover {
-  background-color: #38b6ff;
+  background-color: #f3f3f3;
   width: 13.9rem;
   border-radius: 1rem;
   overflow: hidden;
@@ -109,4 +110,24 @@
   right: 0rem;
   top: 0.5rem;
   cursor: pointer;
+}
+
+.popover {
+  background-color: #fff;
+  box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 4.4rem;
+  right: 2.5rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+
+.popOverBtn {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  display: block;
+}
+
+.popOverBtn:hover {
+  background-color: #f3f3f3;
 }

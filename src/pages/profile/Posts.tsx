@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Card } from "../../components";
 import { Post } from "../../types/post";
 import { getMyPosts } from "../../api/post";
 import styles from "./Profile.module.css";
+import { TriggerUpdateCtx } from "./TriggerUpdateProvider";
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const ctx = useContext(TriggerUpdateCtx);
 
   const handleLoadPosts = async () => {
     try {
@@ -18,12 +20,12 @@ export default function Posts() {
 
   useEffect(() => {
     handleLoadPosts();
-  }, []);
+  }, [ctx.update]);
 
   return (
     <div
       className={`${styles.posts} ${
-        posts.length === 0 ? styles.isEmpty : styles.isNotEmpty
+        posts.length < 1 ? styles.isEmpty : styles.isNotEmpty
       }`}
     >
       {posts.length === 0 ? (

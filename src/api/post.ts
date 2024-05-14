@@ -11,7 +11,11 @@ export async function getPost(id: string): Promise<PostDetail> {
 // }
 
 export async function deletePost(id: string) {
-  await instance.delete(`/posts/${id}`);
+  await instance.delete(`/posts/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
 }
 
 export async function getPosts({
@@ -53,14 +57,10 @@ export async function createPost({
 
 export async function getMyPosts(): Promise<Post[]> {
   return (
-    await instance.get(
-      "/posts/my",
-
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    await instance.get("/posts/my", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
   ).data;
 }

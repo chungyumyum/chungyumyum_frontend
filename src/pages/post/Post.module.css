@@ -166,6 +166,11 @@
   cursor: pointer;
 }
 
+.submitBtn.disabled {
+  background-color: #3c3c3c;
+  cursor: initial;
+}
+
 .wordCountTag {
   position: absolute;
   bottom: 1rem;

@@ -3,8 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import Badge from "../Badge/Badge";
 import moreIcon from "../../assets/icons/more.svg";
 import bookmarkIcon from "../../assets/icons/bookmark.svg";
-import { CSSProperties } from "react";
+import { CSSProperties, useContext, useState } from "react";
 import { BadgeType } from "../../types/badge";
+import { deletePost } from "../../api/post";
+import { TriggerUpdateCtx } from "../../pages/profile/TriggerUpdateProvider";
 
 type CardProps = {
   style?: CSSProperties;
@@ -41,6 +43,13 @@ export default function Card({
   id,
 }: CardProps) {
   const { pathname } = useLocation();
+  const [isPopoverOpened, setIsPopoverOpened] = useState(false);
+  const ctx = useContext(TriggerUpdateCtx);
+
+  const handleDeletePost = async () => {
+    await deletePost(String(id));
+  };
+
   return (
     <Link to={`/reviewDetail/${id}`} className={styles.card} style={style}>
       <div className={styles.cardCover}>
@@ -63,6 +72,8 @@ export default function Card({
                   className={styles.moreBtn}
                   onClick={(e) => {
                     e.preventDefault();
+                    setIsPopoverOpened((prev) => !prev);
+                    console.log("check");
                   }}
                 >
                   <img width={3} src={moreIcon} alt="more_icon" />
@@ -87,6 +98,29 @@ export default function Card({
           {writerName}
         </div>
       </div>
+
+      {isPopoverOpened && (
+        <div className={styles.popover}>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            className={styles.popOverBtn}
+          >
+            수정하기
+          </button>
+          <button
+            onClick={async (e) => {
+              e.preventDefault();
+              await handleDeletePost();
+              ctx.triggerUpdate();
+            }}
+            className={styles.popOverBtn}
+          >
+            삭제하기
+          </button>
+        </div>
+      )}
     </Link>
   );
 }

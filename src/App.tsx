@@ -21,6 +21,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/post" element={<Post />} />
+
             <Route path="/profile" element={<Profile />}>
               <Route path="posts" element={<Posts />} />
               <Route path="bookmark" element={<Bookmark />} />
