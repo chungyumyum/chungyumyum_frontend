@@ -3,6 +3,9 @@ import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { useEffect, useRef, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { searchState } from "../../recoil/atom";
+import { debounce } from "../../util/debounce";
 
 const RECOMMENDED_PARAGRAPH = [
   "돈까스 맛집이 어디더라?",
@@ -16,6 +19,13 @@ export default function MainHeader() {
   const [paragraphPosition, setParagraphPosition] = useState(0);
   const [showParagraph, setShowParagraph] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
+  const setSearchState = useSetRecoilState(searchState);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debounce(() => {
+      setSearchState(e.target.value);
+    }, 500)();
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,7 +72,12 @@ export default function MainHeader() {
       >
         <h1 className={styles.title}>충냠냠</h1>
         <div className={styles.searchContainer}>
-          <input ref={searchRef} className={styles.search} type="text" />
+          <input
+            onChange={handleSearchChange}
+            ref={searchRef}
+            className={styles.search}
+            type="text"
+          />
           <img
             className={styles.searchIcon}
             src={searchIcon}
