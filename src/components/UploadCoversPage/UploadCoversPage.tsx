@@ -48,6 +48,7 @@ export default function UploadCoversPage({
         setFileList((prevFileList) => [
           ...prevFileList,
           {
+            file: file,
             name: file.name,
             url: URL.createObjectURL(file),
           },
@@ -71,7 +72,7 @@ export default function UploadCoversPage({
         `https://image.cnuyum.com/images/${data.fileName}`,
       ]);
       try {
-        await axios.put(data.presignedUrl, file, {
+        await axios.put(data.presignedUrl, file.file, {
           headers: {
             "Content-Type": "image/*",
           },

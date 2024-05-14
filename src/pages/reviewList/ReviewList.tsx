@@ -47,12 +47,12 @@ export default function ReviewList() {
         {(
           posts.reduce((acc, curPost) => acc + RATING[curPost.rating], 0) /
           posts.length
-        ).toFixed(2)}{" "}
+        ).toFixed(1)}{" "}
         ({posts.length})
       </div>
 
       <div className={styles.contents}>
-        {posts.map((post) => (
+        {posts.reverse().map((post) => (
           <Card
             key={post.id}
             writerName={post.writerName}

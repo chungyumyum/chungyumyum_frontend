@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { createPost } from "../../api/post";
 
 export type FileListItem = {
+  file: File;
   name: string;
   url: string;
 };
@@ -53,8 +54,10 @@ export default function Post() {
         description: des,
         postImageUrls: presignedFileList,
       });
+      navigate(`/`);
     } catch (err: any) {
       console.error(err);
+      alert("리뷰 작성을 실패하였습니다");
     }
   };
 

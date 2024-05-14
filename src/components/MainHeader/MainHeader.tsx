@@ -29,6 +29,27 @@ export default function MainHeader() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleClickEvent = (e: MouseEvent) => {
+      if (
+        e.target === searchRef.current ||
+        (e.target && (e.target as HTMLElement).id === "para")
+      ) {
+        setShowParagraph(false);
+      } else {
+        setShowParagraph(true);
+      }
+    };
+
+    window.addEventListener("click", (e) => {
+      handleClickEvent(e);
+    });
+
+    return () => {
+      window.removeEventListener("click", handleClickEvent);
+    };
+  }, []);
+
   return (
     <>
       <div style={!isSidebarOpened ? { paddingTop: "7.9rem" } : {}}></div>
@@ -59,7 +80,11 @@ export default function MainHeader() {
                 className={styles.test}
               >
                 {RECOMMENDED_PARAGRAPH.map((data) => (
-                  <p className={styles.recommendedParagraph} key={data}>
+                  <p
+                    id="para"
+                    className={styles.recommendedParagraph}
+                    key={data}
+                  >
                     {data}
                   </p>
                 ))}

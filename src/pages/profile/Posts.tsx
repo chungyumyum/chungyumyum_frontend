@@ -29,23 +29,25 @@ export default function Posts() {
       {posts.length === 0 ? (
         <>작성한 글이 없습니다.</>
       ) : (
-        posts.map((post, index) => (
-          <Card
-            style={
-              index == 0
-                ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
-                : {}
-            }
-            id={post.id}
-            key={post.id}
-            writerName={post.writerName}
-            imageUrl={post.imageUrl}
-            description={post.description}
-            rating={post.rating}
-            restaurantName={post.restaurantName}
-            writerRank={post.writerRank}
-          />
-        ))
+        posts
+          .reverse()
+          .map((post, index) => (
+            <Card
+              style={
+                index == 0
+                  ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
+                  : {}
+              }
+              id={post.id}
+              key={post.id}
+              writerName={post.writerName}
+              imageUrl={post.imageUrl}
+              description={post.description}
+              rating={post.rating}
+              restaurantName={post.restaurantName}
+              writerRank={post.writerRank}
+            />
+          ))
       )}
     </div>
   );

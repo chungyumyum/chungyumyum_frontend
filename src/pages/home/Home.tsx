@@ -35,7 +35,7 @@ export default function Home() {
           <span className={styles.sliderTag}>1/1</span>
         </div>
 
-        {posts.map((post) => (
+        {posts.reverse().map((post) => (
           <Card
             key={post.id}
             writerName={post.writerName}

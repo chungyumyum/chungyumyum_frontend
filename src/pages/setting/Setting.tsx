@@ -22,7 +22,7 @@ export default function Setting() {
           <button onClick={handleLogout}>로그아웃</button>
         </li>
         <li className={styles.item}>
-          <button>탈퇴하기</button>
+          <button style={{ color: "#aaa" }}>탈퇴하기</button>
         </li>
       </ul>
     </div>
