@@ -4,7 +4,7 @@ import starIcon from "../../assets/icons/star_fill.svg";
 import { useEffect, useState } from "react";
 import { Post } from "../../types/post";
 import { getPosts } from "../../api/post";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const RATING: { [key: string]: number } = {
   HALF: 0.5,
@@ -22,6 +22,8 @@ const RATING: { [key: string]: number } = {
 export default function ReviewList() {
   const [posts, setPosts] = useState<Post[]>([]);
   const { id: name } = useParams();
+  const [searchParams] = useSearchParams();
+  const reviewId = searchParams.get("reviewId");
 
   const handleLoadPosts = async () => {
     try {
@@ -41,7 +43,7 @@ export default function ReviewList() {
 
   return (
     <>
-      <SubHeader title={name as string} />
+      <SubHeader title={name as string} id={reviewId as string} />
       <div className={styles.reviewHeader}>
         <img src={starIcon} alt="star_icon" />
         {(

@@ -81,7 +81,7 @@ export default function ReviewDetail() {
         <p className={styles.review}>{post.description}</p>
 
         <button className={styles.linkBtn}>
-          <Link to={`/reviewList/${post.restaurantName}`}>
+          <Link to={`/reviewList/${post.restaurantName}?reviewId=${id}`}>
             이 식당의 다른 후기
           </Link>
         </button>
