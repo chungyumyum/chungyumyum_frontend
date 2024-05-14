@@ -37,6 +37,9 @@ export default function MainHeader() {
       ) {
         setShowParagraph(false);
       } else {
+        if (searchRef.current?.value !== "") {
+          return;
+        }
         setShowParagraph(true);
       }
     };
