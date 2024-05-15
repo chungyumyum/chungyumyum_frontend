@@ -48,7 +48,9 @@ export default function Login() {
         맛있는 발견, <br />
         기분 좋은 시작!
       </h1>
-      <img width="100%" src={rabbitImg} alt="rabbit_Img" />
+      <div className={styles.cover}>
+        <img width="100%" src={rabbitImg} alt="rabbit_Img" />
+      </div>
 
       <div>
         <p className={styles.description}>맛있는 순간을 함께 나눠요!</p>

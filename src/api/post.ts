@@ -69,7 +69,7 @@ export async function updatePost({
   postImageUrls: string[];
 }) {
   return await instance.put(
-    `/posts/${postId}`,
+    `/posts/${String(postId)}`,
     {
       restaurantId,
       rating,

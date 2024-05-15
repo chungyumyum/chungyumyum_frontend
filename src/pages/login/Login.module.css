@@ -2,12 +2,28 @@
   display: flow-root;
 }
 
+@keyframes move {
+  0% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cover {
+  aspect-ratio: 1;
+}
+
 .title {
   margin: 8rem 0 2rem;
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
   line-height: 1.6;
+  animation: 1s move;
 }
 
 .kakaoLoginBtn {

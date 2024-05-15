@@ -7,6 +7,7 @@ import { SearchShopPage, UploadCoversPage } from "../../components";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getPost, updatePost } from "../../api/post";
 import { PostDetail } from "../../types/post";
+import { getShops } from "../../api/shop";
 
 export type FileListItem = {
   file: File;
@@ -41,7 +42,7 @@ const RATING_NUMBER: { [key: string]: number } = {
 };
 
 export default function Edit() {
-  const [post, setPost] = useState<PostDetail>();
+  const [post, setPost] = useState<PostDetail>({} as PostDetail);
   const [des, setDes] = useState<string>("");
   const [rating, setRating] = useState<number>(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +69,7 @@ export default function Edit() {
         description: des,
         postImageUrls: combinedFileList,
       });
-      navigate(`/`);
+      navigate(-1);
     } catch (err: any) {
       console.error(err);
       alert("리뷰 작성을 실패하였습니다");
@@ -78,16 +79,30 @@ export default function Edit() {
   const handleLoadPost = async () => {
     const post = await getPost(postId);
     setPost(post);
-    setSelectedShop({
-      name: post.restaurantName,
-      id: post.id,
-    });
+
     setDes(post.description);
     setRating(RATING_NUMBER[post?.rating as string]);
     // setAlreadyExistingFileList([post.imageUrl]);
     setCombinedFileList([post.imageUrl]);
     console.log(post.imageUrl);
   };
+
+  const handleLoadRestaurant = async () => {
+    if (!post.restaurantName) {
+      return;
+    }
+    const data = await getShops({ name: post.restaurantName });
+    console.log("data:", data);
+
+    setSelectedShop({
+      name: data[0].name,
+      id: data[0].id,
+    });
+  };
+
+  useEffect(() => {
+    handleLoadRestaurant();
+  }, [post]);
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
