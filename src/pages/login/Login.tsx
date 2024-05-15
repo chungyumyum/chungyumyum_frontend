@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 export default function Login() {
   const Rest_api_key = "1489f9d584bc92e45457d98b878c529c"; //REST API KEY
-  const redirect_uri = "http://localhost:3000/login"; //Redirect URI
+  const redirect_uri = "https://joyful-paprenjak-b81adf.netlify.app/login"; //Redirect URI
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
