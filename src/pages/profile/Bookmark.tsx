@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Card } from "../../components";
 import { Post } from "../../types/post";
 import { getBookmarkedPosts } from "../../api/bookmarks";
 import styles from "./Profile.module.css";
+import { TriggerUpdateCtx } from "./TriggerUpdateProvider";
 
 export default function Bookmark() {
   const [posts, setPosts] = useState<Post[]>([]);
+  const ctx = useContext(TriggerUpdateCtx);
 
   const handleLoadPosts = async () => {
     try {
@@ -18,7 +20,7 @@ export default function Bookmark() {
 
   useEffect(() => {
     handleLoadPosts();
-  }, []);
+  }, [ctx.update]);
 
   return (
     <div
