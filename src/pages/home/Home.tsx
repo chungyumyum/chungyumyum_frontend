@@ -6,6 +6,19 @@ import { Post } from "../../types/post";
 import { getPosts } from "../../api/post";
 import { useRecoilValue } from "recoil";
 import { searchState } from "../../recoil/atom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import bannerCover02 from "../../assets/covers/banner2.svg";
+
+const settings = {
+  infinite: true,
+  speed: 1500,
+  delay: 3000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+};
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -36,12 +49,23 @@ export default function Home() {
         }`}
       >
         {searchValue === "" && (
-          <div className={styles.slider}>
-            <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
-              <img src={bannerCover} alt="banner-cover" />
-            </a>
-            <span className={styles.sliderTag}>1/1</span>
-          </div>
+          // <div className={styles.slider}>
+          //   <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
+          //     <img src={bannerCover} alt="banner-cover" />
+          //   </a>
+          //   <span className={styles.sliderTag}>1/1</span>
+          // </div>
+
+          <Slider {...settings}>
+            <div className={styles.slider}>
+              <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
+                <img src={bannerCover} alt="banner-cover" />
+              </a>
+            </div>
+            <div className={styles.slider}>
+              <img src={bannerCover02} alt="banner-cover" />
+            </div>
+          </Slider>
         )}
 
         {posts.reverse().map((post) => (
