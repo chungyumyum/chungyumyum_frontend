@@ -3,7 +3,7 @@ import rabbitImg from "../../assets/covers/login_main.png";
 import kakaoLoginImg from "../../assets/covers/kakao_login.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 export default function Login() {
   const Rest_api_key = "1489f9d584bc92e45457d98b878c529c"; //REST API KEY
@@ -36,7 +36,7 @@ export default function Login() {
     handleOauthKakao();
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (localStorage.getItem("accessToken")) {
       navigate("/");
     }
