@@ -42,8 +42,6 @@ export default function Home() {
     handleLoadPosts();
   }, [searchValue]);
 
-  console.log(curSlideState);
-
   return (
     <div className={styles.container}>
       <MainHeader />
@@ -53,13 +51,6 @@ export default function Home() {
         }`}
       >
         {searchValue === "" && (
-          // <div className={styles.slider}>
-          //   <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
-          //     <img src={bannerCover} alt="banner-cover" />
-          //   </a>
-          //   <span className={styles.sliderTag}>1/1</span>
-          // </div>
-
           <div className={styles.sliderContainer}>
             <Slider {...settings}>
               <div className={styles.slider}>
