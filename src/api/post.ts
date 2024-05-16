@@ -25,7 +25,7 @@ export async function getPosts({
   town?: string;
   name?: string;
 }): Promise<Post[]> {
-  return (await instance.get(`/posts?town=${town}&name=${name}`)).data;
+  return (await instance.get(`/posts`)).data;
 }
 
 export async function createPost({
