@@ -32,7 +32,7 @@ export default function Home() {
         town: "",
         name: searchValue,
       });
-      setPosts(posts);
+      setPosts(posts.reverse());
     } catch (err) {
       console.log("error");
     }
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         )}
 
-        {posts.reverse().map((post) => (
+        {posts.map((post) => (
           <Card
             key={post.id}
             writerName={post.writerName}
