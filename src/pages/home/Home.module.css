@@ -13,6 +13,21 @@
   display: none;
 }
 
+.sliderContainer {
+  position: relative;
+}
+
+.sliderCountTag {
+  position: absolute;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  bottom: 2.8rem;
+  right: 1rem;
+}
+
 .slider {
   padding-bottom: 1.6rem;
   position: relative;

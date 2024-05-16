@@ -11,18 +11,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bannerCover02 from "../../assets/covers/banner2.svg";
 
-const settings = {
-  infinite: true,
-  speed: 1500,
-  delay: 3000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-};
-
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const searchValue = useRecoilValue(searchState);
+  const [curSlideState, setCurSlideState] = useState(0);
+
+  const settings = {
+    infinite: true,
+    speed: 1500,
+    delay: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    beforeChange: (current: number, next: number) => setCurSlideState(next),
+  };
 
   const handleLoadPosts = async () => {
     try {
@@ -40,6 +42,8 @@ export default function Home() {
     handleLoadPosts();
   }, [searchValue]);
 
+  console.log(curSlideState);
+
   return (
     <div className={styles.container}>
       <MainHeader />
@@ -56,16 +60,22 @@ export default function Home() {
           //   <span className={styles.sliderTag}>1/1</span>
           // </div>
 
-          <Slider {...settings}>
-            <div className={styles.slider}>
-              <a href="https://betacnuyummy.oopy.io/" className={styles.banner}>
-                <img src={bannerCover} alt="banner-cover" />
-              </a>
-            </div>
-            <div className={styles.slider}>
-              <img src={bannerCover02} alt="banner-cover" />
-            </div>
-          </Slider>
+          <div className={styles.sliderContainer}>
+            <Slider {...settings}>
+              <div className={styles.slider}>
+                <a
+                  href="https://betacnuyummy.oopy.io/"
+                  className={styles.banner}
+                >
+                  <img src={bannerCover} alt="banner-cover" />
+                </a>
+              </div>
+              <div className={styles.slider}>
+                <img src={bannerCover02} alt="banner-cover" />
+              </div>
+            </Slider>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 2</div>
+          </div>
         )}
 
         {posts.reverse().map((post) => (
