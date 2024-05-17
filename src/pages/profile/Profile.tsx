@@ -1,23 +1,13 @@
 import styles from "./Profile.module.css";
 import settingIcon from "../../assets/icons/setting.svg";
 import { Badge } from "../../components";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import levelIcon from "../../assets/icons/level.svg";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import RatingModal from "../../components/RatingModal/RatingModal";
 import { ProfileType } from "../../types/profile";
 import { getProflie } from "../../api/profile";
-import { getMyPosts } from "../../api/post";
-import { getBookmarkedPosts } from "../../api/bookmarks";
-import TriggerUpdateProvider, {
-  TriggerUpdateCtx,
-} from "./TriggerUpdateProvider";
+import TriggerUpdateProvider from "./TriggerUpdateProvider";
 import NavHeader from "./NavHeader";
 
 const getRatingAsKorean = {
