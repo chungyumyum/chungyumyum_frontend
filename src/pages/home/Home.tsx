@@ -18,8 +18,8 @@ export default function Home() {
 
   const settings = {
     infinite: true,
-    speed: 1500,
-    delay: 3000,
+    speed: 5000,
+    delay: 10000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,

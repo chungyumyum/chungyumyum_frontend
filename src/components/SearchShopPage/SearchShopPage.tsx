@@ -4,7 +4,6 @@ import searchIcon from "../../assets/icons/search-xl.svg";
 import { FormEvent, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
-import { Link } from "react-router-dom";
 
 type SearchShopPageProps = {
   isOpen: boolean;
@@ -119,7 +118,6 @@ export default function SearchShopPage({
             </button>
           </div>
           <div className={`${styles.notFound} ${!isEmpty && styles.hide}`}>
-            {/* 이미지 */}
             <img src={bunnyImage} alt="sad_character" />
             <p className={styles.notFoundDescription}>
               검색하신 식당이 등록되지 않았어요. <br />
