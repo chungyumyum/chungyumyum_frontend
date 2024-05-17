@@ -35,7 +35,7 @@ export default function ReviewDetail() {
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
     setPost(post);
-    setFileList([post.imageUrl]);
+    setFileList(post.imageUrls);
     setIsBookmarked(post.alereadyBookmarked);
   };
 

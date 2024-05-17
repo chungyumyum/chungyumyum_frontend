@@ -3,7 +3,7 @@ import { BadgeType } from "./badge";
 export type Post = {
   id: number;
   restaurantName: string;
-  imageUrl: string;
+  imageUrls: string[];
   description: string;
   rating: string;
   writerName: string;

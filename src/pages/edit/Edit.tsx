@@ -83,8 +83,7 @@ export default function Edit() {
     setDes(post.description);
     setRating(RATING_NUMBER[post?.rating as string]);
     // setAlreadyExistingFileList([post.imageUrl]);
-    setCombinedFileList([post.imageUrl]);
-    console.log(post.imageUrl);
+    setCombinedFileList(post.imageUrls);
   };
 
   const handleLoadRestaurant = async () => {
