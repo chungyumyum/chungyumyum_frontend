@@ -118,7 +118,7 @@ export default function SearchShopPage({
               완료
             </button>
           </div>
-          <div className={styles.notFound}>
+          <div className={`${styles.notFound} ${!isEmpty && styles.hide}`}>
             {/* 이미지 */}
             <img src={bunnyImage} alt="sad_character" />
             <p className={styles.notFoundDescription}>

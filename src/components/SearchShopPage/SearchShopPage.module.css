@@ -67,6 +67,10 @@
   display: none;
 }
 
+.notFound.hide {
+  display: none;
+}
+
 .selectedBox {
   position: absolute;
   background-color: #fff;
