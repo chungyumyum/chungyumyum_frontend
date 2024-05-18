@@ -21,7 +21,7 @@ export default function MainHeader() {
   const [showParagraph, setShowParagraph] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
   const setSearchState = useSetRecoilState(searchState);
-  const setTowns = useSetRecoilState(townsState);
+  const [towns, setTowns] = useRecoilState(townsState);
   const [selectedTowns, setSelectedTowns] = useState<Town[]>([
     "GUNGDONG",
     "BONGMYEONG_DONG",
@@ -37,8 +37,11 @@ export default function MainHeader() {
   };
 
   const handleCompleteClick = () => {
-    console.log("click");
     setTowns([...selectedTowns]);
+    setIsDeemClicked(true);
+    setTimeout(() => {
+      setIsSidebarOpened(false);
+    }, 200);
   };
 
   const handleChangeSelectedTowns = (e: MouseEvent) => {
@@ -189,35 +192,45 @@ export default function MainHeader() {
                 <ul className={styles.sidebarList}>
                   <li
                     onClick={handleChangeSelectedTowns}
-                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    className={`${styles.sidebarListItem} ${
+                      towns.includes("GUNGDONG") && styles.selected
+                    }`}
                     id="GUNGDONG"
                   >
                     <span>궁동</span>
                   </li>
                   <li
                     onClick={handleChangeSelectedTowns}
-                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    className={`${styles.sidebarListItem} ${
+                      towns.includes("BONGMYEONG_DONG") && styles.selected
+                    }`}
                     id="BONGMYEONG_DONG"
                   >
                     <span>봉명동</span>
                   </li>
                   <li
                     onClick={handleChangeSelectedTowns}
-                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    className={`${styles.sidebarListItem} ${
+                      towns.includes("EOEUN_DONG") && styles.selected
+                    }`}
                     id="EOEUN_DONG"
                   >
                     <span>어은동</span>
                   </li>
                   <li
                     onClick={handleChangeSelectedTowns}
-                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    className={`${styles.sidebarListItem} ${
+                      towns.includes("JUKDONG") && styles.selected
+                    }`}
                     id="JUKDONG"
                   >
                     <span>죽동</span>
                   </li>
                   <li
                     onClick={handleChangeSelectedTowns}
-                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    className={`${styles.sidebarListItem} ${
+                      towns.includes("JANGDAE_DONG") && styles.selected
+                    }`}
                     id="JANGDAE_DONG"
                   >
                     <span>장대동</span>
