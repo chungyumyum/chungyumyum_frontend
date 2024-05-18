@@ -28,7 +28,6 @@ export default function ReviewList() {
   const handleLoadPosts = async () => {
     try {
       const posts = await getPosts({
-        town: "",
         name: name,
       });
       setPosts(posts);

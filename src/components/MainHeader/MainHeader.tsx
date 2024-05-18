@@ -2,10 +2,11 @@ import controlIcon from "../../assets/icons/control.svg";
 import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
-import { useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { searchState } from "../../recoil/atom";
+import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { searchState, townsState } from "../../recoil/atom";
 import { debounce } from "../../util/debounce";
+import { Town } from "../../types/town";
 
 const RECOMMENDED_PARAGRAPH = [
   "돈까스 맛집이 어디더라?",
@@ -20,11 +21,38 @@ export default function MainHeader() {
   const [showParagraph, setShowParagraph] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
   const setSearchState = useSetRecoilState(searchState);
+  const setTowns = useSetRecoilState(townsState);
+  const [selectedTowns, setSelectedTowns] = useState<Town[]>([
+    "GUNGDONG",
+    "BONGMYEONG_DONG",
+    "EOEUN_DONG",
+    "JUKDONG",
+    "JANGDAE_DONG",
+  ]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debounce(() => {
       setSearchState(e.target.value);
     }, 500)();
+  };
+
+  const handleCompleteClick = () => {
+    console.log("click");
+    setTowns([...selectedTowns]);
+  };
+
+  const handleChangeSelectedTowns = (e: MouseEvent) => {
+    if (e.currentTarget.classList.contains(styles.selected)) {
+      setSelectedTowns(
+        selectedTowns.filter(
+          (selectedTown) => selectedTown != e.currentTarget.id
+        )
+      );
+    } else {
+      setSelectedTowns([...selectedTowns, e.currentTarget.id as Town]);
+    }
+
+    e.currentTarget.classList.toggle(styles.selected);
   };
 
   useEffect(() => {
@@ -40,7 +68,7 @@ export default function MainHeader() {
   }, []);
 
   useEffect(() => {
-    const handleClickEvent = (e: MouseEvent) => {
+    const handleClickEvent = (e: globalThis.MouseEvent) => {
       if (
         e.target === searchRef.current ||
         (e.target && (e.target as HTMLElement).id === "para")
@@ -159,24 +187,49 @@ export default function MainHeader() {
               <div className={styles.sidebarContents}>
                 <h3 className={styles.sidebarTitle}>동네 설정</h3>
                 <ul className={styles.sidebarList}>
-                  <li className={styles.sidebarListItem}>
+                  <li
+                    onClick={handleChangeSelectedTowns}
+                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    id="GUNGDONG"
+                  >
                     <span>궁동</span>
                   </li>
-                  <li className={styles.sidebarListItem}>
+                  <li
+                    onClick={handleChangeSelectedTowns}
+                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    id="BONGMYEONG_DONG"
+                  >
                     <span>봉명동</span>
                   </li>
-                  <li className={styles.sidebarListItem}>
+                  <li
+                    onClick={handleChangeSelectedTowns}
+                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    id="EOEUN_DONG"
+                  >
                     <span>어은동</span>
                   </li>
-                  <li className={styles.sidebarListItem}>
+                  <li
+                    onClick={handleChangeSelectedTowns}
+                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    id="JUKDONG"
+                  >
                     <span>죽동</span>
                   </li>
-                  <li className={styles.sidebarListItem}>
+                  <li
+                    onClick={handleChangeSelectedTowns}
+                    className={`${styles.sidebarListItem} ${styles.selected}`}
+                    id="JANGDAE_DONG"
+                  >
                     <span>장대동</span>
                   </li>
                 </ul>
 
-                <button className={styles.sidebarBtn}>완료</button>
+                <button
+                  onClick={handleCompleteClick}
+                  className={styles.sidebarBtn}
+                >
+                  완료
+                </button>
               </div>
             </div>
           </div>

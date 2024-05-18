@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Post } from "../../types/post";
 import { getPosts } from "../../api/post";
 import { useRecoilValue } from "recoil";
-import { searchState } from "../../recoil/atom";
+import { searchState, townsState } from "../../recoil/atom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,6 +15,7 @@ export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const searchValue = useRecoilValue(searchState);
   const [curSlideState, setCurSlideState] = useState(0);
+  const towns = useRecoilValue(townsState);
 
   const settings = {
     infinite: true,
@@ -29,7 +30,7 @@ export default function Home() {
   const handleLoadPosts = async () => {
     try {
       const posts = await getPosts({
-        town: "",
+        towns: towns,
         name: searchValue,
       });
       setPosts(posts.reverse());
@@ -40,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
     handleLoadPosts();
-  }, [searchValue]);
+  }, [searchValue, towns]);
 
   return (
     <div className={styles.container}>

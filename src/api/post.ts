@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Post, PostDetail } from "../types/post";
 import { instance } from "./base";
+import { Town } from "../types/town";
 
 export async function getPost(id: string): Promise<PostDetail> {
   return (await instance.get(`/posts/${id}`)).data;
@@ -19,13 +20,22 @@ export async function deletePost(id: string) {
 }
 
 export async function getPosts({
-  town = "",
+  towns = [
+    "GUNGDONG",
+    "JANGDAE_DONG",
+    "BONGMYEONG_DONG",
+    "EOEUN_DONG",
+    "JUKDONG",
+  ],
   name = "",
 }: {
-  town?: string;
+  towns?: Town[];
   name?: string;
 }): Promise<Post[]> {
-  return (await instance.get(`/posts`)).data;
+  const townsQuery = towns?.map((town) => `town=${town}`).join("&");
+  const nameQuery = name === "" ? "" : `&name=${name}`;
+
+  return (await instance.get(`/posts?${townsQuery}${nameQuery}`)).data;
 }
 
 export async function createPost({
