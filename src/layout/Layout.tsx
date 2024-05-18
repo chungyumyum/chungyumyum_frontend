@@ -10,7 +10,6 @@ import activePencilIcon from "../assets/icons/pencil_active.svg";
 export default function Layout() {
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname);
 
   return (
     <div className={styles.container}>
