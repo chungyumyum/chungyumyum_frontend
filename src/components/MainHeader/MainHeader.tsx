@@ -9,9 +9,9 @@ import { debounce } from "../../util/debounce";
 import { Town } from "../../types/town";
 
 const RECOMMENDED_PARAGRAPH = [
-  "돈까스 맛집이 어디더라?",
-  "맵찔이 친구와 갈 만한 곳은?",
-  "회식 장소로는 어디가 좋을까?",
+  "어디서 회식하지?",
+  "맵찔이 친구랑 어디가지?",
+  "돈까스 맛집이 어디지?",
 ];
 
 export default function MainHeader() {
