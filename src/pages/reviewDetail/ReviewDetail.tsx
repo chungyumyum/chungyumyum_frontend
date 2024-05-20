@@ -22,6 +22,19 @@ const getRatingAsKorean = {
   PROFESSOR: "먹교수",
 };
 
+const RATING: { [key: string]: number } = {
+  HALF: 0.5,
+  ONE: 1,
+  ONE_HALF: 1.5,
+  TWO: 2,
+  TWO_HALF: 2.5,
+  THREE: 3,
+  THREE_HALF: 3.5,
+  FOUR: 4,
+  FOUR_HALF: 4.5,
+  FIVE: 5,
+};
+
 export default function ReviewDetail() {
   const [fileList, setFileList] = useState<string[]>([]);
 
@@ -125,7 +138,7 @@ export default function ReviewDetail() {
         </div>
 
         <div className={styles.starsContainer}>
-          <Stars rating={4} />
+          <Stars rating={RATING[post.rating]} />
         </div>
 
         <p className={styles.review}>{post.description}</p>
