@@ -26,7 +26,9 @@ export default function Posts() {
     <div
       className={`${styles.posts} ${
         posts.length < 1 ? styles.isEmpty : styles.isNotEmpty
-      }`}
+      }
+      ${posts.length === 1 && styles.hasOnePost}
+      `}
     >
       {posts.length === 0 ? (
         <>작성한 글이 없습니다.</>
