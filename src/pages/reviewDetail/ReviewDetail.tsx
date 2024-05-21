@@ -13,7 +13,7 @@ import { BadgeType } from "../../types/badge";
 import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import MapModal from "../../components/MapModal/MapModal";
 import { getShops } from "../../api/shop";
-import { replaceMiddleCharacter } from "../../util/replaceMiddleCharacter";
+import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -102,7 +102,7 @@ export default function ReviewDetail() {
             <Badge type={post.writerRank as BadgeType} size="big" />
             <div>
               <p className={styles.profileTitle}>
-                {replaceMiddleCharacter(post.writerName)}
+                {replaceRestCharacters(post.writerName)}
               </p>
               <p className={styles.profileRole}>
                 {getRatingAsKorean[post.writerRank]}

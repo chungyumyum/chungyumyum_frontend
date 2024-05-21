@@ -9,7 +9,7 @@ import { deletePost } from "../../api/post";
 import { TriggerUpdateCtx } from "../../pages/profile/TriggerUpdateProvider";
 import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
-import { replaceMiddleCharacter } from "../../util/replaceMiddleCharacter";
+import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 
 type CardProps = {
   style?: CSSProperties;
@@ -122,7 +122,7 @@ export default function Card({
         <p className={styles.cardDescription}>{description}</p>
         <div className={styles.cardFooter}>
           <Badge type={writerRank as BadgeType} />
-          {replaceMiddleCharacter(writerName ?? "")}
+          {replaceRestCharacters(writerName ?? "")}
         </div>
       </div>
 
