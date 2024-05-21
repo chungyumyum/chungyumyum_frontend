@@ -1,4 +1,5 @@
 export const replaceMiddleCharacter = (name: string) => {
+  if (!name) return name;
   if (name.length === 0) {
     return name;
   }
