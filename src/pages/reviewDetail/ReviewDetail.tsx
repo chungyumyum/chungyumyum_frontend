@@ -45,12 +45,14 @@ export default function ReviewDetail() {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useState({ lat: "", lng: "" });
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
     setPost(post);
     setFileList(post.imageUrls);
     setIsBookmarked(post.alereadyBookmarked);
+    setIsLoading(false);
   };
 
   const handleBookmarkClick = async () => {
@@ -134,7 +136,9 @@ export default function ReviewDetail() {
               )
             }
           />
-          <img id="cover" src={fileList[currentImg]} alt="cover" />
+          {!isLoading && (
+            <img id="cover" src={fileList[currentImg]} alt="cover" />
+          )}
           <span className={styles.sliderTag}>
             {currentImg + 1}/{fileList.length}
           </span>
