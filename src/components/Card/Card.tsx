@@ -108,10 +108,10 @@ export default function Card({
                   onClick={handleBookmarkClick}
                 >
                   {!isBookmarked && (
-                    <img width={22} src={bookmarkIcon} alt="bk_icon" />
+                    <img width={15} src={bookmarkIcon} alt="bk_icon" />
                   )}
                   {isBookmarked && (
-                    <img width={22} src={bookmarkActiveIcon} alt="bk_icon" />
+                    <img width={15} src={bookmarkActiveIcon} alt="bk_icon" />
                   )}
                 </button>
               )}
