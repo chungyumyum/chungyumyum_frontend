@@ -73,12 +73,12 @@ export default function SearchShopPage({
         marker.setMap(map);
       });
 
-      const moveLatLon = new window.kakao.maps.LatLng(
-        restaurants[0].latitude,
-        restaurants[0].longitude
-      );
+      // const moveLatLon = new window.kakao.maps.LatLng(
+      //   restaurants[0].latitude,
+      //   restaurants[0].longitude
+      // );
 
-      map.panTo(moveLatLon);
+      // map.panTo(moveLatLon);
     })();
   }, [isOpen, triggerUpdate]);
 
