@@ -5,7 +5,7 @@ export async function getShops({
   town = "",
   name = "",
   page = 0,
-  size = 5000,
+  size = 20,
   sort = "string",
 }: {
   town?: string;
