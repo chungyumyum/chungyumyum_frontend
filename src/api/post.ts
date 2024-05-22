@@ -33,9 +33,9 @@ export async function getPosts({
   name?: string;
 }): Promise<Post[]> {
   const townsQuery = towns?.map((town) => `town=${town}`).join("&");
-  const nameQuery = name === "" ? "" : `&name=${name}`;
+  const keywordQuery = name === "" ? "" : `&keyword=${name}`;
 
-  return (await instance.get(`/posts?${townsQuery}${nameQuery}`)).data;
+  return (await instance.get(`/posts?${townsQuery}${keywordQuery}`)).data;
 }
 
 export async function createPost({
