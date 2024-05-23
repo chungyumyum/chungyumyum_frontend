@@ -109,7 +109,7 @@ export default function ReviewDetail() {
               </p>
             </div>
           </div>
-          <div>
+          <div className={styles.btns}>
             <button className={styles.gpsBtn} onClick={() => setIsOpen(true)}>
               <img width={25} src={gpsIcon} alt="gps_icon" />
             </button>
