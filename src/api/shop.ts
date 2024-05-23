@@ -16,7 +16,7 @@ export async function getShops({
 }): Promise<Shop[]> {
   return (
     await instance.get(
-      `/restaurants?town=${town}&name=${name}&page=${page}&size=${size}&sort=${sort}`
+      `/restaurants?town=GUNGDONG&town=BONGMYEONG_DONG&town=EOEUN_DONG&town=JUKDONG&town=JANGDAE_DONG&name=${name}&page=${page}&size=${size}&sort=${sort}`
     )
   ).data;
 }
