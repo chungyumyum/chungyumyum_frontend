@@ -91,3 +91,7 @@
 .hasOnePost {
   height: 70vh;
 }
+
+.header {
+  border-bottom: 1px solid #c4c4c4;
+}
