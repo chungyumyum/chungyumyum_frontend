@@ -62,11 +62,11 @@ export default function ReviewDetail() {
     }
 
     if (isBookmarked) {
-      await deleteBookmarkedPost(post.id);
       setIsBookmarked(false);
+      await deleteBookmarkedPost(post.id);
     } else {
-      await storeBookmarkedPost(post.id);
       setIsBookmarked(true);
+      await storeBookmarkedPost(post.id);
     }
   };
 
@@ -75,7 +75,6 @@ export default function ReviewDetail() {
       return;
     }
     const data = await getShops({ name: post.restaurantName });
-    console.log("data:", data);
     setLocation({
       lat: data[0].latitude,
       lng: data[0].longitude,

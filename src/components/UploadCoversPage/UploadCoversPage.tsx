@@ -64,6 +64,7 @@ export default function UploadCoversPage({
   };
 
   const handleCloseClick = () => {
+    // existingFileList
     setFileList([...parentFileList]);
     onClose();
   };
