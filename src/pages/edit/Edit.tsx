@@ -48,7 +48,7 @@ export default function Edit() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<FileListItem[]>([]);
-  const [combinedFileList, setCombinedFileList] = useState<string[]>([]);
+  // const [combinedFileList, setCombinedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
   const [selectedShop, setSelectedShop] = useState({
     name: post?.restaurantName,
@@ -67,9 +67,8 @@ export default function Edit() {
         restaurantId: selectedShop.id as number,
         rating: RATING[rating],
         description: des,
-        postImageUrls: combinedFileList,
+        postImageUrls: presignedFileList,
       });
-      console.log("combined file list:", combinedFileList);
       navigate(-1);
     } catch (err: any) {
       console.error(err);
@@ -83,8 +82,6 @@ export default function Edit() {
 
     setDes(post.description);
     setRating(RATING_NUMBER[post?.rating as string]);
-    // setAlreadyExistingFileList([post.imageUrl]);
-    setCombinedFileList(post.imageUrls);
   };
 
   const handleLoadRestaurant = async () => {
@@ -112,10 +109,6 @@ export default function Edit() {
     handleLoadPost();
   }, []);
 
-  useEffect(() => {
-    setCombinedFileList([...combinedFileList, ...presignedFileList]);
-  }, [presignedFileList]);
-
   return (
     <div>
       <SearchShopPage
@@ -136,8 +129,8 @@ export default function Edit() {
         parentFileList={fileList}
         onSetFileList={setFileList}
         onSetPresignedFileList={setPresignedFileList}
-        existingFileList={combinedFileList}
-        setExistingFileList={setCombinedFileList}
+        // existingFileList={combinedFileList}
+        // setExistingFileList={setCombinedFileList}
       />
       <SubHeader title="글 수정하기" />
       <div className={styles.contents}>
@@ -153,26 +146,21 @@ export default function Edit() {
             ref={ref}
             className={styles.pictureBtn}
             onClick={() => {
-              // if (fileList.length > 0) return;
-              if (combinedFileList.length > 0) return;
+              if (fileList.length > 0) return;
               setIsPopen(true);
             }}
           >
-            {combinedFileList.length > 0 ? (
+            {fileList.length > 0 ? (
               <div className={styles.pictureSlider}>
                 <div
                   className={styles.pictureDeem}
                   onClick={() =>
                     setCurrentImg((prev) =>
-                      prev + 1 >= combinedFileList.length ? 0 : prev + 1
+                      prev + 1 >= fileList.length ? 0 : prev + 1
                     )
                   }
                 />
-                <img
-                  id="cover"
-                  src={combinedFileList[currentImg]}
-                  alt="cover"
-                />
+                <img id="cover" src={fileList[currentImg].url} alt="cover" />
                 <button
                   className={styles.pictureAddBtn}
                   onClick={() => setIsPopen(true)}
@@ -180,7 +168,7 @@ export default function Edit() {
                   <img width={10} src={cameraIcon} alt="camera_icon" />
                 </button>
                 <span className={styles.sliderTag}>
-                  {currentImg + 1}/{combinedFileList.length}
+                  {currentImg + 1}/{fileList.length}
                 </span>
               </div>
             ) : (
@@ -224,13 +212,13 @@ export default function Edit() {
             disabled={
               selectedShop.id === 0 ||
               rating === 0 ||
-              combinedFileList.length === 0 ||
+              fileList.length === 0 ||
               des.length === 0
             }
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
-                combinedFileList.length === 0 ||
+                fileList.length === 0 ||
                 des.length === 0) &&
               styles.disabled
             } `}
