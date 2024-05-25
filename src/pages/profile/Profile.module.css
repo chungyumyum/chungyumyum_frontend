@@ -86,7 +86,7 @@
 
 .isNotEmpty {
   padding-bottom: 10rem;
-  height: 70vh;
+  min-height: 70vh;
 }
 
 .hasOnePost {
