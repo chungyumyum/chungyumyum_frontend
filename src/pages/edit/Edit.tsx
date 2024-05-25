@@ -152,7 +152,8 @@ export default function Edit() {
             ref={ref}
             className={styles.pictureBtn}
             onClick={() => {
-              if (fileList.length > 0) return;
+              // if (fileList.length > 0) return;
+              if (combinedFileList.length > 0) return;
               setIsPopen(true);
             }}
           >
