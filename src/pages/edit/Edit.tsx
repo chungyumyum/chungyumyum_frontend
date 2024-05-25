@@ -69,6 +69,7 @@ export default function Edit() {
         description: des,
         postImageUrls: combinedFileList,
       });
+      console.log("combined file list:", combinedFileList);
       navigate(-1);
     } catch (err: any) {
       console.error(err);
