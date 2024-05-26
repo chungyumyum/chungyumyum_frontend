@@ -79,27 +79,29 @@ export default function UploadCoversPage({
   const handleRegistePicture = () => {
     onSetFileList([...fileList]);
     onSetPresignedFileList([]);
-    fileList.forEach(async (file) => {
-      const data = await handleGetPresignedUrl(file.name);
-      onSetPresignedFileList((prevList) => [
-        ...prevList,
-        `https://image.cnuyum.com/images/${data.fileName}`,
-      ]);
-      try {
-        await axios.put(data.presignedUrl, file.file, {
-          headers: {
-            "Content-Type": "image/*",
-          },
-        });
-      } catch (err: any) {
-        console.log(err);
-      }
-    });
-
     if (pathname === "/edit") {
       setExistingFileList && setExistingFileList([...e_fileList]);
       setFileList([]);
     }
+
+    setTimeout(() => {
+      fileList.forEach(async (file) => {
+        const data = await handleGetPresignedUrl(file.name);
+        onSetPresignedFileList((prevList) => [
+          ...prevList,
+          `https://image.cnuyum.com/images/${data.fileName}`,
+        ]);
+        try {
+          await axios.put(data.presignedUrl, file.file, {
+            headers: {
+              "Content-Type": "image/*",
+            },
+          });
+        } catch (err: any) {
+          console.log(err);
+        }
+      });
+    }, 0);
 
     onClose();
   };
