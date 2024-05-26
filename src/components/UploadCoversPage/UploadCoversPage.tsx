@@ -136,7 +136,7 @@ export default function UploadCoversPage({
         <div className={styles.pictureList}>
           <p>사진 첨부는 최대 4장까지 가능합니다.</p>
           <div className={styles.pictureArea}>
-            {existingFileList.map((file) => (
+            {e_fileList.map((file) => (
               <div key={file} className={styles.picture}>
                 <img src={file} alt="picture_cover" />
                 <button
