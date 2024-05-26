@@ -38,16 +38,16 @@ export default function UploadCoversPage({
   const [fileList, setFileList] = useState<FileListItem[]>([]);
   const { pathname } = useLocation();
 
+  // edit 페이지일 때 existing File List를 다루기 위함
+  const [e_fileList, setE_fileList] = useState<string[]>([...existingFileList]);
+
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
       return;
     }
     const files = Array.from(e.target.files as FileList);
 
-    if (
-      existingFileList.length + e.target.files?.length + fileList.length >
-      4
-    ) {
+    if (e_fileList.length + e.target.files?.length + fileList.length > 4) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
       files.forEach((file) => {
@@ -65,7 +65,12 @@ export default function UploadCoversPage({
 
   const handleCloseClick = () => {
     // existingFileList
-    setFileList([...parentFileList]);
+    if (pathname === "/edit") {
+      setE_fileList([...existingFileList]);
+      setFileList([]);
+    } else {
+      setFileList([...parentFileList]);
+    }
     onClose();
   };
 
@@ -90,6 +95,8 @@ export default function UploadCoversPage({
     });
 
     if (pathname === "/edit") {
+      setExistingFileList &&
+        setExistingFileList((prev) => [...e_fileList, ...prev]);
       setFileList([]);
     }
 
@@ -136,10 +143,14 @@ export default function UploadCoversPage({
                   className={styles.pictureCloseBtn}
                   onClick={() => {
                     // setSelectedFile(file);
-                    setExistingFileList &&
-                      setExistingFileList(
-                        existingFileList.filter((target) => target !== file)
-                      );
+                    // setExistingFileList &&
+                    //   setExistingFileList(
+                    //     existingFileList.filter((target) => target !== file)
+                    //   );
+
+                    setE_fileList(
+                      e_fileList.filter((target) => target !== file)
+                    );
                   }}
                 >
                   <img src={closeWhiteIcon} alt="close_icon" />

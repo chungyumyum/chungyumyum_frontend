@@ -115,6 +115,10 @@ export default function Edit() {
     handleLoadPost();
   }, []);
 
+  useEffect(() => {
+    setCombinedFileList((prevList) => [...prevList, ...presignedFileList]);
+  }, [presignedFileList]);
+
   return (
     <div>
       <SearchShopPage
@@ -222,14 +226,14 @@ export default function Edit() {
             disabled={
               selectedShop.id === 0 ||
               rating === 0 ||
-              fileList.length === 0 ||
+              combinedFileList.length === 0 ||
               des.length === 0 ||
               loading
             }
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
-                fileList.length === 0 ||
+                combinedFileList.length === 0 ||
                 des.length === 0 ||
                 loading) &&
               styles.disabled
