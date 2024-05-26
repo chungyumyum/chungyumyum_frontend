@@ -59,9 +59,11 @@ export default function Edit() {
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [searchParams] = useSearchParams();
   const postId = searchParams.get("postId")!;
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
       await updatePost({
         postId: post?.id as number,
         restaurantId: selectedShop.id as number,
@@ -73,6 +75,8 @@ export default function Edit() {
     } catch (err: any) {
       console.error(err);
       alert("리뷰 작성을 실패하였습니다");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -213,13 +217,15 @@ export default function Edit() {
               selectedShop.id === 0 ||
               rating === 0 ||
               fileList.length === 0 ||
-              des.length === 0
+              des.length === 0 ||
+              loading
             }
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
                 fileList.length === 0 ||
-                des.length === 0) &&
+                des.length === 0 ||
+                loading) &&
               styles.disabled
             } `}
           >

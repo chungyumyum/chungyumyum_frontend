@@ -40,9 +40,11 @@ export default function Post() {
   const navigate = useNavigate();
   const ref = useRef(null);
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
       await createPost({
         restaurantId: selectedShop.id,
         rating: RATING[rating],
@@ -53,6 +55,8 @@ export default function Post() {
     } catch (err: any) {
       console.error(err);
       alert("리뷰 작성을 실패하였습니다");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -162,13 +166,15 @@ export default function Post() {
               selectedShop.id === 0 ||
               rating === 0 ||
               fileList.length === 0 ||
-              des.length === 0
+              des.length === 0 ||
+              loading
             }
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
                 fileList.length === 0 ||
-                des.length === 0) &&
+                des.length === 0 ||
+                loading) &&
               styles.disabled
             } `}
           >
