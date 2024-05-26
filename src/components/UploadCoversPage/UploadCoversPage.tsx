@@ -41,7 +41,7 @@ export default function UploadCoversPage({
   // edit 페이지일 때 existing File List를 다루기 위함
   const [e_fileList, setE_fileList] = useState<string[]>([...existingFileList]);
 
-  console.log(existingFileList);
+  console.log("existingFileList:", existingFileList);
 
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.files) {
