@@ -3,7 +3,7 @@ import styles from "./UploadCoversPage.module.css";
 import closeIcon from "../../assets/icons/close.svg";
 import pictureIcon from "../../assets/icons/picture.svg";
 import closeWhiteIcon from "../../assets/icons/close-white.svg";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import CloseModal from "../CloseModal/CloseModal";
 import { FileListItem } from "../../pages/post/Post";
 import { getPresignedUrl } from "../../api/image";
@@ -104,6 +104,10 @@ export default function UploadCoversPage({
 
     onClose();
   };
+
+  useEffect(() => {
+    setE_fileList(existingFileList);
+  }, [existingFileList]);
 
   return (
     <PageModal isOpen={isOpen}>
