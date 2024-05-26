@@ -48,7 +48,7 @@ export default function Edit() {
   const [isOpen, setIsOpen] = useState(false);
   const [pIsOpen, setIsPopen] = useState(false);
   const [fileList, setFileList] = useState<FileListItem[]>([]);
-  // const [combinedFileList, setCombinedFileList] = useState<string[]>([]);
+  const [combinedFileList, setCombinedFileList] = useState<string[]>([]);
   const [currentImg, setCurrentImg] = useState(0);
   const [selectedShop, setSelectedShop] = useState({
     name: post?.restaurantName,
@@ -133,8 +133,8 @@ export default function Edit() {
         parentFileList={fileList}
         onSetFileList={setFileList}
         onSetPresignedFileList={setPresignedFileList}
-        // existingFileList={combinedFileList}
-        // setExistingFileList={setCombinedFileList}
+        existingFileList={combinedFileList}
+        setExistingFileList={setCombinedFileList}
       />
       <SubHeader title="글 수정하기" />
       <div className={styles.contents}>
@@ -154,17 +154,21 @@ export default function Edit() {
               setIsPopen(true);
             }}
           >
-            {fileList.length > 0 ? (
+            {combinedFileList.length > 0 ? (
               <div className={styles.pictureSlider}>
                 <div
                   className={styles.pictureDeem}
                   onClick={() =>
                     setCurrentImg((prev) =>
-                      prev + 1 >= fileList.length ? 0 : prev + 1
+                      prev + 1 >= combinedFileList.length ? 0 : prev + 1
                     )
                   }
                 />
-                <img id="cover" src={fileList[currentImg].url} alt="cover" />
+                <img
+                  id="cover"
+                  src={combinedFileList[currentImg]}
+                  alt="cover"
+                />
                 <button
                   className={styles.pictureAddBtn}
                   onClick={() => setIsPopen(true)}
@@ -172,7 +176,7 @@ export default function Edit() {
                   <img width={10} src={cameraIcon} alt="camera_icon" />
                 </button>
                 <span className={styles.sliderTag}>
-                  {currentImg + 1}/{fileList.length}
+                  {currentImg + 1}/{combinedFileList.length}
                 </span>
               </div>
             ) : (
