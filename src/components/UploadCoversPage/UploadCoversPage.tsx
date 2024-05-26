@@ -97,8 +97,7 @@ export default function UploadCoversPage({
     });
 
     if (pathname === "/edit") {
-      setExistingFileList &&
-        setExistingFileList((prev) => [...e_fileList, ...prev]);
+      setExistingFileList && setExistingFileList([...e_fileList]);
       setFileList([]);
     }
 
