@@ -86,6 +86,8 @@ export default function Edit() {
 
     setDes(post.description);
     setRating(RATING_NUMBER[post?.rating as string]);
+
+    setCombinedFileList(post.imageUrls);
   };
 
   const handleLoadRestaurant = async () => {
