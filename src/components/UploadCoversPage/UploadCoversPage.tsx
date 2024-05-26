@@ -101,7 +101,7 @@ export default function UploadCoversPage({
           console.log(err);
         }
       });
-    }, 0);
+    }, 100);
 
     onClose();
   };
