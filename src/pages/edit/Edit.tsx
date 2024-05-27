@@ -60,6 +60,7 @@ export default function Edit() {
   const [searchParams] = useSearchParams();
   const postId = searchParams.get("postId")!;
   const [loading, setLoading] = useState(false);
+  const [editLoading, setEditLoading] = useState(false);
 
   const handleRegister = async () => {
     try {
@@ -144,6 +145,7 @@ export default function Edit() {
         onSetPresignedFileList={setPresignedFileList}
         existingFileList={combinedFileList}
         setExistingFileList={setCombinedFileList}
+        onSetEditLoading={setEditLoading}
       />
       <SubHeader title="글 수정하기" />
       <div className={styles.contents}>
@@ -190,8 +192,13 @@ export default function Edit() {
               </div>
             ) : (
               <>
-                <img src={cameraIcon} alt="camera_icon" />
-                <div>사진을 업로드하세요.</div>
+                {editLoading && <div>로딩중...</div>}
+                {!editLoading && (
+                  <>
+                    <img src={cameraIcon} alt="camera_icon" />
+                    <div>사진을 업로드하세요.</div>
+                  </>
+                )}
               </>
             )}
           </div>

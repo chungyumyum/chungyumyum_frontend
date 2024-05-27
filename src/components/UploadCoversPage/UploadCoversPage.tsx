@@ -18,6 +18,7 @@ type UploadCoversPageProps = {
   onSetPresignedFileList: Dispatch<SetStateAction<string[]>>;
   existingFileList?: string[];
   setExistingFileList?: Dispatch<SetStateAction<string[]>>;
+  onSetEditLoading?: Dispatch<SetStateAction<boolean>>;
 };
 
 const handleGetPresignedUrl = async (file: string) => {
@@ -33,6 +34,7 @@ export default function UploadCoversPage({
   onSetPresignedFileList,
   existingFileList = [],
   setExistingFileList,
+  onSetEditLoading,
 }: UploadCoversPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileList, setFileList] = useState<FileListItem[]>([]);
@@ -88,6 +90,7 @@ export default function UploadCoversPage({
       fileList.forEach(async (file) => {
         const data = await handleGetPresignedUrl(file.name);
         try {
+          onSetEditLoading?.(true);
           await axios.put(data.presignedUrl, file.file, {
             headers: {
               "Content-Type": "image/*",
@@ -95,6 +98,8 @@ export default function UploadCoversPage({
           });
         } catch (err: any) {
           console.log(err);
+        } finally {
+          onSetEditLoading?.(false);
         }
         onSetPresignedFileList((prevList) => [
           ...prevList,
