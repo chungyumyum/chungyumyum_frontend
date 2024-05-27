@@ -87,10 +87,6 @@ export default function UploadCoversPage({
     setTimeout(() => {
       fileList.forEach(async (file) => {
         const data = await handleGetPresignedUrl(file.name);
-        onSetPresignedFileList((prevList) => [
-          ...prevList,
-          `https://image.cnuyum.com/images/${data.fileName}`,
-        ]);
         try {
           await axios.put(data.presignedUrl, file.file, {
             headers: {
@@ -100,6 +96,10 @@ export default function UploadCoversPage({
         } catch (err: any) {
           console.log(err);
         }
+        onSetPresignedFileList((prevList) => [
+          ...prevList,
+          `https://image.cnuyum.com/images/${data.fileName}`,
+        ]);
       });
     }, 100);
 
