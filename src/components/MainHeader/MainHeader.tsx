@@ -162,6 +162,7 @@ export default function MainHeader() {
             onClick={() => {
               setIsDeemClicked(false);
               setIsSidebarOpened(true);
+              window.scrollTo(0, 0);
             }}
           >
             <img
