@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bannerCover02 from "../../assets/covers/banner2.svg";
 import bannerCover03 from "../../assets/covers/banner5.png";
-import bannerCover04 from "../../assets/covers/banner6.png";
+import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 
 export default function Home() {
