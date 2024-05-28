@@ -7,6 +7,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchState, townsState } from "../../recoil/atom";
 import { debounce } from "../../util/debounce";
 import { Town } from "../../types/town";
+import { allowScroll, preventScroll } from "../../util/scroll";
 
 const RECOMMENDED_PARAGRAPH = [
   "어디서 회식하지?",
@@ -93,6 +94,14 @@ export default function MainHeader() {
       window.removeEventListener("click", handleClickEvent);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isSidebarOpened) {
+      preventScroll();
+    } else {
+      allowScroll();
+    }
+  }, [isSidebarOpened]);
 
   return (
     <>
