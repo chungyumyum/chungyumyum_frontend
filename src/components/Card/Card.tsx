@@ -53,7 +53,7 @@ export default forwardRef(function Card(
     rating,
     id,
   }: CardProps,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLAnchorElement>
 ) {
   const { pathname } = useLocation();
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
@@ -85,86 +85,89 @@ export default forwardRef(function Card(
   };
 
   return (
-    <Link to={`/reviewDetail/${id}`} className={styles.card} style={style}>
-      <div ref={ref}>
-        <div className={styles.cardCover}>
-          <img src={imageUrl} alt="card-cover" />
-        </div>
-        <div className={styles.cardContents}>
-          <div className={styles.cardHeader}>
-            {pathname.includes("reviewList") ? (
-              <div className={styles.ratingTitle}>
-                ⭐ {RATING[String(rating)]}
-              </div>
-            ) : (
-              <>
-                <h2 className={styles.cardTitle}>{restaurantName}</h2>
-                {pathname.includes("profile/posts") && (
-                  <button
-                    className={styles.moreBtn}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsPopoverOpened((prev) => !prev);
-                      console.log("check");
-                    }}
-                  >
-                    <img width={3} src={moreIcon} alt="more_icon" />
-                  </button>
-                )}
-                {pathname.includes("profile/bookmark") && (
-                  <button
-                    className={styles.bookmarkBtn}
-                    onClick={handleBookmarkClick}
-                  >
-                    {!isBookmarked && (
-                      <img width={15} src={bookmarkIcon} alt="bk_icon" />
-                    )}
-                    {isBookmarked && (
-                      <img width={15} src={bookmarkActiveIcon} alt="bk_icon" />
-                    )}
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-          <p className={styles.cardDescription}>{description}</p>
-          <div className={styles.cardFooter}>
-            {!pathname.includes("reviewList") && (
-              <span className={styles.cardRating}>
-                ⭐ {RATING[String(rating)]}
-              </span>
-            )}
-            <div className={styles.role}>
-              <Badge type={writerRank as BadgeType} />
-              {replaceRestCharacters(writerName ?? "")}
-            </div>
-          </div>
-        </div>
-
-        {isPopoverOpened && (
-          <div className={styles.popover}>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                navigate(`/edit?postId=${id}`);
-              }}
-              className={styles.popOverBtn}
-            >
-              수정하기
-            </button>
-            <button
-              onClick={async (e) => {
-                e.preventDefault();
-                await handleDeletePost();
-                ctx.triggerUpdate();
-              }}
-              className={styles.popOverBtn}
-            >
-              삭제하기
-            </button>
-          </div>
-        )}
+    <Link
+      ref={ref}
+      to={`/reviewDetail/${id}`}
+      className={styles.card}
+      style={style}
+    >
+      <div className={styles.cardCover}>
+        <img src={imageUrl} alt="card-cover" />
       </div>
+      <div className={styles.cardContents}>
+        <div className={styles.cardHeader}>
+          {pathname.includes("reviewList") ? (
+            <div className={styles.ratingTitle}>
+              ⭐ {RATING[String(rating)]}
+            </div>
+          ) : (
+            <>
+              <h2 className={styles.cardTitle}>{restaurantName}</h2>
+              {pathname.includes("profile/posts") && (
+                <button
+                  className={styles.moreBtn}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsPopoverOpened((prev) => !prev);
+                    console.log("check");
+                  }}
+                >
+                  <img width={3} src={moreIcon} alt="more_icon" />
+                </button>
+              )}
+              {pathname.includes("profile/bookmark") && (
+                <button
+                  className={styles.bookmarkBtn}
+                  onClick={handleBookmarkClick}
+                >
+                  {!isBookmarked && (
+                    <img width={15} src={bookmarkIcon} alt="bk_icon" />
+                  )}
+                  {isBookmarked && (
+                    <img width={15} src={bookmarkActiveIcon} alt="bk_icon" />
+                  )}
+                </button>
+              )}
+            </>
+          )}
+        </div>
+        <p className={styles.cardDescription}>{description}</p>
+        <div className={styles.cardFooter}>
+          {!pathname.includes("reviewList") && (
+            <span className={styles.cardRating}>
+              ⭐ {RATING[String(rating)]}
+            </span>
+          )}
+          <div className={styles.role}>
+            <Badge type={writerRank as BadgeType} />
+            {replaceRestCharacters(writerName ?? "")}
+          </div>
+        </div>
+      </div>
+
+      {isPopoverOpened && (
+        <div className={styles.popover}>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/edit?postId=${id}`);
+            }}
+            className={styles.popOverBtn}
+          >
+            수정하기
+          </button>
+          <button
+            onClick={async (e) => {
+              e.preventDefault();
+              await handleDeletePost();
+              ctx.triggerUpdate();
+            }}
+            className={styles.popOverBtn}
+          >
+            삭제하기
+          </button>
+        </div>
+      )}
     </Link>
   );
 });
