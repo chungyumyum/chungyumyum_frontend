@@ -90,7 +90,9 @@ export default function Home() {
   }, [isVisible]);
 
   useEffect(() => {
-    handleLoadMorePosts();
+    if (page > 0) {
+      handleLoadMorePosts();
+    }
   }, [page]);
 
   useEffect(() => {
