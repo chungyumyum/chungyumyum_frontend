@@ -78,9 +78,6 @@ export default function Card({
     <Link to={`/reviewDetail/${id}`} className={styles.card} style={style}>
       <div className={styles.cardCover}>
         <img src={imageUrl} alt="card-cover" />
-        {!pathname.includes("reviewList") && (
-          <span className={styles.cardRating}>⭐ {RATING[String(rating)]}</span>
-        )}
       </div>
       <div className={styles.cardContents}>
         <div className={styles.cardHeader}>
@@ -121,8 +118,15 @@ export default function Card({
         </div>
         <p className={styles.cardDescription}>{description}</p>
         <div className={styles.cardFooter}>
-          <Badge type={writerRank as BadgeType} />
-          {replaceRestCharacters(writerName ?? "")}
+          {!pathname.includes("reviewList") && (
+            <span className={styles.cardRating}>
+              ⭐ {RATING[String(rating)]}
+            </span>
+          )}
+          <div className={styles.role}>
+            <Badge type={writerRank as BadgeType} />
+            {replaceRestCharacters(writerName ?? "")}
+          </div>
         </div>
       </div>
 
