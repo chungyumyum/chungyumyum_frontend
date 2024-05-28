@@ -4,6 +4,7 @@ import searchIcon from "../../assets/icons/search-xl.svg";
 import { FormEvent, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
+import { Link } from "react-router-dom";
 
 type SearchShopPageProps = {
   isOpen: boolean;
@@ -133,6 +134,9 @@ export default function SearchShopPage({
             </p>
             <button className={styles.submitBtn}>
               <a href="https://open.kakao.com/o/sYAt0epg">제보하러 가기</a>
+            </button>
+            <button className={`${styles.submitBtn} ${styles.prevBtn}`}>
+              <Link to="/post">뒤로가기</Link>
             </button>
           </div>
         </div>

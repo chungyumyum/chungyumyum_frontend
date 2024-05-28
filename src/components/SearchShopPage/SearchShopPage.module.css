@@ -114,6 +114,11 @@
   cursor: pointer;
 }
 
+.prevBtn {
+  background-color: #ebebeb;
+  color: #000;
+}
+
 .submitBtn a {
   display: block;
   width: 100%;
