@@ -1,6 +1,6 @@
 export type BadgeType =
   | "FRESHMAN"
   | "BACHELOR"
-  | "MASTER"
+  | "MASTERS"
   | "DOCTOR"
   | "PROFESSOR";
