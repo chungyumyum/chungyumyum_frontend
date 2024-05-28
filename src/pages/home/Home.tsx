@@ -37,7 +37,7 @@ export default function Home() {
           towns: towns,
           name: searchValue,
         });
-        setPosts(posts.reverse());
+        setPosts(posts);
       }
     } catch (err) {
       console.log("error");
