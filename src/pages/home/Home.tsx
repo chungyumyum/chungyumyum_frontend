@@ -62,10 +62,12 @@ export default function Home() {
 
   useEffect(() => {
     handleLoadPosts();
-  }, [searchValue, towns]);
+  }, [searchValue, towns, toggle]);
 
   useEffect(() => {
-    console.log("visible!");
+    if (isVisible) {
+      console.log("visible!");
+    }
   }, [isVisible]);
 
   return (
