@@ -135,8 +135,11 @@ export default function SearchShopPage({
             <button className={styles.submitBtn}>
               <a href="https://open.kakao.com/o/sYAt0epg">제보하러 가기</a>
             </button>
-            <button className={`${styles.submitBtn} ${styles.prevBtn}`}>
-              <Link to="/post">뒤로가기</Link>
+            <button
+              onClick={onClose}
+              className={`${styles.submitBtn} ${styles.prevBtn}`}
+            >
+              뒤로가기
             </button>
           </div>
         </div>
