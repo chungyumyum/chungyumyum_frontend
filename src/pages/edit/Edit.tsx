@@ -65,15 +65,13 @@ export default function Edit() {
   const handleRegister = async () => {
     try {
       setLoading(true);
-      // await updatePost({
-      //   postId: post?.id as number,
-      //   restaurantId: selectedShop.id as number,
-      //   rating: RATING[rating],
-      //   description: des,
-      //   postImageUrls: presignedFileList,
-      // });
-
-      console.log("combined file list:", combinedFileList);
+      await updatePost({
+        postId: post?.id as number,
+        restaurantId: selectedShop.id as number,
+        rating: RATING[rating],
+        description: des,
+        postImageUrls: presignedFileList,
+      });
 
       navigate(-1);
     } catch (err: any) {
