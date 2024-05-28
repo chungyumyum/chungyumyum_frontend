@@ -24,6 +24,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    pauseOnHover: true,
     beforeChange: (current: number, next: number) => setCurSlideState(next),
   };
 
