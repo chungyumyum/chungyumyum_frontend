@@ -19,7 +19,7 @@ export default function Home() {
   const searchValue = useRecoilValue(searchState);
   const [curSlideState, setCurSlideState] = useState(0);
   const towns = useRecoilValue(townsState);
-  const [toggle, setToggle] = useState<"rating" | "createdDate">("rating");
+  const [toggle, setToggle] = useState<"rating" | "createdDate">("createdDate");
   const [page, setPage] = useState(0);
   const [ref, { entry }] = useIntersectionObserver();
   const isVisible = entry && entry.isIntersecting;
@@ -43,6 +43,7 @@ export default function Home() {
         const posts = await getPosts({
           towns: towns,
           name: searchValue,
+          sort: `${toggle},desc`,
         });
         setPosts(posts);
       }
