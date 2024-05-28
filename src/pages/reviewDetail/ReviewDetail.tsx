@@ -18,7 +18,7 @@ import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
   BACHELOR: "쩝쩝학사",
-  MASTER: "쩝쩝석사",
+  MASTERS: "쩝쩝석사",
   DOCTOR: "쩝쩝박사",
   PROFESSOR: "먹교수",
 };
