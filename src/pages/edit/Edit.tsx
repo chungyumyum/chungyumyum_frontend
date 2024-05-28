@@ -70,7 +70,7 @@ export default function Edit() {
         restaurantId: selectedShop.id as number,
         rating: RATING[rating],
         description: des,
-        postImageUrls: presignedFileList,
+        postImageUrls: combinedFileList,
       });
 
       navigate(-1);
