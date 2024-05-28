@@ -1,7 +1,7 @@
 import { Card, MainHeader } from "../../components";
 import styles from "./Home.module.css";
 import bannerCover from "../../assets/covers/banner.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Post } from "../../types/post";
 import { getPosts } from "../../api/post";
 import { useRecoilValue } from "recoil";
@@ -12,8 +12,6 @@ import "slick-carousel/slick/slick-theme.css";
 import bannerCover02 from "../../assets/covers/banner2.svg";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 
-const SIZE = 10;
-
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const searchValue = useRecoilValue(searchState);
@@ -23,6 +21,7 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [ref, { entry }] = useIntersectionObserver();
   const isVisible = entry && entry.isIntersecting;
+  const isFirstRender = useRef(false);
 
   const settings = {
     infinite: true,
@@ -33,6 +32,20 @@ export default function Home() {
     autoplay: true,
     pauseOnHover: true,
     beforeChange: (current: number, next: number) => setCurSlideState(next),
+  };
+
+  const handleLoadMorePosts = async () => {
+    try {
+      const posts = await getPosts({
+        towns: towns,
+        name: searchValue,
+        sort: `${toggle},desc`,
+        page: page,
+      });
+      setPosts((prevPosts) => [...prevPosts, ...posts]);
+    } catch (err) {
+      console.log("error");
+    }
   };
 
   const handleLoadPosts = async () => {
@@ -54,10 +67,12 @@ export default function Home() {
 
   const handleNewestClick = () => {
     setToggle("createdDate");
+    setPage(0);
   };
 
   const handleRatingClick = () => {
     setToggle("rating");
+    setPage(0);
   };
 
   useEffect(() => {
@@ -65,10 +80,19 @@ export default function Home() {
   }, [searchValue, towns, toggle]);
 
   useEffect(() => {
+    if (!isFirstRender.current) {
+      isFirstRender.current = true;
+      return;
+    }
     if (isVisible) {
       console.log("visible!");
+      setPage((curPage) => curPage + 1);
     }
   }, [isVisible]);
+
+  useEffect(() => {
+    handleLoadMorePosts();
+  }, [page]);
 
   return (
     <div className={styles.container}>
