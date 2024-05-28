@@ -30,11 +30,15 @@ export default function Home() {
 
   const handleLoadPosts = async () => {
     try {
-      const posts = await getPosts({
-        towns: towns,
-        name: searchValue,
-      });
-      setPosts(posts.reverse());
+      if (towns.length === 0) {
+        setPosts([]);
+      } else {
+        const posts = await getPosts({
+          towns: towns,
+          name: searchValue,
+        });
+        setPosts(posts.reverse());
+      }
     } catch (err) {
       console.log("error");
     }
