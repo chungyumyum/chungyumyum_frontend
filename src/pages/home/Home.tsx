@@ -53,12 +53,12 @@ export default function Home() {
       if (towns.length === 0) {
         setPosts([]);
       } else {
-        const posts = await getPosts({
+        const postsData = await getPosts({
           towns: towns,
           name: searchValue,
           sort: `${toggle},desc`,
         });
-        setPosts([...posts]);
+        setPosts([...postsData]);
         setPage(0);
       }
     } catch (err) {
