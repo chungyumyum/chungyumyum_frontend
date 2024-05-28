@@ -10,8 +10,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bannerCover02 from "../../assets/covers/banner2.svg";
-import bannerCover03 from "../../assets/covers/banner3.svg";
-import bannerCover04 from "../../assets/covers/banner4.svg";
+import bannerCover03 from "../../assets/covers/banner3.png";
+import bannerCover04 from "../../assets/covers/banner4.png";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 
 export default function Home() {
@@ -113,14 +113,6 @@ export default function Home() {
           <div className={styles.sliderContainer}>
             <Slider {...settings}>
               <div className={styles.slider}>
-                <a
-                  href="https://betacnuyummy.oopy.io/"
-                  className={styles.banner}
-                >
-                  <img src={bannerCover} alt="banner-cover" />
-                </a>
-              </div>
-              <div className={styles.slider}>
                 <img src={bannerCover03} alt="banner-cover" />
               </div>
               <div className={styles.slider}>
@@ -130,7 +122,7 @@ export default function Home() {
                 <img src={bannerCover02} alt="banner-cover" />
               </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 4</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
           </div>
         )}
         <div className={styles.control}>
