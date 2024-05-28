@@ -153,3 +153,29 @@
 .contentsPadding {
   padding-top: 1rem;
 }
+
+.control {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.controlBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.controlBtn::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: currentColor;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.controlBtn.selected {
+  color: #428eff;
+}

@@ -10,12 +10,19 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bannerCover02 from "../../assets/covers/banner2.svg";
+import { useIntersectionObserver } from "react-intersection-observer-hook";
+
+const SIZE = 10;
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const searchValue = useRecoilValue(searchState);
   const [curSlideState, setCurSlideState] = useState(0);
   const towns = useRecoilValue(townsState);
+  const [toggle, setToggle] = useState<"rating" | "createdDate">("rating");
+  const [page, setPage] = useState(0);
+  const [ref, { entry }] = useIntersectionObserver();
+  const isVisible = entry && entry.isIntersecting;
 
   const settings = {
     infinite: true,
@@ -44,9 +51,21 @@ export default function Home() {
     }
   };
 
+  const handleNewestClick = () => {
+    setToggle("createdDate");
+  };
+
+  const handleRatingClick = () => {
+    setToggle("rating");
+  };
+
   useEffect(() => {
     handleLoadPosts();
   }, [searchValue, towns]);
+
+  useEffect(() => {
+    console.log("visible!");
+  }, [isVisible]);
 
   return (
     <div className={styles.container}>
@@ -74,8 +93,25 @@ export default function Home() {
             <div className={styles.sliderCountTag}>{curSlideState + 1} / 2</div>
           </div>
         )}
-
-        {posts.map((post) => (
+        <div className={styles.control}>
+          <button
+            onClick={handleNewestClick}
+            className={`${styles.controlBtn} ${
+              toggle === "createdDate" && styles.selected
+            }`}
+          >
+            최신순
+          </button>
+          <button
+            onClick={handleRatingClick}
+            className={`${styles.controlBtn} ${
+              toggle === "rating" && styles.selected
+            }`}
+          >
+            별점순
+          </button>
+        </div>
+        {posts.map((post, index) => (
           <Card
             key={post.id}
             writerName={post.writerName}
@@ -85,6 +121,7 @@ export default function Home() {
             imageUrl={post.imageUrl}
             description={post.description}
             id={post.id}
+            ref={index === posts.length - 1 ? ref : null}
           />
         ))}
       </div>

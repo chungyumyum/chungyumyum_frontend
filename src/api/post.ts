@@ -28,14 +28,24 @@ export async function getPosts({
     "JUKDONG",
   ],
   name = "",
+  page,
+  size,
+  sort,
 }: {
   towns?: Town[];
   name?: string;
+  page?: number;
+  size?: number;
+  sort?: string;
 }): Promise<Post[]> {
   const townsQuery = towns?.map((town) => `town=${town}`).join("&");
   const keywordQuery = name === "" ? "" : `&keyword=${name}`;
 
-  return (await instance.get(`/posts?${townsQuery}${keywordQuery}`)).data;
+  return (
+    await instance.get(
+      `/posts?${townsQuery}${keywordQuery}&page=${page}&size=${size}&sort=${sort}`
+    )
+  ).data;
 }
 
 export async function createPost({
