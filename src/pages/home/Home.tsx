@@ -93,6 +93,10 @@ export default function Home() {
     handleLoadMorePosts();
   }, [page]);
 
+  useEffect(() => {
+    console.log(posts);
+  }, [posts]);
+
   return (
     <div className={styles.container}>
       <MainHeader />
