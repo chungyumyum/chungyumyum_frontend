@@ -58,7 +58,7 @@ export default function Home() {
           name: searchValue,
           sort: `${toggle},desc`,
         });
-        setPosts(posts);
+        setPosts([...posts]);
       }
     } catch (err) {
       console.log("error");
@@ -67,12 +67,10 @@ export default function Home() {
 
   const handleNewestClick = () => {
     setToggle("createdDate");
-    setPage(0);
   };
 
   const handleRatingClick = () => {
     setToggle("rating");
-    setPage(0);
   };
 
   useEffect(() => {
