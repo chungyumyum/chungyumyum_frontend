@@ -99,13 +99,13 @@ export default function MainHeader() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (isSidebarOpened) {
-  //     preventScroll();
-  //   } else {
-  //     allowScroll();
-  //   }
-  // }, [isSidebarOpened]);
+  useEffect(() => {
+    if (isSidebarOpened) {
+      preventScroll();
+    } else {
+      allowScroll();
+    }
+  }, [isSidebarOpened]);
 
   return (
     <>
