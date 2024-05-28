@@ -59,6 +59,10 @@ export default function MainHeader() {
     e.currentTarget.classList.toggle(styles.selected);
   };
 
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setParagraphPosition(
@@ -110,7 +114,9 @@ export default function MainHeader() {
         style={isSidebarOpened ? { position: "initial" } : {}}
         className={styles.container}
       >
-        <h1 className={styles.title}>충냠냠</h1>
+        <h1 className={styles.title} onClick={handleLogoClick}>
+          충냠냠
+        </h1>
         <div className={styles.searchContainer}>
           <input
             onChange={handleSearchChange}
