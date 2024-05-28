@@ -59,6 +59,7 @@ export default function Home() {
           sort: `${toggle},desc`,
         });
         setPosts([...posts]);
+        setPage(0);
       }
     } catch (err) {
       console.log("error");
