@@ -96,7 +96,7 @@ export default function MainHeader() {
   }, []);
 
   useEffect(() => {
-    if (!isSidebarOpened) {
+    if (isSidebarOpened) {
       preventScroll();
     } else {
       allowScroll();
