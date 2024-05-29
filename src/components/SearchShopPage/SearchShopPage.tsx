@@ -5,6 +5,9 @@ import { FormEvent, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
 import { Link } from "react-router-dom";
+import closeIcon from "../../assets/icons/close.svg";
+import { debounce } from "../../util/debounce";
+import { Shop } from "../../types/shop";
 
 type SearchShopPageProps = {
   isOpen: boolean;
@@ -18,80 +21,75 @@ declare global {
   }
 }
 
+const MOCK = [
+  {
+    id: 0,
+    title: "아웃닭",
+    address: "궁동",
+  },
+  {
+    id: 1,
+    title: "경양카츠",
+    address: "봉명동",
+  },
+];
+
 export default function SearchShopPage({
   isOpen,
   onClose,
   onSelectedShop,
 }: SearchShopPageProps) {
-  const [shop, setShop] = useState({
-    title: "",
-    address: "",
-    id: 0,
-  });
+  // const [shop, setShop] = useState({
+  //   title: "",
+  //   address: "",
+  //   id: 0,
+  // });
 
   const [search, setSearch] = useState("");
-  const [triggerUpdate, setTriggerUpdate] = useState(false);
+  // const [triggerUpdate, setTriggerUpdate] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [results, setResults] = useState<Shop[]>([]);
+  // const handleSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   setTriggerUpdate((prev) => !prev);
+  // };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setTriggerUpdate((prev) => !prev);
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debounce(() => {
+      setSearch(e.target.value);
+    }, 500)();
   };
 
   useEffect(() => {
     if (!isOpen) return;
-    const container = document.getElementById("map");
-    const options = {
-      center: new window.kakao.maps.LatLng(36.360118, 127.34753),
-      level: 4,
-    };
-
-    const map = new window.kakao.maps.Map(container, options);
 
     (async function () {
       const restaurants = await getShops({ name: search });
       setIsEmpty(restaurants.length === 0);
-      restaurants.map((restaurant) => {
-        const marker = new window.kakao.maps.Marker({
-          position: new window.kakao.maps.LatLng(
-            restaurant.latitude,
-            restaurant.longitude
-          ),
-        });
-        marker.name = restaurant.name;
-        marker.address = restaurant.jibunAddress;
-        marker.id = restaurant.id;
-
-        window.kakao.maps.event.addListener(marker, "click", function () {
-          setShop({
-            ...shop,
-            title: marker.name,
-            id: marker.id,
-            address: marker.address,
-          });
-        });
-
-        marker.setMap(map);
-      });
-
-      const moveLatLon = new window.kakao.maps.LatLng(
-        restaurants[0].latitude,
-        restaurants[0].longitude
-      );
-
-      search !== "" && map.panTo(moveLatLon);
+      setResults([...restaurants]);
     })();
-  }, [isOpen, triggerUpdate]);
+  }, [isOpen, search]);
 
   return (
     <PageModal isOpen={isOpen}>
       <div className={styles.containerForScroll}>
         <div className={styles.container}>
+          <div className={styles.header}>
+            <button style={{ cursor: "pointer" }} onClick={onClose}>
+              <img
+                style={{ verticalAlign: "top" }}
+                width={15}
+                src={closeIcon}
+                alt="close_icon"
+              />
+            </button>
+            <h2 className={styles.headerTitle}>가게검색</h2>
+          </div>
           <div className={styles.searchContainer}>
             <img width={18} src={searchIcon} alt="search_icon" />
-            <form onSubmit={handleSubmit}>
+            <form>
               <input
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handleSearchChange}
                 className={styles.search}
                 type="text"
                 placeholder="검색"
@@ -100,22 +98,27 @@ export default function SearchShopPage({
           </div>
 
           <div
-            id="map"
-            className={`${styles.mapArea} ${isEmpty && styles.hide}`}
+            id="listArea"
+            className={`${styles.listArea} ${isEmpty && styles.hide}`}
           >
-            <div className={styles.selectedBox}>
-              <h2 className={styles.selectedBoxTitle}>
-                {shop.title || "가게 선택 안됨"}
-              </h2>
-              <p className={styles.selectedBoxAddress}>
-                {shop.address || "가게를 선택해주세요"}
-              </p>
-            </div>
+            {results.map((result) => (
+              <div
+                onClick={() => {
+                  onSelectedShop(result.name, result.id);
+                  onClose();
+                }}
+                className={styles.item}
+                key={result.id}
+              >
+                <h2 className={styles.itemTitle}>{result.name}</h2>
+                <p className={styles.itemAddress}>{result.jibunAddress}</p>
+              </div>
+            ))}
           </div>
-          <div
+          {/* <div
             className={`${styles.buttonsContainer} ${isEmpty && styles.hide} `}
-          >
-            <button onClick={onClose}>취소</button>
+          > */}
+          {/* <button onClick={onClose}>취소</button>
             <button
               onClick={() => {
                 onSelectedShop(shop.title, shop.id);
@@ -123,8 +126,8 @@ export default function SearchShopPage({
               }}
             >
               완료
-            </button>
-          </div>
+            </button> */}
+          {/* </div> */}
           <div className={`${styles.notFound} ${!isEmpty && styles.hide}`}>
             <img src={bunnyImage} alt="sad_character" />
             <p className={styles.notFoundDescription}>

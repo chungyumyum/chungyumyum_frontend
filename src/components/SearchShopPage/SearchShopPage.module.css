@@ -63,12 +63,13 @@
   font-size: 1.5rem;
 }
 
-.mapArea {
+.listArea {
   margin-top: 2rem;
   height: 85vh;
-  background-color: #d9d9d9;
+  /* background-color: #d9d9d9; */
   position: relative;
   flex-grow: 1;
+  padding: 0 3rem;
 }
 
 .mapArea.hide {
@@ -133,4 +134,34 @@
 .notFoundDescription {
   font-size: 1.6rem;
   line-height: 1.8;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  gap: 4rem;
+}
+
+.headerTitle {
+  font-size: 1.7rem;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.item + .item {
+  margin-top: 2.4rem;
+}
+
+.itemTitle {
+  font-size: 1.5rem;
+}
+
+.itemAddress {
+  margin-top: 0.7rem;
+  font-size: 1.3rem;
+  color: #797979;
 }
