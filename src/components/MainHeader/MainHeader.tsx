@@ -3,7 +3,7 @@ import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { MouseEvent, useEffect, useRef, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { searchState, townsState } from "../../recoil/atom";
 import { debounce } from "../../util/debounce";
 import { Town } from "../../types/town";
@@ -112,6 +112,12 @@ export default function MainHeader() {
       allowScroll();
     }
   }, [isSidebarOpened]);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setShowParagraph(false);
+    }
+  }, []);
 
   return (
     <>
