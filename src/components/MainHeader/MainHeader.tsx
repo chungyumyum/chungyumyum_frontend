@@ -27,7 +27,7 @@ export default function MainHeader() {
   const [paragraphPosition, setParagraphPosition] = useState(0);
   const [showParagraph, setShowParagraph] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
-  const setSearchState = useSetRecoilState(searchState);
+  const [search, setSearchState] = useRecoilState(searchState);
   const [towns, setTowns] = useRecoilState(townsState);
   const [selectedTowns, setSelectedTowns] = useState<Town[]>([
     "GUNGDONG",
@@ -126,6 +126,7 @@ export default function MainHeader() {
         <div className={styles.searchContainer}>
           <input
             onChange={handleSearchChange}
+            defaultValue={!showParagraph ? search : ""}
             ref={searchRef}
             className={styles.search}
             type="text"
