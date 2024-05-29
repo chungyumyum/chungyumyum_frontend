@@ -21,19 +21,6 @@ declare global {
   }
 }
 
-const MOCK = [
-  {
-    id: 0,
-    title: "아웃닭",
-    address: "궁동",
-  },
-  {
-    id: 1,
-    title: "경양카츠",
-    address: "봉명동",
-  },
-];
-
 export default function SearchShopPage({
   isOpen,
   onClose,
@@ -83,7 +70,7 @@ export default function SearchShopPage({
                 alt="close_icon"
               />
             </button>
-            <h2 className={styles.headerTitle}>가게검색</h2>
+            <h2 className={styles.headerTitle}>가게 검색</h2>
           </div>
           <div className={styles.searchContainer}>
             <img width={18} src={searchIcon} alt="search_icon" />
