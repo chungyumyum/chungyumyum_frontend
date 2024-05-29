@@ -13,6 +13,7 @@ import bannerCover02 from "../../assets/covers/banner2.svg";
 import bannerCover03 from "../../assets/covers/banner5.png";
 import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -113,7 +114,9 @@ export default function Home() {
           <div className={styles.sliderContainer}>
             <Slider {...settings}>
               <div className={styles.slider}>
-                <img src={bannerCover03} alt="banner-cover" />
+                <Link to="/notice-event">
+                  <img src={bannerCover03} alt="banner-cover" />
+                </Link>
               </div>
               <div className={styles.slider}>
                 <img src={bannerCover04} alt="banner-cover" />

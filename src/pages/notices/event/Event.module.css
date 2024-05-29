@@ -1,0 +1,60 @@
+.container {
+  background-color: #fff;
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  padding: 0 2rem 4rem;
+  overflow: scroll;
+}
+
+.wrapper {
+  max-width: 770px;
+  margin: 0 auto;
+}
+
+.cover img {
+  width: 100%;
+  vertical-align: top;
+}
+
+.cover {
+  width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 4rem 0 3rem;
+  font-weight: bold;
+}
+
+.contents {
+  margin-top: 3rem;
+}
+
+.section {
+  font-size: 1.4rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.section + .section {
+  margin-top: 2.5rem;
+}
+
+.item + .item {
+  margin-top: 1rem;
+}
+
+.special {
+  margin-bottom: 1rem;
+}
+
+.example {
+  margin: 1.5rem 0;
+  font-weight: bold;
+  font-size: 1.7rem;
+}

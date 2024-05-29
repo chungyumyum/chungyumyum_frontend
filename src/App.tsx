@@ -13,6 +13,7 @@ import Layout from "./layout";
 import Posts from "./pages/profile/Posts";
 import Bookmark from "./pages/profile/Bookmark";
 import Edit from "./pages/edit/Edit";
+import Event from "./pages/notices/event/Event";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path="/notice-event" element={<Event />} />
         </Routes>
       </BrowserRouter>
     </div>
