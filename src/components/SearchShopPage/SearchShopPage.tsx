@@ -136,7 +136,12 @@ export default function SearchShopPage({
               추가할게요!
             </p>
             <button className={styles.submitBtn}>
-              <a href="https://open.kakao.com/o/sYAt0epg">제보하러 가기</a>
+              <a
+                style={{ color: "#fff" }}
+                href="https://open.kakao.com/o/sYAt0epg"
+              >
+                제보하러 가기
+              </a>
             </button>
             <button
               onClick={() => {
