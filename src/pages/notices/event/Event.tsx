@@ -41,7 +41,10 @@ export default function Event() {
                 </p>
                 <p>
                   구글폼 링크 :{" "}
-                  <a href="https://forms.gle/NwXABHZMcCf7q3Ye6">
+                  <a
+                    style={{ fontWeight: "bold", color: "dodgerblue" }}
+                    href="https://forms.gle/NwXABHZMcCf7q3Ye6"
+                  >
                     https://forms.gle/NwXABHZMcCf7q3Ye6
                   </a>
                 </p>
