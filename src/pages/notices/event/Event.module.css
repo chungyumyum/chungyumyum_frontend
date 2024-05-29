@@ -42,19 +42,24 @@
 }
 
 .section + .section {
-  margin-top: 2.5rem;
+  margin-top: 4rem;
 }
 
 .item + .item {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .special {
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2.4rem;
 }
 
 .example {
-  margin: 1.5rem 0;
+  margin: 3rem 0 1.5rem;
   font-weight: bold;
   font-size: 1.7rem;
+}
+
+.specialSection.specialSection.specialSection {
+  margin-top: 1.8rem;
 }

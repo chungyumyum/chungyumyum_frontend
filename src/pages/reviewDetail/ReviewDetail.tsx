@@ -19,7 +19,7 @@ const getRatingAsKorean = {
   FRESHMAN: "새내기",
   BACHELOR: "쩝쩝학사",
   MASTERS: "쩝쩝석사",
-  DOCTOR: "쩝쩝박사",
+  DOCTORATE: "쩝쩝박사",
   PROFESSOR: "먹교수",
 };
 

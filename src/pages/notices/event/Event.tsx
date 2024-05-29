@@ -53,7 +53,7 @@ export default function Event() {
             <p>2024년 5월 29일 ~ 2024년 6월 9일</p>
           </section>
 
-          <section className={styles.section}>
+          <section className={`${styles.section} ${styles.specialSection}`}>
             구글폼을 제출해주신 분들께 추첨을 통해 배달의 민족 1만원권 상품권을
             드립니다. 앞으로도 여러분들이 서로의 경험을 공유하며 쉽고 빠르게
             맛집 정보를 공유할 수 있도록 노력하는 충냠냠이 되겠습니다. 많은 관심

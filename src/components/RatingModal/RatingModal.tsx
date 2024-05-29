@@ -39,7 +39,7 @@ export default function RatingModal({
             <div>쩝쩝석사: 작성글 15개 이상</div>
           </li>
           <li className={styles.item}>
-            <Badge type="DOCTOR" size="big" />
+            <Badge type="DOCTORATE" size="big" />
 
             <div>쩝쩝박사: 작성글 25개 이상</div>
           </li>
