@@ -119,7 +119,9 @@ export default function Home() {
                 </Link>
               </div>
               <div className={styles.slider}>
-                <img src={bannerCover04} alt="banner-cover" />
+                <a href="https://cnuyum.oopy.io/">
+                  <img src={bannerCover04} alt="banner-cover" />
+                </a>
               </div>
               <div className={styles.slider}>
                 <img src={bannerCover02} alt="banner-cover" />
