@@ -16,3 +16,8 @@ export const townsState = atom<Town[]>({
     "JANGDAE_DONG",
   ],
 });
+
+export const showParagraphState = atom({
+  key: "showParagraphState",
+  default: true,
+});

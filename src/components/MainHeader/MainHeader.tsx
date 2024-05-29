@@ -4,7 +4,7 @@ import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { searchState, townsState } from "../../recoil/atom";
+import { searchState, showParagraphState, townsState } from "../../recoil/atom";
 import { debounce } from "../../util/debounce";
 import { Town } from "../../types/town";
 import { allowScroll, preventScroll } from "../../util/scroll";
@@ -25,7 +25,8 @@ export default function MainHeader() {
   const [isSidebarOpened, setIsSidebarOpened] = useState(false);
   const [isDeemClicked, setIsDeemClicked] = useState(false);
   const [paragraphPosition, setParagraphPosition] = useState(0);
-  const [showParagraph, setShowParagraph] = useState(true);
+  // const [showParagraph, setShowParagraph] = useState(true);
+  const [showParagraph, setShowParagraph] = useRecoilState(showParagraphState);
   const searchRef = useRef<HTMLInputElement>(null);
   const [search, setSearchState] = useRecoilState(searchState);
   const [towns, setTowns] = useRecoilState(townsState);
@@ -36,6 +37,8 @@ export default function MainHeader() {
     "JUKDONG",
     "JANGDAE_DONG",
   ]);
+
+  console.log("show paragraph:", showParagraph);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debounce(() => {
