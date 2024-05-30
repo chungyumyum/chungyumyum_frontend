@@ -14,6 +14,7 @@ import bannerCover03 from "../../assets/covers/banner5.png";
 import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 import { Link } from "react-router-dom";
+import chochoro from "../../assets/covers/chochoro.png";
 import Toast from "../../components/Toast/Toast";
 
 export default function Home() {
@@ -125,10 +126,15 @@ export default function Home() {
                 </a>
               </div>
               <div className={styles.slider}>
+                <Link to="/notice-event-restaurant">
+                  <img src={chochoro} alt="banner-cover" />
+                </Link>
+              </div>
+              <div className={styles.slider}>
                 <img src={bannerCover02} alt="banner-cover" />
               </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 4</div>
           </div>
         )}
         <div className={styles.control}>
