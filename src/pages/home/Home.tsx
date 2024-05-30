@@ -14,6 +14,7 @@ import bannerCover03 from "../../assets/covers/banner5.png";
 import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 import { Link } from "react-router-dom";
+import Toast from "../../components/Toast/Toast";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -148,6 +149,7 @@ export default function Home() {
             별점순
           </button>
         </div>
+
         {posts.map((post, index) => (
           <Card
             key={post.id}

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../api/post";
+import Toast from "../../components/Toast/Toast";
 
 export type FileListItem = {
   file: File;
@@ -41,10 +42,17 @@ export default function Post() {
   const ref = useRef(null);
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   const handleRegister = async () => {
     try {
       setLoading(true);
+
+      if (presignedFileList.length === 0) {
+        setIsShow(true);
+        return;
+      }
+
       await createPost({
         restaurantId: selectedShop.id,
         rating: RATING[rating],
@@ -68,6 +76,13 @@ export default function Post() {
 
   return (
     <div>
+      {isShow && (
+        <Toast
+          message="사진을 업로드해 주세요."
+          isShow={isShow}
+          onClose={() => setIsShow(false)}
+        />
+      )}
       <SearchShopPage
         isOpen={isOpen}
         onClose={() => {
@@ -165,14 +180,12 @@ export default function Post() {
             disabled={
               selectedShop.id === 0 ||
               rating === 0 ||
-              fileList.length === 0 ||
               des.length === 0 ||
               loading
             }
             className={`${styles.submitBtn} ${
               (selectedShop.id === 0 ||
                 rating === 0 ||
-                fileList.length === 0 ||
                 des.length === 0 ||
                 loading) &&
               styles.disabled

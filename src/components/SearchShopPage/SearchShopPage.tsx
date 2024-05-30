@@ -1,10 +1,9 @@
 import PageModal from "../PageModal/PageModal";
 import styles from "./SearchShopPage.module.css";
 import searchIcon from "../../assets/icons/search-xl.svg";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
-import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/close.svg";
 import { debounce } from "../../util/debounce";
 import { Shop } from "../../types/shop";

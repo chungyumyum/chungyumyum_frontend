@@ -1,0 +1,28 @@
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container {
+  position: absolute;
+  z-index: 9999;
+
+  bottom: 20%;
+
+  background-color: #888888;
+  color: #fff;
+
+  padding: 1.5rem 7rem;
+  border-radius: 5rem;
+  font-size: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+
+  animation: show 1s;
+}
