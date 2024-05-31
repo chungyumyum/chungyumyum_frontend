@@ -130,11 +130,8 @@ export default function Home() {
                   <img src={chochoro} alt="banner-cover" />
                 </Link>
               </div>
-              <div className={styles.slider}>
-                <img src={bannerCover02} alt="banner-cover" />
-              </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 4</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
           </div>
         )}
         <div className={styles.control}>

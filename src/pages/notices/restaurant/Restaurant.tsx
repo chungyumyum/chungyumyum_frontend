@@ -48,9 +48,9 @@ export default function Restaurant() {
                 fontWeight: "bold",
                 color: "dodgerblue",
               }}
-              href="https://open.kakao.com/o/sH7lTs2f"
+              href="https://www.instagram.com/chochoro__gungdong/"
             >
-              https://open.kakao.com/o/sH7lTs2f
+              https://www.instagram.com/chochoro__gungdong/
             </a>
             <p style={{ marginTop: "1rem", marginBottom: "3rem" }}>
               예약 주문, 가격 문의는 개별 연락 부탁드립니다!
