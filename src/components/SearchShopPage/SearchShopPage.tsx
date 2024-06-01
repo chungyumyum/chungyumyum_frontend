@@ -115,7 +115,7 @@ export default function SearchShopPage({
             </button> */}
           {/* </div> */}
           <div className={`${styles.notFound} ${!isEmpty && styles.hide}`}>
-            <img src={bunnyImage} alt="sad_character" />
+            <img width={250} src={bunnyImage} alt="sad_character" />
             <p className={styles.notFoundDescription}>
               검색하신 식당이 등록되지 않았어요. <br />
               정보를 알려주시면 빠른 시일 내에 <br />
