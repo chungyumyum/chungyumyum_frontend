@@ -13,8 +13,7 @@ import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 import { Link, useNavigate } from "react-router-dom";
 import chochoro from "../../assets/covers/chochoro.png";
-import { ProfileType } from "../../types/profile";
-import { getProflie } from "../../api/profile";
+import pencil from "../../assets/icons/pencil2.svg";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);

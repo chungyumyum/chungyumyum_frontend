@@ -42,14 +42,29 @@ export default function Post() {
   const ref = useRef(null);
   const [presignedFileList, setPresignedFileList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [isShow, setIsShow] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleRegister = async () => {
     try {
       setLoading(true);
 
+      if (selectedShop.id === 0) {
+        setToastMessage("가게를 입력해 주세요.");
+        return;
+      }
+
       if (presignedFileList.length === 0) {
-        setIsShow(true);
+        setToastMessage("사진을 업로드해 주세요.");
+        return;
+      }
+
+      if (rating === 0) {
+        setToastMessage("별점을 입력해 주세요.");
+        return;
+      }
+
+      if (des.length === 0) {
+        setToastMessage("리뷰글을 작성해 주세요.");
         return;
       }
 
@@ -59,6 +74,8 @@ export default function Post() {
         description: des,
         postImageUrls: presignedFileList,
       });
+
+      setToastMessage("");
       navigate(`/`);
     } catch (err: any) {
       console.error(err);
@@ -76,11 +93,11 @@ export default function Post() {
 
   return (
     <div>
-      {isShow && (
+      {toastMessage && (
         <Toast
-          message="사진을 업로드해 주세요."
-          isShow={isShow}
-          onClose={() => setIsShow(false)}
+          message={toastMessage}
+          isShow={toastMessage !== ""}
+          onClose={() => setToastMessage("")}
         />
       )}
       <SearchShopPage
