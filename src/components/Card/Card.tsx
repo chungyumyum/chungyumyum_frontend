@@ -7,6 +7,7 @@ import {
   CSSProperties,
   ForwardedRef,
   MouseEvent,
+  SyntheticEvent,
   forwardRef,
   useContext,
   useState,
@@ -17,6 +18,7 @@ import { TriggerUpdateCtx } from "../../pages/profile/TriggerUpdateProvider";
 import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
+import defaultImg from "../../assets/covers/defaultImg.webp";
 
 type CardProps = {
   style?: CSSProperties;
@@ -64,6 +66,10 @@ export default forwardRef(function Card(
   const ctx = useContext(TriggerUpdateCtx);
   const navigate = useNavigate();
 
+  const addDefaultImg = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = defaultImg;
+  };
+
   const handleDeletePost = async () => {
     await deletePost(String(id));
   };
@@ -94,7 +100,7 @@ export default forwardRef(function Card(
       style={style}
     >
       <div className={styles.cardCover}>
-        <img src={imageUrl} alt="card-cover" />
+        <img src={imageUrl} alt="card-cover" onError={addDefaultImg} />
       </div>
       <div className={styles.cardContents}>
         <div className={styles.cardHeader}>
