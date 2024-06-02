@@ -6,7 +6,7 @@ import bookmarkIcon from "../../assets/icons/bookmark.svg";
 import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 import Stars from "../../components/Stars/Stars";
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { PostDetail } from "../../types/post";
 import { getPost } from "../../api/post";
 import { BadgeType } from "../../types/badge";
@@ -14,6 +14,7 @@ import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import MapModal from "../../components/MapModal/MapModal";
 import { getShops } from "../../api/shop";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
+import defaultImg from "../../assets/covers/defaultImg.webp";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -46,6 +47,10 @@ export default function ReviewDetail() {
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useState({ lat: "", lng: "" });
   const [isLoading, setIsLoading] = useState(true);
+
+  const addDefaultImg = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = defaultImg;
+  };
 
   const handleLoadPost = async () => {
     const post = await getPost(id as string);
@@ -136,7 +141,12 @@ export default function ReviewDetail() {
             }
           />
           {!isLoading && (
-            <img id="cover" src={fileList[currentImg]} alt="cover" />
+            <img
+              id="cover"
+              src={fileList[currentImg]}
+              onError={addDefaultImg}
+              alt="cover"
+            />
           )}
           <span className={styles.sliderTag}>
             {currentImg + 1}/{fileList.length}
