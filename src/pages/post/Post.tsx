@@ -194,19 +194,13 @@ export default function Post() {
           </div>
           <button
             onClick={handleRegister}
-            disabled={
-              selectedShop.id === 0 ||
-              rating === 0 ||
-              des.length === 0 ||
-              loading
-            }
-            className={`${styles.submitBtn} ${
-              (selectedShop.id === 0 ||
-                rating === 0 ||
-                des.length === 0 ||
-                loading) &&
-              styles.disabled
-            } `}
+            // disabled={
+            //   selectedShop.id === 0 ||
+            //   rating === 0 ||
+            //   des.length === 0 ||
+            //   loading
+            // }
+            className={styles.submitBtn}
           >
             등록
           </button>
