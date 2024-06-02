@@ -1,21 +1,20 @@
 import { Card, MainHeader } from "../../components";
 import styles from "./Home.module.css";
-import bannerCover from "../../assets/covers/banner.svg";
 import { useEffect, useRef, useState } from "react";
 import { Post } from "../../types/post";
-import { getPosts } from "../../api/post";
+import { getMyPosts, getPosts } from "../../api/post";
 import { useRecoilValue } from "recoil";
 import { searchState, townsState } from "../../recoil/atom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannerCover02 from "../../assets/covers/banner2.svg";
 import bannerCover03 from "../../assets/covers/banner5.png";
 import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import chochoro from "../../assets/covers/chochoro.png";
-import Toast from "../../components/Toast/Toast";
+import { ProfileType } from "../../types/profile";
+import { getProflie } from "../../api/profile";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,6 +26,8 @@ export default function Home() {
   const [ref, { entry }] = useIntersectionObserver();
   const isVisible = entry && entry.isIntersecting;
   const isFirstRender = useRef(false);
+  const [myPostsId, setMyPostsId] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   const settings = {
     infinite: true,
@@ -104,6 +105,19 @@ export default function Home() {
     console.log(posts);
   }, [posts]);
 
+  const handleLoadProflie = async () => {
+    const myPosts = await getMyPosts();
+    setMyPostsId(myPosts.map((post) => post.id));
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
+
+    handleLoadProflie();
+  }, []);
+
   return (
     <div className={styles.container}>
       <MainHeader />
@@ -163,6 +177,7 @@ export default function Home() {
             imageUrl={post.imageUrl}
             description={post.description}
             id={post.id}
+            isMyPost={myPostsId.includes(post.id)}
             ref={index === posts.length - 1 ? ref : null}
           />
         ))}

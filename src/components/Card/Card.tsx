@@ -27,6 +27,7 @@ type CardProps = {
   restaurantName?: string;
   rating?: string;
   id?: number;
+  isMyPost?: boolean;
 };
 
 const RATING: { [key: string]: string } = {
@@ -52,6 +53,7 @@ export default forwardRef(function Card(
     restaurantName,
     rating,
     id,
+    isMyPost = false,
   }: CardProps,
   ref: ForwardedRef<HTMLAnchorElement>
 ) {
@@ -103,7 +105,7 @@ export default forwardRef(function Card(
           ) : (
             <>
               <h2 className={styles.cardTitle}>{restaurantName}</h2>
-              {pathname.includes("profile/posts") && (
+              {(pathname.includes("profile/posts") || isMyPost) && (
                 <button
                   className={styles.moreBtn}
                   onClick={(e) => {
@@ -161,6 +163,7 @@ export default forwardRef(function Card(
               e.preventDefault();
               await handleDeletePost();
               ctx.triggerUpdate();
+              navigate(0);
             }}
             className={styles.popOverBtn}
           >
