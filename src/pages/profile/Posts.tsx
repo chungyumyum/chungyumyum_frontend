@@ -19,6 +19,10 @@ export default function Posts() {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
+    
     handleLoadPosts();
   }, [ctx.update]);
 

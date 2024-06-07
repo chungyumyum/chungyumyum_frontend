@@ -19,6 +19,10 @@ export default function Bookmark() {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
+    
     handleLoadPosts();
   }, [ctx.update]);
 
