@@ -117,7 +117,6 @@ export default forwardRef(function Card(
                   onClick={(e) => {
                     e.preventDefault();
                     setIsPopoverOpened((prev) => !prev);
-                    console.log("check");
                   }}
                 >
                   <img width={3} src={moreIcon} alt="more_icon" />

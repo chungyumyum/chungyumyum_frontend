@@ -10,7 +10,6 @@ type SubHeaderProps = {
 export default function SubHeader({ title, id }: SubHeaderProps) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(id);
   return (
     <div className={styles.container}>
       {pathname !== "/post" && pathname !== "/edit" && (

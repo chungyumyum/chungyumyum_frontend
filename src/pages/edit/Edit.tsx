@@ -97,7 +97,6 @@ export default function Edit() {
       return;
     }
     const data = await getShops({ name: post.restaurantName });
-    console.log("data:", data);
 
     setSelectedShop({
       name: data[0].name,

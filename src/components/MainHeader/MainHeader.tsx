@@ -38,8 +38,6 @@ export default function MainHeader() {
     "JANGDAE_DONG",
   ]);
 
-  console.log("show paragraph:", showParagraph);
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debounce(() => {
       setSearchState(e.target.value);

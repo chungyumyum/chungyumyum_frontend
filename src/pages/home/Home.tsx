@@ -89,7 +89,6 @@ export default function Home() {
       return;
     }
     if (isVisible) {
-      console.log("visible!");
       setPage((curPage) => curPage + 1);
     }
   }, [isVisible]);
@@ -100,9 +99,6 @@ export default function Home() {
     }
   }, [page]);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
 
   const handleLoadProflie = async () => {
     const myPosts = await getMyPosts();
