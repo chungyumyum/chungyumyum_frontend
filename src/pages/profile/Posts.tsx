@@ -22,7 +22,7 @@ export default function Posts() {
     if (!localStorage.getItem("accessToken")) {
       return;
     }
-    
+
     handleLoadPosts();
   }, [ctx.update]);
 

@@ -29,6 +29,9 @@ export default function NavHeader() {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
     handleLoadPosts();
     handleLoadBookmarked();
   }, [ctx.update]);
