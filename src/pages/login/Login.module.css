@@ -1,6 +1,5 @@
 .container {
   display: flow-root;
-  padding-bottom: 6rem;
 }
 
 @keyframes move {
