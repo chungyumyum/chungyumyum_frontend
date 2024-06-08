@@ -25,7 +25,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/post" element={<Post />} />
             <Route path="/edit" element={<Edit />} />
-
             <Route path="/profile" element={<Profile />}>
               <Route path="posts" element={<Posts />} />
               <Route path="bookmark" element={<Bookmark />} />
