@@ -99,7 +99,6 @@ export default function Home() {
     }
   }, [page]);
 
-
   const handleLoadProflie = async () => {
     const myPosts = await getMyPosts();
     setMyPostsId(myPosts.map((post) => post.id));
@@ -130,7 +129,7 @@ export default function Home() {
                 </Link>
               </div>
               <div className={styles.slider}>
-                <a href="https://cnuyum.oopy.io/">
+                <a href="https://volcano-knife-71c.notion.site/62cbb48d9a54451889523163b0855f35">
                   <img src={bannerCover04} alt="banner-cover" />
                 </a>
               </div>
