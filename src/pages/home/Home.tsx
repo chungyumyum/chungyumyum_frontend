@@ -129,7 +129,7 @@ export default function Home() {
                 </Link>
               </div>
               <div className={styles.slider}>
-                <a href="https://volcano-knife-71c.notion.site/62cbb48d9a54451889523163b0855f35">
+                <a href="https://volcano-knife-71c.notion.site/11b7c84ebb064274a7d57df986c5ee98?pvs=4">
                   <img src={bannerCover04} alt="banner-cover" />
                 </a>
               </div>
