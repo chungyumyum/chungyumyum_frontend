@@ -8,11 +8,14 @@ import { searchState, townsState } from "../../recoil/atom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannerCover03 from "../../assets/covers/banner5.png";
-import bannerCover04 from "../../assets/covers/banner6.webp";
+// import bannerCover03 from "../../assets/covers/banner5.png";
+// import bannerCover04 from "../../assets/covers/banner6.webp";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 import { Link, useNavigate } from "react-router-dom";
-import chochoro from "../../assets/covers/chochoro.png";
+// import chochoro from "../../assets/covers/chochoro.png";
+import newBanner01 from "../../assets/covers/newBanner01.png";
+import newBanner02 from "../../assets/covers/newBanner02.png";
+
 import pencil from "../../assets/icons/pencil2.svg";
 
 export default function Home() {
@@ -124,22 +127,17 @@ export default function Home() {
           <div className={styles.sliderContainer}>
             <Slider {...settings}>
               <div className={styles.slider}>
-                <Link to="/notice-event">
-                  <img src={bannerCover03} alt="banner-cover" />
-                </Link>
-              </div>
-              <div className={styles.slider}>
-                <a href="https://volcano-knife-71c.notion.site/11b7c84ebb064274a7d57df986c5ee98?pvs=4">
-                  <img src={bannerCover04} alt="banner-cover" />
+                <a href="https://volcano-knife-71c.notion.site/dfaa5f2b9f8a473581e5e280e5c301bb?pvs=4">
+                  <img src={newBanner01} alt="banner-cover" />
                 </a>
               </div>
               <div className={styles.slider}>
-                <Link to="/notice-event-restaurant">
-                  <img src={chochoro} alt="banner-cover" />
-                </Link>
+                <a href="https://volcano-knife-71c.notion.site/1551fc3638f143b2a7ec69d81777e0a8?pvs=4">
+                  <img src={newBanner02} alt="banner-cover" />
+                </a>
               </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 2</div>
           </div>
         )}
         <div className={styles.control}>
