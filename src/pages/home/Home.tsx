@@ -128,12 +128,12 @@ export default function Home() {
             <Slider {...settings}>
               <div className={styles.slider}>
                 <a href="https://volcano-knife-71c.notion.site/dfaa5f2b9f8a473581e5e280e5c301bb?pvs=4">
-                  <img src={newBanner01} alt="banner-cover" />
+                  <img src={newBanner02} alt="banner-cover" />
                 </a>
               </div>
               <div className={styles.slider}>
                 <a href="https://volcano-knife-71c.notion.site/1551fc3638f143b2a7ec69d81777e0a8?pvs=4">
-                  <img src={newBanner02} alt="banner-cover" />
+                  <img src={newBanner01} alt="banner-cover" />
                 </a>
               </div>
             </Slider>
