@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, MainHeader } from "../../components";
 import styles from "./Home.module.css";
 import { useEffect, useRef, useState } from "react";
@@ -9,14 +10,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import bannerCover03 from "../../assets/covers/banner5.png";
-// import bannerCover04 from "../../assets/covers/banner6.webp";
+import bannerCover04 from "../../assets/covers/banner4.png";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
-import { Link, useNavigate } from "react-router-dom";
-import chochoro from "../../assets/covers/chochoro.png";
+// import { useNavigate } from "react-router-dom";
+// import chochoro from "../../assets/covers/chochoro.png";
 import newBanner01 from "../../assets/covers/newBanner01.png";
 import newBanner02 from "../../assets/covers/newBanner02.png";
 
-import pencil from "../../assets/icons/pencil2.svg";
+// import pencil from "../../assets/icons/pencil2.svg";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -29,7 +30,7 @@ export default function Home() {
   const isVisible = entry && entry.isIntersecting;
   const isFirstRender = useRef(false);
   const [myPostsId, setMyPostsId] = useState<number[]>([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const settings = {
     infinite: true,
@@ -137,9 +138,9 @@ export default function Home() {
                 </a>
               </div>
               <div className={styles.slider}>
-                <Link to="/notice-event-restaurant">
-                  <img src={chochoro} alt="banner-cover" />
-                </Link>
+                <a href="https://volcano-knife-71c.notion.site/11b7c84ebb064274a7d57df986c5ee98?pvs=4">
+                  <img src={bannerCover04} alt="banner-cover" />
+                </a>
               </div>
             </Slider>
             <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
