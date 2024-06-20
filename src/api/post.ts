@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Post, PostDetail } from "../types/post";
 import { instance } from "./base";
 import { Town } from "../types/town";
@@ -40,6 +39,14 @@ export async function getPosts({
 }): Promise<Post[]> {
   const townsQuery = towns?.map((town) => `town=${town}`).join("&");
   const keywordQuery = name === "" ? "" : `&keyword=${name}`;
+
+  if (sort?.startsWith("rating")) {
+    return (
+      await instance.get(
+        `/posts?${townsQuery}${keywordQuery}&page=${page}&size=${size}&sort=${sort}&sort=createdDate,desc`
+      )
+    ).data;
+  }
 
   return (
     await instance.get(
