@@ -1,4 +1,5 @@
-modolue.exports = {
+
+module.exports = {
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended",
@@ -12,6 +13,6 @@ modolue.exports = {
       }
     },
     "rules": {
-      "react/react-in-jsx-scope": "off"
+      "react/react-in-jsx-scope":0
     }
   }

@@ -1,4 +1,3 @@
-import React from "react";
 import { Badge } from "../../components";
 import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./ReviewDetail.module.css";
@@ -97,7 +96,7 @@ export default function ReviewDetail() {
   }, [post]);
 
   return (
-    <>
+    <> 
       {isOpen && (
         <MapModal location={location} onClose={() => setIsOpen(false)} />
       )}
@@ -157,7 +156,7 @@ export default function ReviewDetail() {
 
         <div className={styles.starsContainer}>
           <Stars rating={RATING[post.rating]} />
-        </div>
+        </div> 
 
         <p className={styles.review}>{post.description}</p>
         <div className={styles.btnContainer}>
