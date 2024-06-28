@@ -1,3 +1,4 @@
+import React from "react";
 import { Badge } from "../../components";
 import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./ReviewDetail.module.css";
@@ -15,6 +16,7 @@ import MapModal from "../../components/MapModal/MapModal";
 import { getShops } from "../../api/shop";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 import defaultImg from "../../assets/covers/defaultImg.webp";
+
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -158,12 +160,18 @@ export default function ReviewDetail() {
         </div>
 
         <p className={styles.review}>{post.description}</p>
-
-        <button className={styles.linkBtn}>
-          <Link to={`/reviewList/${post.restaurantName}?reviewId=${id}`}>
-            이 식당의 다른 후기
-          </Link>
-        </button>
+        <div className={styles.btnContainer}>
+          <button className={styles.linkBtn}>
+            <Link to={`/reviewList/${post.restaurantName}?reviewId=${id}`}>
+              이 식당 리뷰 쓰기
+            </Link>
+          </button>
+          <button className={styles.linkBtn}>
+            <Link to={`/reviewList/${post.restaurantName}?reviewId=${id}`}>
+              이 식당의 다른 후기
+            </Link>
+          </button>
+        </div>
       </div>
     </>
   );
