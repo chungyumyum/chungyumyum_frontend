@@ -161,7 +161,7 @@ export default function ReviewDetail() {
         <p className={styles.review}>{post.description}</p>
         <div className={styles.btnContainer}>
           <button className={styles.linkBtn}>
-            <Link to={`/reviewList/${post.restaurantName}?reviewId=${id}`}>
+            <Link to={`/post`}>
               이 식당 리뷰 쓰기
             </Link>
           </button>
