@@ -4,9 +4,10 @@ import gpsIcon from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { createPost } from "../../api/post";
 import Toast from "../../components/Toast/Toast";
+import { getShops } from "../../api/shop";
 
 export type FileListItem = {
   file: File;
@@ -28,6 +29,8 @@ const RATING: { [key: string]: string } = {
 };
 
 export default function Post() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('restaurantName'); // test
   const [des, setDes] = useState("");
   const [rating, setRating] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -90,6 +93,21 @@ export default function Post() {
       navigate("/login");
     }
   }, []);
+
+  useEffect(() => {
+    if(typeof query !== 'string'){
+      return;
+    }
+
+    if(!query){
+      return;
+    }
+
+    (async function () {
+      const restaurants = await getShops({ name: query});
+      setSelectedShop({name:query, id:restaurants[0].id});
+    })();
+  }, [query]);
 
   return (
     <div>
