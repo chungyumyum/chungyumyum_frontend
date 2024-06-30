@@ -8,6 +8,7 @@ import { searchState, showParagraphState, townsState } from "../../recoil/atom";
 import { debounce } from "../../util/debounce";
 import { Town } from "../../types/town";
 import { allowScroll, preventScroll } from "../../util/scroll";
+import Toast from "../Toast/Toast";
 
 const RECOMMENDED_PARAGRAPH = [
   "어디서 회식하지?",
@@ -30,6 +31,7 @@ export default function MainHeader() {
   const searchRef = useRef<HTMLInputElement>(null);
   const [search, setSearchState] = useRecoilState(searchState);
   const [towns, setTowns] = useRecoilState(townsState);
+  const [toastMessage, setToastMessage] = useState('');
   const [selectedTowns, setSelectedTowns] = useState<Town[]>([
     "GUNGDONG",
     "BONGMYEONG_DONG",
@@ -54,7 +56,7 @@ export default function MainHeader() {
 
   const handleChangeSelectedTowns = (e: MouseEvent) => {
     if(selectedTowns.length === 1 && e.currentTarget.id === selectedTowns[0]){
-      alert('동네를 최소 1개 이상 선택해주세요.');
+      setToastMessage('최소 한 개의 동네를 선택해주세요.');
       return;
     }
 
@@ -127,6 +129,13 @@ export default function MainHeader() {
 
   return (
     <>
+      {toastMessage && (
+        <Toast
+          message={toastMessage}
+          isShow={toastMessage !== ""}
+          onClose={() => setToastMessage("")}
+        />
+      )}
       <div style={!isSidebarOpened ? { paddingTop: "7.9rem" } : {}}></div>
       <header
         style={isSidebarOpened ? { position: "initial" } : {}}
