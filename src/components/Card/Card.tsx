@@ -144,8 +144,8 @@ export default forwardRef(function Card(
           {!pathname.includes("reviewList") && (
             <div className={styles.cardRating}>
               <span>⭐ {RATING[String(rating)]}</span>
-              <span>
-                <img src={thumbIcon} width={18}/>
+              <span style={{display:'flex',gap:'0.4rem'}}>
+                <img src={thumbIcon} width={14}/>
                 <span>0</span>
               </span>
             </div>
