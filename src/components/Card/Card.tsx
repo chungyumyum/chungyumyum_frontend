@@ -19,6 +19,7 @@ import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 import defaultImg from "../../assets/covers/defaultImg.webp";
+import thumbIcon from "../../assets/icons/thumb.svg";
 
 type CardProps = {
   style?: CSSProperties;
@@ -141,9 +142,13 @@ export default forwardRef(function Card(
         <p className={styles.cardDescription}>{description}</p>
         <div className={styles.cardFooter}>
           {!pathname.includes("reviewList") && (
-            <span className={styles.cardRating}>
-              ⭐ {RATING[String(rating)]}
-            </span>
+            <div className={styles.cardRating}>
+              <span>⭐ {RATING[String(rating)]}</span>
+              <span>
+                <img src={thumbIcon} width={18}/>
+                <span>0</span>
+              </span>
+            </div>
           )}
           <div className={styles.role}>
             <Badge type={writerRank as BadgeType} />
