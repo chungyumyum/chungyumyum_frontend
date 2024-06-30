@@ -116,3 +116,13 @@
   display: flex;
   gap: 1rem;
 }
+
+.linkBtn{
+  display: flex;
+  gap: 1rem;
+  background: #6B82FF33;
+  border-radius: 2rem;
+  box-shadow: 0px 2px 2px 0px #00000040;
+  padding: 1rem 3rem;
+}
+

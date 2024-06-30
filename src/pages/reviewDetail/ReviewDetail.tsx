@@ -15,7 +15,7 @@ import MapModal from "../../components/MapModal/MapModal";
 import { getShops } from "../../api/shop";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 import defaultImg from "../../assets/covers/defaultImg.webp";
-
+import thumbIcon from "../../assets/icons/thumb.svg";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -171,6 +171,11 @@ export default function ReviewDetail() {
             </Link>
           </button>
         </div>
+
+        <button className={styles.likeBtn}>
+          <img src={thumbIcon} alt="thumbs-up"/> 
+          <span style={{color:'#825858', fontSize:'2.5rem'}}>0</span>
+        </button>
       </div>
     </>
   );
