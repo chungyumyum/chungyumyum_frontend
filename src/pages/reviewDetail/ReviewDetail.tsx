@@ -173,8 +173,8 @@ export default function ReviewDetail() {
         </div>
 
         <button className={styles.likeBtn}>
-          <img src={thumbIcon} alt="thumbs-up"/> 
-          <span style={{color:'#825858', fontSize:'2.5rem'}}>0</span>
+          <img width={22} src={thumbIcon} alt="thumbs-up"/> 
+          <span style={{color:'#825858', fontSize:'2rem'}}>0</span>
         </button>
       </div>
     </>
