@@ -53,6 +53,11 @@ export default function MainHeader() {
   };
 
   const handleChangeSelectedTowns = (e: MouseEvent) => {
+    if(selectedTowns.length === 1 && e.currentTarget.id === selectedTowns[0]){
+      alert('동네를 최소 1개 이상 선택해주세요.');
+      return;
+    }
+
     if (e.currentTarget.classList.contains(styles.selected)) {
       setSelectedTowns(
         selectedTowns.filter(
