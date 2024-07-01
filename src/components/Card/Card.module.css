@@ -135,3 +135,19 @@
 .popOverBtn:hover {
   background-color: #f3f3f3;
 }
+
+.thumbIcon{
+  width: 1.4rem;
+}
+
+@media (max-width: 380px){
+  .cardCover{
+    width: 1.2rem;
+  }
+  .cardRating{
+    font-size: 1.1rem;
+  }
+  .thumbIcon{
+    width: 1.2rem;
+  }
+}
