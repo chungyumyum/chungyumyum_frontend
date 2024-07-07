@@ -43,7 +43,7 @@ export default function SearchShopPage({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debounce(() => {
       setSearch(e.target.value);
-    }, 500)();
+    }, 1000)();
   };
 
   useEffect(() => {
