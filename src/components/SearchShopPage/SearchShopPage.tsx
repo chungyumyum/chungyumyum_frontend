@@ -1,7 +1,7 @@
 import PageModal from "../PageModal/PageModal";
 import styles from "./SearchShopPage.module.css";
 import searchIcon from "../../assets/icons/search-xl.svg";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
 import closeIcon from "../../assets/icons/close.svg";
@@ -25,26 +25,18 @@ export default function SearchShopPage({
   onClose,
   onSelectedShop,
 }: SearchShopPageProps) {
-  // const [shop, setShop] = useState({
-  //   title: "",
-  //   address: "",
-  //   id: 0,
-  // });
-
   const [search, setSearch] = useState("");
-  // const [triggerUpdate, setTriggerUpdate] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [results, setResults] = useState<Shop[]>([]);
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   setTriggerUpdate((prev) => !prev);
-  // };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debounce(() => {
-      setSearch(e.target.value);
-    }, 1000)();
-  };
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      debounce(() => {
+        setSearch(e.target.value);
+      }, 1000)();
+    },
+    []
+  );
 
   useEffect(() => {
     if (!isOpen) return;
