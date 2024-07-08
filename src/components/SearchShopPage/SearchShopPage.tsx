@@ -1,7 +1,7 @@
 import PageModal from "../PageModal/PageModal";
 import styles from "./SearchShopPage.module.css";
 import searchIcon from "../../assets/icons/search-xl.svg";
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { getShops } from "../../api/shop";
 import bunnyImage from "../../assets/covers/sad_bunny.svg";
 import closeIcon from "../../assets/icons/close.svg";
@@ -36,7 +36,8 @@ export default function SearchShopPage({
     []
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     if (!isOpen) return;
     (async function () {
       const restaurants = await getShops({ name: search });
