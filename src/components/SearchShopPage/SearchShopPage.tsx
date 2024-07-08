@@ -31,11 +31,14 @@ export default function SearchShopPage({
 
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      debounce(() => {
-        setSearch(e.target.value);
-      }, 1000)();
+      setSearch(e.target.value);
     },
     []
+  );
+
+  const debouncedOnChange = debounce<typeof handleSearchChange>(
+    handleSearchChange,
+    500
   );
 
   useEffect(() => {
@@ -67,7 +70,7 @@ export default function SearchShopPage({
             <img width={18} src={searchIcon} alt="search_icon" />
             <form>
               <input
-                onChange={handleSearchChange}
+                onChange={debouncedOnChange}
                 className={styles.search}
                 type="text"
                 placeholder="검색"
