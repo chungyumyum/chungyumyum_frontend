@@ -36,20 +36,14 @@ export default function SearchShopPage({
     []
   );
 
-  const debouncedOnChange = debounce<typeof handleSearchChange>(
-    handleSearchChange,
-    500
-  );
-
-  useEffect(() => {
+  const handleSubmit = () => {
     if (!isOpen) return;
-    console.log("search:", search);
     (async function () {
       const restaurants = await getShops({ name: search });
       setIsEmpty(restaurants.length === 0);
       setResults([...restaurants]);
     })();
-  }, [isOpen, search]);
+  };
 
   return (
     <PageModal isOpen={isOpen}>
@@ -68,9 +62,9 @@ export default function SearchShopPage({
           </div>
           <div className={styles.searchContainer}>
             <img width={18} src={searchIcon} alt="search_icon" />
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
-                onChange={debouncedOnChange}
+                onChange={handleSearchChange}
                 className={styles.search}
                 type="text"
                 placeholder="검색"
