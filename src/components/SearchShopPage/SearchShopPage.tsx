@@ -40,7 +40,7 @@ export default function SearchShopPage({
 
   useEffect(() => {
     if (!isOpen) return;
-
+    console.log("search:", search);
     (async function () {
       const restaurants = await getShops({ name: search });
       setIsEmpty(restaurants.length === 0);
