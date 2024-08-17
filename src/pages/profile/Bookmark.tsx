@@ -4,7 +4,7 @@ import { Post } from "../../types/post";
 import { getBookmarkedPosts } from "../../api/bookmarks";
 import styles from "./Profile.module.css";
 import { TriggerUpdateCtx } from "./TriggerUpdateProvider";
- 
+
 export default function Bookmark() {
   const [posts, setPosts] = useState<Post[]>([]);
   const ctx = useContext(TriggerUpdateCtx);
@@ -22,7 +22,7 @@ export default function Bookmark() {
     if (!localStorage.getItem("accessToken")) {
       return;
     }
-    
+
     handleLoadPosts();
   }, [ctx.update]);
 

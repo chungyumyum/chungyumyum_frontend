@@ -56,6 +56,9 @@
   gap: 2rem;
   justify-content: center;
   border: 1px solid #ededed;
+  width: fit-content;
+  margin: 0 auto 20px;
+  border-radius: 2rem;
 }
 
 .navHeader > * {
