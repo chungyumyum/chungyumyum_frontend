@@ -13,10 +13,11 @@ import "slick-carousel/slick/slick-theme.css";
 import bannerCover04 from "../../assets/covers/banner4.png";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 // import { useNavigate } from "react-router-dom";
-// import chochoro from "../../assets/covers/chochoro.png";
+import chochoro from "../../assets/covers/chochoro.png";
 import newBanner01 from "../../assets/covers/newBanner01.png";
 import newBanner02 from "../../assets/covers/newBanner02.png";
 import arrowDown from "../../assets/icons/arrowDown.svg";
+import { Link } from "react-router-dom";
 // import pencil from "../../assets/icons/pencil2.svg";
 
 export default function Home() {
@@ -147,8 +148,13 @@ export default function Home() {
                   <img src={bannerCover04} alt="banner-cover" />
                 </a>
               </div>
+              <div className={styles.slider}>
+                <Link to="/notice-event-restaurant">
+                  <img src={chochoro} alt="banner-cover" />
+                </Link>
+              </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 4</div>
           </div>
         )}
         <div className={styles.control}>
