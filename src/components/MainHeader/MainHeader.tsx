@@ -1,4 +1,5 @@
 import controlIcon from "../../assets/icons/control.svg";
+import logo from "../../assets/icons/chlogo.svg";
 import styles from "./MainHeader.module.css";
 import searchIcon from "../../assets/icons/search.svg";
 import closeIcon from "../../assets/icons/close.svg";
@@ -142,7 +143,7 @@ export default function MainHeader() {
         className={styles.container}
       >
         <h1 className={styles.title} onClick={handleLogoClick}>
-          충냠냠
+          <img src={logo} alt="logo" />
         </h1>
         <div className={styles.searchContainer}>
           <input
