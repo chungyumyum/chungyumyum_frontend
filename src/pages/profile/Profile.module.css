@@ -53,17 +53,21 @@
   background-color: #fff;
   overflow: hidden;
   display: flex;
+  gap: 2rem;
+  justify-content: center;
+  border: 1px solid #ededed;
 }
 
 .navHeader > * {
   text-align: center;
-  width: 50%;
-  padding: 2rem 0;
+  padding: 2rem 3rem;
   font-size: 1.3rem;
+  border-radius: 2rem;
 }
 
 .active {
-  text-decoration: underline;
+  background-color: #ff6e05;
+  color: white;
 }
 
 .levelContainer {
