@@ -37,9 +37,8 @@ export default function Posts() {
       {posts.length === 0 ? (
         <>작성한 글이 없습니다.</>
       ) : (
-        posts
-          .reverse()
-          .map((post, index) => (
+        <div className={styles.cardList}>
+          {posts.reverse().map((post, index) => (
             <Card
               style={
                 index == 0
@@ -55,7 +54,8 @@ export default function Posts() {
               restaurantName={post.restaurantName}
               writerRank={post.writerRank}
             />
-          ))
+          ))}
+        </div>
       )}
     </div>
   );
