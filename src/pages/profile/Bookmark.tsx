@@ -38,17 +38,16 @@ export default function Bookmark() {
       {posts.length === 0 ? (
         <>북마크 된 포스트가 없습니다.</>
       ) : (
-        posts
-          .reverse()
-          .map((post, index) => (
+        <div className={styles.cardList}>
+          {posts.reverse().map((post, index) => (
             <Card
               style={
                 index == 0
                   ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
                   : {}
               }
-              key={post.id}
               id={post.id}
+              key={post.id}
               writerName={post.writerName}
               imageUrl={post.imageUrl}
               description={post.description}
@@ -56,7 +55,8 @@ export default function Bookmark() {
               restaurantName={post.restaurantName}
               writerRank={post.writerRank}
             />
-          ))
+          ))}
+        </div>
       )}
     </div>
   );

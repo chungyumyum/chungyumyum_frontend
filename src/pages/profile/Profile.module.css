@@ -92,6 +92,7 @@
 .isNotEmpty {
   padding-bottom: 10rem;
   min-height: 70vh;
+  background-color: #fff;
 }
 
 .hasOnePost {
