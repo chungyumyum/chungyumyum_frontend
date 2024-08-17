@@ -4,7 +4,7 @@ import styles from "./Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Post } from "../../types/post";
 import { getMyPosts, getPosts } from "../../api/post";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { searchState, townsState } from "../../recoil/atom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,7 +24,7 @@ export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
   const searchValue = useRecoilValue(searchState);
   const [curSlideState, setCurSlideState] = useState(0);
-  const towns = useRecoilValue(townsState);
+  const [towns, setTowns] = useRecoilState(townsState);
   const [toggle, setToggle] = useState<"rating" | "createdDate">("createdDate");
   const [page, setPage] = useState(0);
   const [ref, { entry }] = useIntersectionObserver();
@@ -163,7 +163,10 @@ export default function Home() {
               className={`${styles.categoryBtn} ${
                 selectedCategory === 1 && styles.isSelected
               }`}
-              onClick={() => setSelectedCategory(1)}
+              onClick={() => {
+                setSelectedCategory(1);
+                setTowns(["GUNGDONG"]);
+              }}
             >
               궁동
             </button>
@@ -171,7 +174,10 @@ export default function Home() {
               className={`${styles.categoryBtn} ${
                 selectedCategory === 2 && styles.isSelected
               }`}
-              onClick={() => setSelectedCategory(2)}
+              onClick={() => {
+                setSelectedCategory(2);
+                setTowns(["BONGMYEONG_DONG"]);
+              }}
             >
               봉명동
             </button>
@@ -179,7 +185,10 @@ export default function Home() {
               className={`${styles.categoryBtn} ${
                 selectedCategory === 3 && styles.isSelected
               }`}
-              onClick={() => setSelectedCategory(3)}
+              onClick={() => {
+                setSelectedCategory(3);
+                setTowns(["EOEUN_DONG"]);
+              }}
             >
               어은동
             </button>
@@ -187,7 +196,10 @@ export default function Home() {
               className={`${styles.categoryBtn} ${
                 selectedCategory === 4 && styles.isSelected
               }`}
-              onClick={() => setSelectedCategory(4)}
+              onClick={() => {
+                setSelectedCategory(4);
+                setTowns(["JUKDONG"]);
+              }}
             >
               죽동
             </button>
@@ -195,7 +207,10 @@ export default function Home() {
               className={`${styles.categoryBtn} ${
                 selectedCategory === 5 && styles.isSelected
               }`}
-              onClick={() => setSelectedCategory(5)}
+              onClick={() => {
+                setSelectedCategory(5);
+                setTowns(["JANGDAE_DONG"]);
+              }}
             >
               장대동
             </button>
