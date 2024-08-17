@@ -239,7 +239,7 @@ button {
 
 .cardList {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, calc(1fr - 1rem));
   gap: 1rem;
   padding: 0 2rem;
 }
