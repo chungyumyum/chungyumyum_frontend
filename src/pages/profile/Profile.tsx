@@ -9,6 +9,11 @@ import { ProfileType } from "../../types/profile";
 import { getProflie } from "../../api/profile";
 import TriggerUpdateProvider from "./TriggerUpdateProvider";
 import NavHeader from "./NavHeader";
+import blueLevel from "../../assets/icons/blue_level.svg";
+import redLevel from "../../assets/icons/red_level.svg";
+import grayLevel from "../../assets/icons/gray_level.svg";
+import greenLevel from "../../assets/icons/green_level.svg";
+import orangeLevel from "../../assets/icons/orange_level.svg";
 
 const getRatingAsKorean = {
   FRESHMAN: "새내기",
@@ -16,6 +21,14 @@ const getRatingAsKorean = {
   MASTERS: "쩝쩝석사",
   DOCTORATE: "쩝쩝박사",
   PROFESSOR: "먹교수",
+};
+
+const getLevelIcon = {
+  FRESHMAN: grayLevel,
+  BACHELOR: blueLevel,
+  MASTERS: greenLevel,
+  DOCTORATE: orangeLevel,
+  PROFESSOR: redLevel,
 };
 
 export default function Profile() {
@@ -53,7 +66,7 @@ export default function Profile() {
       </div>
       <div className={styles.contents}>
         <div className={styles.profile}>
-          <Badge size="big" type={profile.rank} />
+          <img src={getLevelIcon[profile.rank]} alt="level" />
           <div>
             <div
               className={styles.levelContainer}

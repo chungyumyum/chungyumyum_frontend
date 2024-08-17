@@ -26,6 +26,7 @@
 
 .profile {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 1.5rem;
   align-items: center;
@@ -98,4 +99,5 @@
   grid-template-columns: repeat(2, minmax(auto, 49%));
   gap: 1rem;
   padding: 0 2rem;
+  background-color: #fff;
 }
