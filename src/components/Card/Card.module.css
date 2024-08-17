@@ -3,8 +3,6 @@
   box-shadow: 0 0.2rem 0.3rem 0.01rem rgba(0, 0, 0, 0.1);
   padding: 2rem;
   border-radius: 1rem;
-  display: flex;
-  gap: 2rem;
   height: 14rem;
   position: relative;
 }
@@ -36,8 +34,6 @@
   height: 100%;
   object-fit: cover;
   vertical-align: top;
-  position: relative;
-  z-index: -1;
 }
 
 .cardContents {
@@ -136,19 +132,18 @@
   background-color: #f3f3f3;
 }
 
-.thumbIcon{
+.thumbIcon {
   width: 1.4rem;
 }
 
-
-@media (max-width: 380px){
-  .cardCover{
+@media (max-width: 380px) {
+  .cardCover {
     width: 12rem;
   }
-  .cardRating{
+  .cardRating {
     font-size: 1.1rem;
   }
-  .thumbIcon{
+  .thumbIcon {
     width: 1.2rem;
   }
 }

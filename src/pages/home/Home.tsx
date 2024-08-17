@@ -222,20 +222,22 @@ export default function Home() {
           </div>
         </div>
 
-        {posts.map((post, index) => (
-          <Card
-            key={post.id}
-            writerName={post.writerName}
-            writerRank={post.writerRank}
-            restaurantName={post.restaurantName}
-            rating={post.rating}
-            imageUrl={post.imageUrl}
-            description={post.description}
-            id={post.id}
-            isMyPost={myPostsId.includes(post.id)}
-            ref={index === posts.length - 1 ? ref : null}
-          />
-        ))}
+        <div className={styles.cardList}>
+          {posts.map((post, index) => (
+            <Card
+              key={post.id}
+              writerName={post.writerName}
+              writerRank={post.writerRank}
+              restaurantName={post.restaurantName}
+              rating={post.rating}
+              imageUrl={post.imageUrl}
+              description={post.description}
+              id={post.id}
+              isMyPost={myPostsId.includes(post.id)}
+              ref={index === posts.length - 1 ? ref : null}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
