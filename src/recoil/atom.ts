@@ -8,13 +8,7 @@ export const searchState = atom({
 
 export const townsState = atom<Town[]>({
   key: "townsState",
-  default: [
-    "GUNGDONG",
-    "BONGMYEONG_DONG",
-    "EOEUN_DONG",
-    "JUKDONG",
-    "JANGDAE_DONG",
-  ],
+  default: ["GUNGDONG"],
 });
 
 export const showParagraphState = atom({
