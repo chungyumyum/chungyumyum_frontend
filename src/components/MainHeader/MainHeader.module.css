@@ -1,8 +1,8 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.4rem;
+  /* justify-content: center; */
+  gap: 3rem;
   padding: 0 1.7rem;
   height: 7.9rem;
   position: fixed;
@@ -22,12 +22,13 @@
 }
 
 .searchContainer {
-  width: 70%;
+  width: 74%;
   position: relative;
 }
 
 .search {
-  border: 1px solid #c8c8c8;
+  /* border: 1px solid #c8c8c8; */
+  border: 0;
   border-radius: 2rem;
   width: 100%;
   padding: 1rem 2.9rem;

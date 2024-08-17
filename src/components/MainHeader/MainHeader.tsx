@@ -31,7 +31,7 @@ export default function MainHeader() {
   const searchRef = useRef<HTMLInputElement>(null);
   const [search, setSearchState] = useRecoilState(searchState);
   const [towns, setTowns] = useRecoilState(townsState);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState("");
   const [selectedTowns, setSelectedTowns] = useState<Town[]>([
     "GUNGDONG",
     "BONGMYEONG_DONG",
@@ -55,8 +55,8 @@ export default function MainHeader() {
   };
 
   const handleChangeSelectedTowns = (e: MouseEvent) => {
-    if(selectedTowns.length === 1 && e.currentTarget.id === selectedTowns[0]){
-      setToastMessage('최소 한 개의 동네를 선택해주세요.');
+    if (selectedTowns.length === 1 && e.currentTarget.id === selectedTowns[0]) {
+      setToastMessage("최소 한 개의 동네를 선택해주세요.");
       return;
     }
 
@@ -184,7 +184,7 @@ export default function MainHeader() {
             </div>
           )}
         </div>
-        <div>
+        {/* <div>
           <button
             className={styles.controlBtn}
             onClick={() => {
@@ -199,7 +199,7 @@ export default function MainHeader() {
               alt="control_icon"
             />
           </button>
-        </div>
+        </div> */}
       </header>
       {isSidebarOpened && (
         <>
