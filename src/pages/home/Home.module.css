@@ -4,7 +4,8 @@
 }
 
 .contents {
-  background-color: var(--gray-100);
+  /* background-color: var(--gray-100); */
+  background-color: white;
   min-height: 90vh;
   padding-bottom: 9rem;
 }
@@ -156,9 +157,29 @@
 
 .control {
   display: flex;
-  justify-content: flex-end;
-  padding-right: 2rem;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.6rem;
+  padding: 0 2rem;
+}
+
+.categoryBtns {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.categoryBtn {
+  border: 0.98px solid #f4f4f4;
+  border-radius: 2.8rem;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.categoryBtn.isSelected {
+  background-color: #ff6e05;
+  color: #fff;
 }
 
 .controlBtn {
@@ -167,17 +188,61 @@
   gap: 0.5rem;
   cursor: pointer;
   color: #000;
+  text-align: center;
 }
 
-.controlBtn::before {
+.controlValue {
+  font-size: 1.3rem;
+}
+
+.dropDown {
+  position: absolute;
+  top: 2rem;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.dropDown button {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.6rem 0;
+  font-size: 1.16rem;
+}
+
+.dropDown button:hover {
+  background-color: aliceblue;
+}
+
+/* .controlBtn::before {
   content: "";
   width: 0.5rem;
   height: 0.5rem;
   background-color: currentColor;
   display: inline-block;
   border-radius: 50%;
+} */
+
+button {
+  padding: 0;
+}
+.option {
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.controlBtn.selected {
-  color: #428eff;
+.expand {
+  cursor: pointer;
+}
+
+@media (max-width: 365px) {
+  .categoryBtn {
+    font-size: 1rem;
+  }
+
+  .option * {
+    font-size: 1rem;
+  }
 }

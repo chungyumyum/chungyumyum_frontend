@@ -16,7 +16,7 @@ import { useIntersectionObserver } from "react-intersection-observer-hook";
 // import chochoro from "../../assets/covers/chochoro.png";
 import newBanner01 from "../../assets/covers/newBanner01.png";
 import newBanner02 from "../../assets/covers/newBanner02.png";
-
+import arrowDown from "../../assets/icons/arrowDown.svg";
 // import pencil from "../../assets/icons/pencil2.svg";
 
 export default function Home() {
@@ -30,6 +30,9 @@ export default function Home() {
   const isVisible = entry && entry.isIntersecting;
   const isFirstRender = useRef(false);
   const [myPostsId, setMyPostsId] = useState<number[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState(1);
+  const [isOpend, setIsOpened] = useState(false);
+
   // const navigate = useNavigate();
 
   const settings = {
@@ -77,10 +80,12 @@ export default function Home() {
 
   const handleNewestClick = () => {
     setToggle("createdDate");
+    setIsOpened(false);
   };
 
   const handleRatingClick = () => {
     setToggle("rating");
+    setIsOpened(false);
   };
 
   useEffect(() => {
@@ -147,22 +152,68 @@ export default function Home() {
           </div>
         )}
         <div className={styles.control}>
-          <button
-            onClick={handleNewestClick}
-            className={`${styles.controlBtn} ${
-              toggle === "createdDate" && styles.selected
-            }`}
-          >
-            최신순
-          </button>
-          <button
-            onClick={handleRatingClick}
-            className={`${styles.controlBtn} ${
-              toggle === "rating" && styles.selected
-            }`}
-          >
-            별점순
-          </button>
+          <div className={styles.categoryBtns}>
+            <button
+              className={`${styles.categoryBtn} ${
+                selectedCategory === 1 && styles.isSelected
+              }`}
+              onClick={() => setSelectedCategory(1)}
+            >
+              궁동
+            </button>
+            <button
+              className={`${styles.categoryBtn} ${
+                selectedCategory === 2 && styles.isSelected
+              }`}
+              onClick={() => setSelectedCategory(2)}
+            >
+              봉명동
+            </button>
+            <button
+              className={`${styles.categoryBtn} ${
+                selectedCategory === 3 && styles.isSelected
+              }`}
+              onClick={() => setSelectedCategory(3)}
+            >
+              어은동
+            </button>
+            <button
+              className={`${styles.categoryBtn} ${
+                selectedCategory === 4 && styles.isSelected
+              }`}
+              onClick={() => setSelectedCategory(4)}
+            >
+              죽동
+            </button>
+            <button
+              className={`${styles.categoryBtn} ${
+                selectedCategory === 5 && styles.isSelected
+              }`}
+              onClick={() => setSelectedCategory(5)}
+            >
+              장대동
+            </button>
+          </div>
+          <div className={styles.option}>
+            <button
+              className={styles.expand}
+              onClick={() => setIsOpened((prev) => !prev)}
+            >
+              <img src={arrowDown} alt="arrow_down" />
+            </button>
+            <button
+              className={`${styles.controlBtn}`}
+              onClick={() => setIsOpened((prev) => !prev)}
+            >
+              {toggle === "createdDate" ? "최신순" : "별점순"}
+            </button>
+            {isOpend && (
+              <div className={styles.dropDown}>
+                <button onClick={handleNewestClick}>최신순</button>
+                <button onClick={handleRatingClick}>별점순</button>
+              </div>
+            )}
+          </div>
         </div>
 
         {posts.map((post, index) => (
