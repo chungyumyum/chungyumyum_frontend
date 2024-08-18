@@ -1,5 +1,9 @@
 .container {
-  display: flow-root;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
 }
 
 @keyframes move {
