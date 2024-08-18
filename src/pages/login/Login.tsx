@@ -52,7 +52,7 @@ export default function Login() {
         <img width="100%" src={rabbitImg} alt="rabbit_Img" />
       </div>
 
-      <div>
+      <div style={{ flexGrow: 1 }}>
         <p className={styles.description}>맛있는 순간을 함께 나눠요!</p>
         <button className={styles.kakaoLoginBtn} onClick={handleKakaoLogin}>
           <img src={kakaoLoginImg} alt="kakao_login_img" />

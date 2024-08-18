@@ -2,8 +2,8 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 30px;
   justify-content: center;
+  padding: 9rem 0;
 }
 
 @keyframes move {
@@ -18,13 +18,12 @@
 }
 
 .cover {
-  height: 50vh;
-  margin: 0 auto;
+  flex-grow: 1;
   aspect-ratio: 1;
 }
 
 .title {
-  margin: 3rem 0 2rem;
+  flex-grow: 1;
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
