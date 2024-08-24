@@ -1,6 +1,6 @@
 import SubHeader from "../../components/SubHeader/SubHeader";
 import styles from "./Post.module.css";
-import gpsIcon from "../../assets/icons/gps.svg";
+import { ReactComponent as GpsIcon } from "../../assets/icons/gps.svg";
 import cameraIcon from "../../assets/icons/camera-line.svg";
 import { useEffect, useRef, useState } from "react";
 import { SearchShopPage, UploadCoversPage } from "../../components";
@@ -8,6 +8,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { createPost } from "../../api/post";
 import Toast from "../../components/Toast/Toast";
 import { getShops } from "../../api/shop";
+import building from "../../assets/covers/post_building_bg.svg";
 
 export type FileListItem = {
   file: File;
@@ -30,7 +31,7 @@ const RATING: { [key: string]: string } = {
 
 export default function Post() {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('restaurantName'); // test
+  const query = searchParams.get("restaurantName"); // test
   const [des, setDes] = useState("");
   const [rating, setRating] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -95,17 +96,17 @@ export default function Post() {
   }, []);
 
   useEffect(() => {
-    if(typeof query !== 'string'){
+    if (typeof query !== "string") {
       return;
     }
 
-    if(!query){
+    if (!query) {
       return;
     }
 
     (async function () {
-      const restaurants = await getShops({ name: query});
-      setSelectedShop({name:query, id:restaurants[0].id});
+      const restaurants = await getShops({ name: query });
+      setSelectedShop({ name: query, id: restaurants[0].id });
     })();
   }, [query]);
 
@@ -138,13 +139,14 @@ export default function Post() {
         onSetPresignedFileList={setPresignedFileList}
       />
       <SubHeader title="글쓰기" />
+      <img src={building} alt="building-bg" className={styles.buildingBG} />
       <div className={styles.contents}>
         <div>
           <button
             className={styles.searchShopBtn}
             onClick={() => setIsOpen(true)}
           >
-            <img width={17} src={gpsIcon} alt="gps_icon" />
+            <GpsIcon width={17} style={{ fill: "red" }} />
             <span>{selectedShop.name || "가게를 검색하세요"}</span>
           </button>
           <div
@@ -184,7 +186,7 @@ export default function Post() {
             )}
           </div>
           <div className={styles.ratingInput}>
-            <div>별점을 선택하세요.</div>
+            {/* <div>별점을 선택하세요.</div> */}
             <div className={styles.stars}>
               {[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((value, i) => (
                 <span
@@ -203,7 +205,7 @@ export default function Post() {
           </div>
           <div className={styles.textareaContainer}>
             <textarea
-              placeholder="설명을 입력하세요."
+              placeholder="리뷰를 작성하세요."
               className={styles.textarea}
               onChange={(e) => setDes(e.target.value)}
               maxLength={300}

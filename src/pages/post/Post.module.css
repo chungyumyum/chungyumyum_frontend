@@ -1,18 +1,25 @@
+.container {
+  position: relative;
+}
+
 .contents {
-  padding: 3rem 3rem 6rem;
+  padding: 0 4rem;
   background-color: #fff;
+  position: relative;
+  z-index: 100;
+  top: -0.6rem;
 }
 
 .searchShopBtn {
-  background-color: #f3f3f3;
-  border: 1px solid #d8d8d8;
+  background-color: #fff;
   width: 100%;
-  border-radius: 2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: 1.2rem 0;
+  padding: 1.5rem 0;
   color: #9b9b9b;
   margin-bottom: 2.4rem;
   cursor: pointer;
@@ -24,8 +31,7 @@
 }
 
 .pictureBtn {
-  background-color: #f3f3f3;
-  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
   border-radius: 2rem;
   color: #9b9b9b;
   font-size: 1.6rem;
@@ -125,8 +131,8 @@
 
 .textareaContainer {
   position: relative;
-  background-color: #f3f3f3;
-  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
+  /* border: 1px solid #d8d8d8; */
   border-radius: 2rem;
   overflow: hidden;
   height: 17rem;
@@ -135,7 +141,7 @@
 .textarea {
   border: none;
   width: 100%;
-  background-color: #f3f3f3;
+  background-color: #f7f7f7;
   color: #9b9b9b;
   font-size: 1.6rem;
   font-family: "pretendard-regular";
@@ -156,7 +162,7 @@
 .submitBtn {
   display: block;
   border-radius: 1.5rem;
-  background-color: #000;
+  background-color: #ff6e05;
   color: #fff;
   margin: 2.9rem auto 3rem;
   padding: 1.1rem 0;
@@ -176,4 +182,14 @@
   right: 1.5rem;
   color: #9b9b9b;
   font-size: 1.4rem;
+}
+
+/* building bg */
+.buildingBG {
+  width: 100%;
+  height: 30%;
+  padding-top: 5rem;
+  object-fit: none;
+  position: relative;
+  z-index: 1;
 }
