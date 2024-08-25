@@ -111,7 +111,7 @@ export default function Post() {
   }, [query]);
 
   return (
-    <div>
+    <div style={{ background: "#fff", paddingBottom: "80px" }}>
       {toastMessage && (
         <Toast
           message={toastMessage}
@@ -141,7 +141,7 @@ export default function Post() {
       <SubHeader title="글쓰기" />
       <img src={building} alt="building-bg" className={styles.buildingBG} />
       <div className={styles.contents}>
-        <div>
+        <div style={{ marginTop: "-3rem" }}>
           <button
             className={styles.searchShopBtn}
             onClick={() => setIsOpen(true)}

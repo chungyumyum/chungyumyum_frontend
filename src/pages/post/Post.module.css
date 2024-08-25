@@ -4,7 +4,7 @@
 
 .contents {
   padding: 0 4rem;
-  background-color: #fff;
+  /* background-color: #fff; */
   position: relative;
   z-index: 100;
   top: -0.6rem;
@@ -188,7 +188,7 @@
 .buildingBG {
   width: 100%;
   height: 30%;
-  padding-top: 5rem;
+  padding-top: 2rem;
   object-fit: none;
   position: relative;
   z-index: 1;
