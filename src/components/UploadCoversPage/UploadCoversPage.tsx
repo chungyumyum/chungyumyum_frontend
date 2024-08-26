@@ -40,7 +40,7 @@ const resizeFile = (file: File) =>
         console.log("file uri:", uri);
         resolve(uri);
       },
-      "base64"
+      "file"
     );
   });
 
@@ -72,6 +72,7 @@ export default function UploadCoversPage({
     } else {
       files.forEach(async (file) => {
         const optimizedFile = await resizeFile(file);
+        console.log("optimized file:", optimizedFile);
         setFileList((prevFileList) => [
           ...prevFileList,
           {
