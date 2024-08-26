@@ -77,7 +77,7 @@ export default function UploadCoversPage({
           ...prevFileList,
           {
             file: optimizedFile as File,
-            name: (optimizedFile as File).name,
+            name: file.name,
             url: URL.createObjectURL(file),
           },
         ]);
