@@ -37,6 +37,7 @@ const resizeFile = (file: File) =>
       100,
       0,
       (uri) => {
+        console.log("file uri:", uri);
         resolve(uri);
       },
       "base64"
