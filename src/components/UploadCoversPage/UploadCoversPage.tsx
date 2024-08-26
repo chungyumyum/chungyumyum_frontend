@@ -9,6 +9,7 @@ import { FileListItem } from "../../pages/post/Post";
 import { getPresignedUrl } from "../../api/image";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Resizer from "react-image-file-resizer";
 
 type UploadCoversPageProps = {
   isOpen: boolean;
@@ -25,6 +26,22 @@ const handleGetPresignedUrl = async (file: string) => {
   const data = await getPresignedUrl(file);
   return data;
 };
+
+const resizeFile = (file: File) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      350,
+      340,
+      "AVIF",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
 
 export default function UploadCoversPage({
   isOpen,
@@ -52,11 +69,12 @@ export default function UploadCoversPage({
     if (e_fileList.length + e.target.files?.length + fileList.length > 4) {
       alert("사진은 최대 4장까지 가능합니다.");
     } else {
-      files.forEach((file) => {
+      files.forEach(async (file) => {
+        const optimizedFile = await resizeFile(file);
         setFileList((prevFileList) => [
           ...prevFileList,
           {
-            file: file,
+            file: optimizedFile as File,
             name: file.name,
             url: URL.createObjectURL(file),
           },
