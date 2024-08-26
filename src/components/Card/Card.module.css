@@ -116,6 +116,7 @@
   right: 2rem;
   border-radius: 0.4rem;
   overflow: hidden;
+  z-index: 9999;
 }
 
 .popOverBtn {
