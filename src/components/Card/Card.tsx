@@ -101,7 +101,12 @@ export default forwardRef(function Card(
       style={style}
     >
       <div className={styles.cardCover}>
-        <img src={imageUrl} alt="card-cover" onError={addDefaultImg} />
+        <img
+          src={imageUrl}
+          loading="lazy"
+          alt="card-cover"
+          onError={addDefaultImg}
+        />
       </div>
       <div className={styles.cardContents}>
         <div className={styles.cardHeader}>
@@ -144,8 +149,8 @@ export default forwardRef(function Card(
           {!pathname.includes("reviewList") && (
             <div className={styles.cardRating}>
               <span>⭐ {RATING[String(rating)]}</span>
-              <span style={{display:'flex',gap:'0.4rem'}}>
-                <img className={styles.thumbIcon} src={thumbIcon} width={14}/>
+              <span style={{ display: "flex", gap: "0.4rem" }}>
+                <img className={styles.thumbIcon} src={thumbIcon} width={14} />
                 <span>0</span>
               </span>
             </div>
