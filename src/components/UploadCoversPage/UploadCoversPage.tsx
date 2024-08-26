@@ -33,7 +33,7 @@ const resizeFile = (file: File) =>
       file,
       350,
       340,
-      "AVIF",
+      "webp",
       100,
       0,
       (uri) => {
