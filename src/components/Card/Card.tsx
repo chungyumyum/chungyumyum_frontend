@@ -124,13 +124,9 @@ export default forwardRef(function Card(
                   alignItems: "center",
                 }}
               >
+                <Badge sx={{ flexShrink: 0 }} type={writerRank as BadgeType} />
                 <h2 className={styles.cardTitle}>{restaurantName}</h2>
                 <div style={{ display: "flex", gap: "10px" }}>
-                  <Badge
-                    sx={{ flexShrink: 0 }}
-                    type={writerRank as BadgeType}
-                  />
-
                   {(pathname.includes("profile/posts") || isMyPost) && (
                     <button
                       className={styles.moreBtn}
