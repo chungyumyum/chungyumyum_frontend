@@ -125,19 +125,25 @@ export default forwardRef(function Card(
                 }}
               >
                 <h2 className={styles.cardTitle}>{restaurantName}</h2>
-                <Badge sx={{ flexShrink: 0 }} type={writerRank as BadgeType} />
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <Badge
+                    sx={{ flexShrink: 0 }}
+                    type={writerRank as BadgeType}
+                  />
+
+                  {(pathname.includes("profile/posts") || isMyPost) && (
+                    <button
+                      className={styles.moreBtn}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsPopoverOpened((prev) => !prev);
+                      }}
+                    >
+                      <img width={3} src={moreIcon} alt="more_icon" />
+                    </button>
+                  )}
+                </div>
               </div>
-              {(pathname.includes("profile/posts") || isMyPost) && (
-                <button
-                  className={styles.moreBtn}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsPopoverOpened((prev) => !prev);
-                  }}
-                >
-                  <img width={3} src={moreIcon} alt="more_icon" />
-                </button>
-              )}
               {pathname.includes("profile/bookmark") && (
                 <button
                   className={styles.bookmarkBtn}
