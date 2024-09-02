@@ -116,7 +116,10 @@ export default forwardRef(function Card(
             </div>
           ) : (
             <>
-              <h2 className={styles.cardTitle}>{restaurantName}</h2>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <h2 className={styles.cardTitle}>{restaurantName}</h2>
+                <Badge type={writerRank as BadgeType} />
+              </div>
               {(pathname.includes("profile/posts") || isMyPost) && (
                 <button
                   className={styles.moreBtn}
@@ -156,7 +159,6 @@ export default forwardRef(function Card(
             </div>
           )}
           <div className={styles.role}>
-            <Badge type={writerRank as BadgeType} />
             {replaceRestCharacters(writerName ?? "")}
           </div>
         </div>
