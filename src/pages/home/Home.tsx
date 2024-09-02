@@ -135,7 +135,11 @@ export default function Home() {
             <Slider {...settings}>
               <div className={styles.slider}>
                 <a href="https://volcano-knife-71c.notion.site/dfaa5f2b9f8a473581e5e280e5c301bb?pvs=4">
-                  <img src={newBanner02} alt="banner-cover" />
+                  <img
+                    src={newBanner02}
+                    alt="banner-cover"
+                    fetchPriority="high"
+                  />
                 </a>
               </div>
               <div className={styles.slider}>
