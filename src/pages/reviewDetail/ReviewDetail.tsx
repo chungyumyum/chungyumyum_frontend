@@ -96,7 +96,7 @@ export default function ReviewDetail() {
   }, [post]);
 
   return (
-    <> 
+    <>
       {isOpen && (
         <MapModal location={location} onClose={() => setIsOpen(false)} />
       )}
@@ -156,7 +156,7 @@ export default function ReviewDetail() {
 
         <div className={styles.starsContainer}>
           <Stars rating={RATING[post.rating]} />
-        </div> 
+        </div>
 
         <p className={styles.review}>{post.description}</p>
         <div className={styles.btnContainer}>
@@ -171,11 +171,6 @@ export default function ReviewDetail() {
             </Link>
           </button>
         </div>
-
-        <button className={styles.likeBtn}>
-          <img width={22} src={thumbIcon} alt="thumbs-up"/> 
-          <span style={{color:'#825858', fontSize:'2rem'}}>0</span>
-        </button>
       </div>
     </>
   );
