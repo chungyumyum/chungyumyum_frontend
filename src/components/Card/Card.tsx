@@ -116,9 +116,16 @@ export default forwardRef(function Card(
             </div>
           ) : (
             <>
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  width: "100%",
+                  alignItems: "center",
+                }}
+              >
                 <h2 className={styles.cardTitle}>{restaurantName}</h2>
-                <Badge type={writerRank as BadgeType} />
+                <Badge sx={{ flexShrink: 0 }} type={writerRank as BadgeType} />
               </div>
               {(pathname.includes("profile/posts") || isMyPost) && (
                 <button
