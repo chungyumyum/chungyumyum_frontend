@@ -224,6 +224,10 @@ export default function Post() {
           >
             등록
           </button>
+          <div className={styles.note}>
+            작성된 리뷰는 본 사이트의 공식 계정에 다양한 형식으로 게시될 수
+            있습니다.
+          </div>
         </div>
       </div>
     </div>

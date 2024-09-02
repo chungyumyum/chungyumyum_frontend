@@ -148,17 +148,12 @@ export default function Home() {
                 </a>
               </div>
               <div className={styles.slider}>
-                <a href="https://volcano-knife-71c.notion.site/11b7c84ebb064274a7d57df986c5ee98?pvs=4">
-                  <img src={bannerCover04} alt="banner-cover" />
-                </a>
-              </div>
-              <div className={styles.slider}>
                 <Link to="/notice-event-restaurant">
                   <img src={chochoro} alt="banner-cover" />
                 </Link>
               </div>
             </Slider>
-            <div className={styles.sliderCountTag}>{curSlideState + 1} / 4</div>
+            <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
           </div>
         )}
         <div className={styles.control}>

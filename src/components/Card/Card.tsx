@@ -19,7 +19,7 @@ import { deleteBookmarkedPost, storeBookmarkedPost } from "../../api/bookmarks";
 import bookmarkActiveIcon from "../../assets/icons/bookmark_active.svg";
 import { replaceRestCharacters } from "../../util/replaceMiddleCharacter";
 import defaultImg from "../../assets/covers/defaultImg.webp";
-import thumbIcon from "../../assets/icons/thumb.svg";
+import bookmarkSIcon from "../../assets/icons/bookmark-fill.png";
 
 type CardProps = {
   style?: CSSProperties;
@@ -162,7 +162,11 @@ export default forwardRef(function Card(
             <div className={styles.cardRating}>
               <span>⭐ {RATING[String(rating)]}</span>
               <span style={{ display: "flex", gap: "0.4rem" }}>
-                <img className={styles.thumbIcon} src={thumbIcon} width={14} />
+                <img
+                  className={styles.thumbIcon}
+                  src={bookmarkSIcon}
+                  width={14}
+                />
                 <span>0</span>
               </span>
             </div>
