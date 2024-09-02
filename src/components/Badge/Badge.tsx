@@ -6,10 +6,10 @@ import { CSSProperties } from "react";
 type BadgeProps = {
   type: BadgeType;
   size?: "small" | "big";
-  sx: CSSProperties;
+  sx?: CSSProperties;
 };
 
-export default function Badge({ type, size = "small", sx }: BadgeProps) {
+export default function Badge({ sx = {}, type, size = "small" }: BadgeProps) {
   return (
     <div
       style={sx}
