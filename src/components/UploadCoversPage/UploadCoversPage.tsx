@@ -33,7 +33,7 @@ const resizeFile = (file: File) =>
       file,
       700,
       700,
-      "webp",
+      "jpeg",
       100,
       0,
       (uri) => {
