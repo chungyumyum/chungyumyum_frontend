@@ -31,8 +31,8 @@ const resizeFile = (file: File) =>
   new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
-      350,
-      800,
+      700,
+      700,
       "webp",
       100,
       0,
