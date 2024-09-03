@@ -40,7 +40,9 @@ const resizeFile = (file: File) =>
         console.log("file uri:", uri);
         resolve(uri);
       },
-      "file"
+      "file",
+      700,
+      700
     );
   });
 
