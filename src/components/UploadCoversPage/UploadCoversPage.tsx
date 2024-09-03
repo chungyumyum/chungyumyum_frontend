@@ -32,7 +32,7 @@ const resizeFile = (file: File) =>
     Resizer.imageFileResizer(
       file,
       350,
-      540,
+      800,
       "webp",
       100,
       0,
