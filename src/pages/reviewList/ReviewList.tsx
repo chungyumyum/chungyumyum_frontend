@@ -53,18 +53,20 @@ export default function ReviewList() {
       </div>
 
       <div className={styles.contents}>
-        {posts.reverse().map((post) => (
-          <Card
-            key={post.id}
-            writerName={post.writerName}
-            writerRank={post.writerRank}
-            restaurantName={post.restaurantName}
-            rating={post.rating}
-            imageUrl={post.imageUrl}
-            description={post.description}
-            id={post.id}
-          />
-        ))}
+        <div className={styles.cardList}>
+          {posts.reverse().map((post) => (
+            <Card
+              key={post.id}
+              writerName={post.writerName}
+              writerRank={post.writerRank}
+              restaurantName={post.restaurantName}
+              rating={post.rating}
+              imageUrl={post.imageUrl}
+              description={post.description}
+              id={post.id}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
