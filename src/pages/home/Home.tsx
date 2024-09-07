@@ -160,7 +160,7 @@ export default function Home() {
           <div className={styles.categoryBtns}>
             <button
               className={`${styles.categoryBtn} ${
-                selectedCategory === 1 && styles.isSelected
+                towns[0] === "GUNGDONG" && styles.isSelected
               }`}
               onClick={() => {
                 setSelectedCategory(1);
@@ -171,7 +171,7 @@ export default function Home() {
             </button>
             <button
               className={`${styles.categoryBtn} ${
-                selectedCategory === 2 && styles.isSelected
+                towns[0] === "BONGMYEONG_DONG" && styles.isSelected
               }`}
               onClick={() => {
                 setSelectedCategory(2);
@@ -182,7 +182,7 @@ export default function Home() {
             </button>
             <button
               className={`${styles.categoryBtn} ${
-                selectedCategory === 3 && styles.isSelected
+                towns[0] === "EOEUN_DONG" && styles.isSelected
               }`}
               onClick={() => {
                 setSelectedCategory(3);
@@ -193,7 +193,7 @@ export default function Home() {
             </button>
             <button
               className={`${styles.categoryBtn} ${
-                selectedCategory === 4 && styles.isSelected
+                towns[0] === "JUKDONG" && styles.isSelected
               }`}
               onClick={() => {
                 setSelectedCategory(4);
@@ -204,7 +204,7 @@ export default function Home() {
             </button>
             <button
               className={`${styles.categoryBtn} ${
-                selectedCategory === 5 && styles.isSelected
+                towns[0] === "JANGDAE_DONG" && styles.isSelected
               }`}
               onClick={() => {
                 setSelectedCategory(5);
