@@ -72,6 +72,7 @@ export default function Home() {
           sort: `${toggle},desc`,
         });
         setPosts([...postsData]);
+        console.log("postsData:", postsData);
         setPage(0);
       }
     } catch (err) {
