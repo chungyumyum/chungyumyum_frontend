@@ -13,7 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 import bannerCover04 from "../../assets/covers/banner4.png";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
 // import { useNavigate } from "react-router-dom";
-import chochoro from "../../assets/covers/chochoro.png";
+// import chochoro from "../../assets/covers/chochoro.png";
+import congal from "../../assets/covers/congal.png";
 import newBanner01 from "../../assets/covers/newBanner01.png";
 import newBanner02 from "../../assets/covers/newBanner02.png";
 import arrowDown from "../../assets/icons/arrowDown.svg";
@@ -149,9 +150,9 @@ export default function Home() {
                 </a>
               </div>
               <div className={styles.slider}>
-                <Link to="/notice-event-restaurant">
-                  <img src={chochoro} alt="banner-cover" />
-                </Link>
+                <a href="https://volcano-knife-71c.notion.site/114e47f3c00a800dac3aec7ffff3fd8a">
+                  <img src={congal} alt="banner-cover" />
+                </a>
               </div>
             </Slider>
             <div className={styles.sliderCountTag}>{curSlideState + 1} / 3</div>
